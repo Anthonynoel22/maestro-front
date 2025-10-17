@@ -2,7 +2,7 @@
 .preview {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: .5rem;
     max-width: 350px;
     margin: 2rem;
 }
@@ -13,7 +13,7 @@
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
 
-.preview__title__container {
+.preview__figure {
     margin: 1rem;
 }
 
@@ -51,12 +51,13 @@ audio {
 .buttons {
     display: flex;
     justify-content: center;
+    padding: .5rem 0 .5rem 0;
 }
 
 .button {
-    width: 26px;
-    height: 26px;
-    padding: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: .5rem;
     background-color: #fff;
     border-radius: 6px;
     cursor: pointer;
@@ -68,8 +69,8 @@ audio {
     background-color: #d6d6de;
 }
 
-#play__icon {
-    width: 60px;
+.icon {
+
     justify-content: center;
     align-items: center;
 }

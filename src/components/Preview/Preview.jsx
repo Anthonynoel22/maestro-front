@@ -31,21 +31,21 @@ function Preview({title, audiosrc, genres}) {
         <>
         <article className="preview">
             <div className="preview__container">
-                <figure className="preview__title__container">
+                <figure className="preview__figure">
                     <figcaption className="preview__title">{title}</figcaption>
                     <audio className="audio">
                         {/* à mettre la source dynamiquement, et le type */}
-                        <source src={audiosrc} type="audio/mpeg"/>
+                        {/* <source src={audiosrc} type="audio/mpeg"/> */}
                     </audio>
-                    <div className="buttons">
-                        <div className={playIsHidden ? "button button__play hidden" : "button button__play"} onClick={handlePlay} id="play">
-                            <img id="play__icon" src="/src/assets/play-svgrepo-com.svg" alt="play button" />
-                        </div>
-                        <div className={pauseIsHidden ? "button button__pause hidden" : "button button__pause"} onClick={handlePause} id="pause">
-                            <img src="/src/assets/pause-svgrepo-com.svg" alt="pause button" />
-                        </div>
-                    </div>
                 </figure>
+                <div className="buttons">
+                    <div className={playIsHidden ? "button button__play hidden" : "button button__play"} onClick={handlePlay} id="play">
+                        <img className="icon" src="/src/assets/play-svgrepo-com.svg" alt="play button" />
+                    </div>
+                    <div className={pauseIsHidden ? "button button__pause hidden" : "button button__pause"} onClick={handlePause} id="pause">
+                        <img className="icon" src="/src/assets/pause-svgrepo-com.svg" alt="pause button" />
+                    </div>
+                </div>
             </div>
             <div className="preview__genre__container">
                 {
