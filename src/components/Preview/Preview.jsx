@@ -2,7 +2,17 @@ import "./Preview.scss";
 
 function Preview({title, genres}) {
 
+    const audio = document.getElementById(audio);
+    const play = document.getElementById(play);
+    const pause = document.getElementById(pause);
 
+    function handlePlay() {
+        audio.play();
+    }
+
+    function handlePause() {
+        audio.pause();
+    }
 
     return (
         <>
@@ -10,7 +20,12 @@ function Preview({title, genres}) {
             <div className="preview__container">
                 <figure className="preview__title__container">
                     <figcaption className="preview__title">{title}</figcaption>
-                    <audio controls src="null"></audio>
+                    <audio id="audio">
+                        {/* à mettre la source dynamiquement, et le type */}
+                        <source src="null"/>
+                    </audio>
+                    <button onClick={handlePlay} id="play"></button>
+                    <button onClick={handlePause} id="pause"></button>
                 </figure>
             </div>
             <div className="preview__genre__container">
