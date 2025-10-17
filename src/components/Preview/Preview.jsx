@@ -2,16 +2,23 @@ import "./Preview.scss";
 
 function Preview({title, genres}) {
 
-    const audio = document.getElementById(audio);
-    const play = document.getElementById(play);
-    const pause = document.getElementById(pause);
+    const audio = document.getElementById("audio");
+    const play = document.querySelector('.button__play');
+    const pause = document.querySelector('.button__pause');
+
+    function toggleHidden() {
+        play.classList.toggle('hidden');
+        pause.classList.toggle('hidden');
+    }
 
     function handlePlay() {
-        audio.play();
+        // audio.play();
+        toggleHidden();
     }
 
     function handlePause() {
-        audio.pause();
+        // audio.pause();
+        toggleHidden();
     }
 
     return (
@@ -24,8 +31,14 @@ function Preview({title, genres}) {
                         {/* à mettre la source dynamiquement, et le type */}
                         <source src="null"/>
                     </audio>
-                    <button onClick={handlePlay} id="play"></button>
-                    <button onClick={handlePause} id="pause"></button>
+                    <div className="buttons">
+                        <div className="button button__play" onClick={handlePlay} id="play">
+                            <img id="play__icon" src="/src/assets/play-svgrepo-com.svg" alt="" />
+                        </div>
+                        <div className="button button__pause hidden" onClick={handlePause} id="pause">
+                        
+                        </div>
+                    </div>
                 </figure>
             </div>
             <div className="preview__genre__container">
