@@ -1,0 +1,26 @@
+@use "./var";
+
+
+@mixin small {
+    @media (min-width: var.$breakpoint-sm) {
+        @content;
+    }
+}
+
+@mixin medium {
+    @media (min-width: var.$breakpoint-md) {
+        @content;
+    }
+}
+
+@mixin large {
+    @media (min-width: var.$breakpoint-lg) {
+        @content;
+    }
+}
+
+@mixin xlarge {
+    @media (min-width: var.$breakpoint-xl) {
+        @content;
+    }
+}
