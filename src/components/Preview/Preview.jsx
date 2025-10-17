@@ -1,6 +1,6 @@
 import "./Preview.scss";
 
-function Preview() {
+function Preview({title, genres}) {
 
 
 
@@ -9,14 +9,20 @@ function Preview() {
         <article className="preview">
             <div className="preview__container">
                 <figure className="preview__title__container">
-                    <figcaption className="preview__title">Titre</figcaption>
+                    <figcaption className="preview__title">{title}</figcaption>
                     <audio controls src="null"></audio>
                 </figure>
             </div>
             <div className="preview__genre__container">
-                <span className="preview__genre">Rock</span>
+                {
+                    // on va chercher dans genres pour afficher dynamiquement (pour le moment avec les données en dur)
+                    genres.map((genre, index) => (
+                        <span key={index} className="preview__genre">{genre}</span>
+                    ))
+                }
+                {/* <span className="preview__genre">Rock</span>
                 <span className="preview__genre">Pop</span>
-                <span className="preview__genre">Classique</span>
+                <span className="preview__genre">Classique</span> */}
             </div>
         </article>
         </>

@@ -1,13 +1,13 @@
 
 import './App.css'
-import Preview from './components/Preview/Preview.jsx'
+import PreviewList from './components/PreviewList/PreviewList.jsx'
 
 function App() {
 
   return (
     <>
     <h1>Maestro</h1>
-    <Preview />
+    <PreviewList />
     </>
   )
 }
