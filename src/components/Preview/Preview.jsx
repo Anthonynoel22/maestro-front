@@ -43,10 +43,11 @@ function Preview({title, audiosrc, genres}) {
                 <div className="buttons">
                     <div className={playIsHidden ? "button button__play hidden" : "button button__play"} onClick={handlePlay} id="play">
                         {/* <img className="icon" src="/src/assets/play-svgrepo-com.svg" alt="play button" /> */}
-                        <i className="bi bi-play fs-1"></i>
+                        <i className="icon bi bi-play fs-1"></i>
                     </div>
                     <div className={pauseIsHidden ? "button button__pause hidden" : "button button__pause"} onClick={handlePause} id="pause">
-                        <img className="icon" src="/src/assets/pause-svgrepo-com.svg" alt="pause button" />
+                        {/* <img className="icon" src="/src/assets/pause-svgrepo-com.svg" alt="pause button" /> */}
+                        <i className="icon bi bi-pause fs-1"></i>
                     </div>
                 </div>
             </div>

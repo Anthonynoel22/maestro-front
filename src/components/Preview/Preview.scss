@@ -49,29 +49,27 @@ audio {
 }
 
 .buttons {
-    display: flex;
+    display: inline-block;
     justify-content: center;
     // padding: .5rem 0 .5rem 0;
 }
 
 .button {
-    width: 1.5rem;
+    // width: 1.5rem;
     background-color: #fff;
     border-radius: 6px;
     cursor: pointer;
     display: flex;
     justify-content: center;
+    margin: .5rem 0 .5rem 0;
+    // padding: 0 1rem 0 1rem;
 }
 
 .button:hover {
     background-color: #d6d6de;
+    padding: 0 .5rem 0 .5rem;
 }
 
-.icon {
-
-    justify-content: center;
-    align-items: center;
-}
 
 .hidden {
     display: none;
