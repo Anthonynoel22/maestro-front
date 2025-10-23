@@ -1,0 +1,116 @@
+@use "var" as *;
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 40px;
+    background-color: $color-bg;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+
+    img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: contain;
+    }
+
+    nav {
+        flex-grow: 1;
+        display: flex;
+        justify-content: space-around;
+
+        ul {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 50px;
+            margin: 0;
+            padding: 0;
+
+            li a {
+                text-decoration: none;
+                color: $color-text;
+                font-family: $font-main;
+                font-weight: 500;
+                font-size: $spacing-medium;
+                transition: color 0.3s ease;
+
+                &:hover {
+                    color: #007bff;
+                }
+            }
+        }
+    }
+
+/* menu déroulant */
+    .icon-menu {
+        position: relative;
+
+        .nav-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            background-color: white;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 6px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px 15px;
+            min-width: 180px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 10;
+
+            p {
+                margin: 0;
+                font-family: $font-main;
+                color: $color-text;
+                font-size: 0.95rem;
+            }
+
+            button {
+                background-color: #007bff;
+                color: white;
+                border: none;
+                padding: 6px 12px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-family: $font-main;
+                font-size: 0.9rem;
+            }
+        }
+    }
+
+/* affichage en mode mobile  */
+    @include small {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 20px;
+
+        img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 0;
+        }
+
+/* masque tout sauf le logo */
+        nav,
+        .icon-menu {
+            display: none;
+        }
+    }
+}
+
