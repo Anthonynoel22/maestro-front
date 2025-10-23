@@ -1,0 +1,21 @@
+
+// Les couleurs
+$color-bg: #f4f4de;
+$color-text: #000000;
+
+// Les polices
+$font-main: "Roboto Mono", monospace;
+
+// Les espacements
+$spacing-medium: 1rem;
+
+// Les breakpoints
+$breakpoint-md: 768px;
+
+// Mixin responsive mobile 768 px
+@mixin small {
+    @media (max-width: #{$breakpoint-md}) {
+        @content;
+    }
+}
+
