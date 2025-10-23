@@ -1,0 +1,43 @@
+@use "../style/var" as *;
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 40px;
+    background-color: $color-bg;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+
+    nav {
+        flex-grow: 1;
+        display: flex;
+        justify-content: space-around;
+
+        ul {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 50px;
+            margin: 0;
+            padding: 0;
+
+            li a {
+                text-decoration: none;
+                color: $color-text;
+                font-family: $font-main;
+                font-weight: 500;
+                font-size: $spacing-medium;
+                transition: color 0.3s ease;
+
+                &:hover {
+                    color: #007bff;
+                }
+            }
+        }
+    }
+}
