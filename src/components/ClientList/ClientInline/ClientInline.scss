@@ -1,0 +1,51 @@
+.client-inline {
+    border: solid 1px #e07a5f;
+    border-radius: 10px;
+    box-shadow: 3px 3px 15px 1px rgba(133, 132, 132, 0.31);
+    display: flex;
+    justify-content: center;
+    padding: 0.2rem;
+    width: 100%;
+}
+
+.client-inline_div {
+    border: solid 1px #e07a5f;
+    display: flex;
+    padding: 0.2rem;
+}
+
+.client-inline_name_div {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-right: 0.2rem;
+}
+
+.client-inline_email_div {
+    margin-right: 0.2rem;
+}
+
+.client-inline_adress_div {
+    margin-right: 0.2rem;
+}
+
+.client-inline_phone-number_div {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.client-inline_item {
+}
+
+.client-inline_API-result {
+    margin: 0;
+}
+
+.client-inline_name_div {
+}
+
+.client-inline_first-name_API-result {
+    margin-right: 0.2rem;
+}
+
+.client-inline_last-name_API-result {
+}
