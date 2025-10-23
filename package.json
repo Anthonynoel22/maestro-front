@@ -13,10 +13,12 @@
     "axios": "^1.12.2",
     "bootstrap": "^5.3.8",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1",
     "react-helmet": "^6.1.0",
     "react-router": "^7.9.4",
     "react-router-dom": "^7.9.4"
+    "bootstrap-icons": "^1.13.1",
+    "react-bootstrap": "^2.10.10",
+    "react-dom": "^19.1.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
