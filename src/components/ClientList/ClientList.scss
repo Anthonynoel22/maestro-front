@@ -1,43 +1,42 @@
-.client-liste {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 8px;
+.client-list {
     border: solid 1px #e07a5f;
     border-radius: 10px;
     box-shadow: 3px 3px 15px 1px rgba(133, 132, 132, 0.31);
     padding: 0.2rem;
+    padding-bottom: 0.8rem;
+    margin-top: 10rem;
 }
 
-.client-liste-header {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(1, 1fr);
-    gap: 8px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    margin: 1rem;
+.client-list-header {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    // margin: top right+left
+    margin: 1rem 1rem;
     background-color: #e07a5f;
     color: white;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
-.client-liste-result {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(1, 1fr);
-    gap: 2px;
-    margin: 1rem;
+.client-list-header-mobile {
+    display: none;
+}
+
+@media (max-width: 576px) {
+    .client-list-header-mobile {
+        display: block;
+    }
+    .client-list-header-desktop {
+        display: none;
+    }
+}
+
+.client-list-result {
+    // margin: top right bottom left
+    margin: 0.5rem 1rem 0.5rem 1rem;
     font-size: 0.8rem;
 }
 
-.client-liste-result_div {
+.client-list-result_item {
     border-left: solid 1px #e07a5f;
-}
-
-.client-liste-result_phone-number_div {
-    border-right: solid 1px #e07a5f;
-}
-
-.client-liste-result_item {
-    margin: 0;
 }
