@@ -1,4 +1,3 @@
-/* import Header from './components/Header/Header.jsx' */
 import Header from './components/Header/Header.jsx'
 import Footer from './components/Footer/Footer.jsx';
 import Description from './components/Description/Description'
@@ -10,7 +9,6 @@ function App() {
 
   return (
     <div className='App'>
-        {/* <Header /> */}
         <Header />
         <main>
           <Description />
