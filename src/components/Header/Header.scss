@@ -7,50 +7,29 @@ header {
     left: 0;
     width: 100%;
     display: flex;
+    flex-direction: column; // mobile: empilé
     align-items: center;
-    justify-content: space-between;
-    padding: 10px 40px;
+    justify-content: center;
+    padding: 3px 20px;
     background-color: var.$color-bg;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-
+    z-index: 10;
 
     img {
-        width: 70px;
-        height: 70px;
+        width: 50px;
+        height: 50px;
         border-radius: 50%;
         object-fit: contain;
+        margin-bottom: 0;
     }
 
-    nav {
-        flex-grow: 1;
-        display: flex;
-        justify-content: center;
-
-        ul {
-            display: flex;
-            align-items: center;
-            list-style: none;
-            gap: 50px;
-            margin: 0;
-            padding: 0;
-
-            li a {
-                text-decoration: none;
-                color: var.$color-title-and-text;
-                font-family: var.$font-main;
-                font-weight: 500;
-                font-size: var.$font-size-base;
-                transition: color 0.3s ease;
-
-                &:hover {
-                    color: #007bff;
-                }
-            }
-        }
+    // logo seul sur mobile
+    nav,
+    .icon-menu {
+        display: none;
     }
 
-
-/* menu déroulant */
+    /* menu déroulant mobile */
     .icon-menu {
         position: relative;
 
@@ -96,27 +75,49 @@ header {
         }
     }
 
-/* affichage en mode mobile  */
+    // À partir de medium : affichage complet (desktop)
     @include mixin.medium {
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
-        padding: 10px 20px;
+        justify-content: space-between;
+        padding: 10px 40px;
 
         img {
-            width: 70px;
-            height: 70px;
             margin-bottom: 0;
         }
 
-/* masque tout sauf le logo */
-        nav,
+        nav {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+
+            ul {
+                display: flex;
+                align-items: center;
+                list-style: none;
+                gap: 50px;
+                margin: 0;
+                padding: 0;
+
+                li a {
+                    text-decoration: none;
+                    color: var.$color-title-and-text;
+                    font-family: var.$font-main;
+                    font-weight: 500;
+                    font-size: var.$font-size-base;
+                    transition: color 0.3s ease;
+
+                    &:hover {
+                        color: #007bff;
+                    }
+                }
+            }
+        }
+
         .icon-menu {
-            display: none;
+            display: flex;
+            align-items: center;
+            position: relative;
         }
     }
 }
-
-
-
-
-

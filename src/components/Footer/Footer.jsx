@@ -10,6 +10,7 @@ const links = [
     { label: "Accessibilité", href: "#" },
 ];
 
+// avec le spread operator je cree un nouveau tableau a partir du tableauu initial
 const mobileLinks = [{ label: "Compositions", href: "#" }, ...links];
 
 function Footer() {

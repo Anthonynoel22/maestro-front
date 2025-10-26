@@ -8,7 +8,8 @@
 }
 
 main {
-  flex-grow: 1;
+  flex: 1;
+
 
   /*ajoute une barre de défilement verticale uniquement 
   si le contenu dépasse la hauteur du conteneur.*/

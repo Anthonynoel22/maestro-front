@@ -6,12 +6,11 @@ footer {
     bottom: 0;
     width: 100%;
     display: flex;
-    padding: 10px 40px;
     flex-direction: column;
     align-items: center;
+    padding: 1px 20px;
     background-color: var.$color-bg;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 1;
 
     nav {
         width: 100%;
@@ -19,36 +18,20 @@ footer {
         justify-content: center;
     }
 
+    // pas de liens sur mobile 
     .footer-links {
+        display: none;
+    }
+        // icones sur mobiles
+    .footer-icons {
         display: flex;
         justify-content: center;
         align-items: center;
+        gap: 40px;
+        list-style: none;
         width: 100%;
-        max-width: 800px;
-        list-style: none;
-        gap: 60px;
+        padding: 10px 0;
         margin: 0;
-        padding: 0;
-
-        li a {
-            text-decoration: none;
-            color: var.$color-title-and-text;
-            font-family: var.$font-main;
-            font-weight: 500;
-            font-size: var.$font-size-base;
-            transition: color 0.3s ease;
-
-            &:hover {
-                color: #007bff;
-            }
-        }
-    }
-
-    .footer-icons {
-        display: none;
-        list-style: none;
-        margin: 0;
-        padding: 0;
 
         li {
             display: flex;
@@ -57,7 +40,7 @@ footer {
 
             a {
                 color: var.$color-title-and-text;
-                font-size: 3rem;
+                font-size: 2rem;
                 text-decoration: none;
                 display: flex;
                 flex-direction: column;
@@ -78,62 +61,75 @@ footer {
                 }
             }
         }
-    }
-
-    @include mixin.medium {
-        padding: 15px 20px;
-
-        .footer-links {
+        //enleve la la fleche du menu icone
+        .dropdown-toggle::after {
             display: none;
         }
+        //menu deroulant pour afficher les liens 
+        .dropdown-menu {
+            bottom: 100%; // par rapport au viewport
+            left: 0;
+            right: 0;
+            width: 100vw;
+            background-color: #fff;
+            border: 1px solid var.$color-admin;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.15);
 
-        .footer-icons {
+            a.dropdown-item {
+                font-family: var.$font-main;
+                font-weight: lighter;
+                font-size: var.$font-size-base;
+                color: var.$color-title-and-text;
+                padding: 10px 16px;
+                text-align: center;
+            }
+        }
+
+        .mobile-only-link {
+            display: block;
+        }
+    }
+
+    // Masquer certains liens sur mobile
+    .desktop-only-link {
+        display: none;
+    }
+
+    // À partir du breakpoint medium 768 px pour le desktop
+    @include mixin.medium {
+        padding: 10px 40px;
+
+        .footer-links {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 40px;
             width: 100%;
-            padding: 10px 0;
+            max-width: 800px;
+            list-style: none;
+            gap: 60px;
+            margin: 0;
+            padding: 0;
 
             li a {
+                text-decoration: none;
                 color: var.$color-title-and-text;
-                font-size: 2rem;
-            }
+                font-family: var.$font-main;
+                font-weight: 500;
+                font-size: var.$font-size-base;
+                transition: color 0.3s ease;
 
-            .dropdown-toggle::after {
-                display: none;
-            }
-
-
-
-            // Menu déroulant mobile
-            .dropdown-menu {
-                position: absolute;
-                bottom: 100%; // s’affiche au-dessus du footer
-                left: 0;
-                width: 100vw; // toute la largeur de l’écran
-                background-color: #fff;
-                border: 1px solid var.$color-admin;
-                box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.15);
-                margin-bottom: 0.5rem;
-
-                a.dropdown-item {
-                    font-family: var.$font-main;
-                    font-weight: lighter;
-                    font-size: var.$font-size-base;
-                    color: var.$color-title-and-text;
-                    padding: 10px 16px;
-                    text-align: center;
+                &:hover {
+                    color: #007bff;
                 }
             }
-            //lien composition visible sur mobile
-            .mobile-only-link {
-                display: block;
-            }
         }
-    }
-        //lien composition non-visible sur desktop
-    .desktop-only-link {
-        display: none;
+        //pas d'icones sur desktop
+        .footer-icons {
+            display: none;
+        }
+        //liens visible sur desktop 
+        .desktop-only-link {
+            display: block;
+        }
     }
 }

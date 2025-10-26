@@ -1,11 +1,11 @@
 @use "../style/var";
 
+
 @mixin medium {
-    @media (max-width: var.$breakpoint-md) {
+    @media (min-width: var.$breakpoint-md) {
         @content;
     }
 }
-
 
 
 

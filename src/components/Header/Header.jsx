@@ -6,6 +6,7 @@ import adminIcon from "../../assets/images/user-admin.svg";
 function Header() {
     const [user, setUser] = useState(null);
     const [menuOpen, setMenuOpen] = useState(false);
+    //peut être modifiée sans provoquer de re-rendu du composant
     const menuRef = useRef(null);
 
     // constante pour tout les liens communs

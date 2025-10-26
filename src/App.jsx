@@ -18,7 +18,7 @@ function App() {
           <PreviewList />
           <ClientCard />
           <ClientInline />
-          <ClientList /> 
+          <ClientList />  
         </main>
         <Footer />
           
