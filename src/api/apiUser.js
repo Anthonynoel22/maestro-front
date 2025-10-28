@@ -1,6 +1,4 @@
-import axios from "axios";
-
-const API_URL = "http://localhost:3000/api";
+import api_axios from "./axiosConfig";
 
 // S'inscrire (nouvel utilisateur)
 // POST/api/user
@@ -18,8 +16,8 @@ const API_URL = "http://localhost:3000/api";
 // }
 
 export async function loginUser(userData) {
-    return axios
-        .post(`${API_URL}/user/login`, userData)
+    return api_axios
+        .post(`/user/login`, userData)
         .then(function (res) {
             console.log(res.data);
             return res.data;
@@ -52,8 +50,8 @@ export async function loginUser(userData) {
 // Voir la liste des utilisateurs
 
 export async function getAllUsers() {
-    return axios
-        .get(`${API_URL}/admin/user`)
+    return api_axios
+        .get(`/admin/user`)
         .then(function (res) {
             console.log("api console :", res.data);
             return res.data;

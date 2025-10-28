@@ -16,7 +16,7 @@ function App() {
                 {/* <Description />
                 <ProjectForm />
                 <PreviewList /> */}
-                {/* <ClientList /> */}
+                <ClientList />
                 <LoginForm />
             </main>
             <Footer />
