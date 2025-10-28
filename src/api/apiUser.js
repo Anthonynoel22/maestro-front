@@ -5,16 +5,6 @@ import api_axios from "./axiosConfig";
 // userRoute.post("/user", userController.create);
 
 // Se connecter
-// export async function loginUser(userData) {
-//     // userData = { 'email' : monemail , 'password' : 1234 }
-//     try {
-//         const res = await axios.post(`${API_URL}/user/login`, userData);
-//         return res.userData;
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
-
 export async function loginUser(userData) {
     return api_axios
         .post(`/user/login`, userData)

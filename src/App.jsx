@@ -7,6 +7,7 @@ import ClientList from "./components/ClientList/ClientList.jsx";
 import LoginForm from "./components/LoginForm/LoginForm.jsx";
 
 import "./index.css";
+import Setting from "./pages/setting/Setting.jsx";
 
 function App() {
     return (
@@ -16,8 +17,9 @@ function App() {
                 {/* <Description />
                 <ProjectForm />
                 <PreviewList /> */}
-                <ClientList />
-                <LoginForm />
+                {/* <ClientList />
+                <LoginForm /> */}
+                <Setting />
             </main>
             <Footer />
         </div>
