@@ -1,33 +1,23 @@
 import Header from "./components/Header/Header.jsx";
 import Footer from "./components/Footer/Footer.jsx";
-<<<<<<< HEAD
-import Register from "./pages/register/Register.jsx";
 /* import Description from "./components/Description/Description";
 import PreviewList from "./components/PreviewList/PreviewList.jsx";
 import ProjectForm from "./components/ProjectForm/ProjectForm.jsx";
-import ClientList from "./components/ClientList/ClientList.jsx"; 
-import LoginForm from "./components/LoginForm/LoginForm.jsx"; */
-=======
-// import Description from "./components/Description/Description";
-// import PreviewList from "./components/PreviewList/PreviewList.jsx";
-// import ProjectForm from "./components/ProjectForm/ProjectForm.jsx";
-// import ClientList from "./components/ClientList/ClientList.jsx";
-// import LoginForm from "./components/LoginForm/LoginForm.jsx";
+import ClientList from "./components/ClientList/ClientList.jsx";
+import LoginForm from "./components/LoginForm/LoginForm.jsx";
 import Admin from "./pages/admin/Admin.jsx";
 import Composition from "./pages/composition/Compositions.jsx";
 import Contact from "./pages/contact/Contact.jsx";
 import Homepage from "./pages/homepage/Home.jsx";
 import Login from "./pages/login/Login.jsx";
-import Register from "./pages/register/Register.jsx";
 import Setting from "./pages/setting/Setting.jsx";
 import User from "./pages/user/User.jsx";
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
->>>>>>> b69afd88a6251a427b23fff80f0bd648edb6fea2
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'; */
+import Register from "./pages/register/Register.jsx";
 
 import "./index.css";
 
 function App() {
-<<<<<<< HEAD
     return (
         <div className="App">
             <Header />
@@ -42,9 +32,11 @@ function App() {
             <Footer />
         </div>
     );
-=======
-
-  return (
+    
+  }
+  
+  
+/*   return (
     <div className='App'>
       <BrowserRouter>
         
@@ -57,7 +49,7 @@ function App() {
               <Route path="/contact" element={<Contact />}></Route>
               <Route path="/" element={<Homepage />}></Route>
               <Route path="/login" element={<Login />}></Route>
-              {/* <Route path="" element={<Register />}></Route> */}
+              <Route path="" element={<Register />}></Route> 
               <Route path="/user/settings" element={<Setting />}></Route>
               <Route path="/user" element={<User />}></Route>
             </Routes>
@@ -67,9 +59,7 @@ function App() {
           
       </BrowserRouter>
     </div>
-  );
+  );  */
 
->>>>>>> b69afd88a6251a427b23fff80f0bd648edb6fea2
-}
 
 export default App;
