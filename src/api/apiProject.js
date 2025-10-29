@@ -6,7 +6,7 @@ import axios from "axios";
 
 const API_URL = "http://localhost:3000/api";
 
-
+// ajouter un projet
 export async function createProject(projectData) {
     return (
         axios
