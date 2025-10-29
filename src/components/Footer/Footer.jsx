@@ -3,7 +3,7 @@ import { Dropdown } from "react-bootstrap";
 import "./Footer.scss";
 
 const links = [
-    { label: "Nous contacter", href: "#" },
+    { label: "Nous contacter", href: "/contact" },
     { label: "Politique de confidentialité", href: "#" },
     { label: "Informations légales", href: "#" },
     { label: "CGU", href: "#" },
