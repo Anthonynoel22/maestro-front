@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 
-function LoginForm() {
+function LoginForm({setUserHasAccount}) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -12,6 +12,11 @@ function LoginForm() {
         event.preventDefault();
         const loginData = { email: email, password: password };
         loginUser(loginData);
+    }
+
+    function handleRegister(event) {
+        event.preventDefault();
+        setUserHasAccount(false);
     }
 
     return (
@@ -58,6 +63,7 @@ function LoginForm() {
                     Se connecter
                 </Button>
             </Form>
+                <p>Pas encore de compte ? Veuillez vous <Button onClick={handleRegister}>Inscrire</Button></p>
         </>
     );
 }

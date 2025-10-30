@@ -1,6 +1,6 @@
 import Header from "./components/Header/Header.jsx";
 import Footer from "./components/Footer/Footer.jsx";
-/* import Description from "./components/Description/Description";
+/*import Description from "./components/Description/Description";
 import PreviewList from "./components/PreviewList/PreviewList.jsx";
 import ProjectForm from "./components/ProjectForm/ProjectForm.jsx";
 import ClientList from "./components/ClientList/ClientList.jsx";
@@ -9,13 +9,12 @@ import Admin from "./pages/admin/Admin.jsx";
 import Composition from "./pages/composition/Compositions.jsx";
 import Homepage from "./pages/homepage/Home.jsx";
 import Login from "./pages/login/Login.jsx";
+import SettingPage from "./pages/setting/SettingPage.jsx";
 import Setting from "./pages/setting/Setting.jsx";
 import User from "./pages/user/User.jsx";
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'; 
-import Setting from "./pages/setting/Setting.jsx";
-import Register from "./pages/register/Register.jsx";*/
+import Register from "./pages/register/Register.jsx"; */
 import Contact from "./pages/contact/Contact.jsx";
-
 import "./index.css";
 
 function App() {
@@ -52,8 +51,8 @@ function App() {
               <Route path="/contact" element={<Contact />}></Route>
               <Route path="/" element={<Homepage />}></Route>
               <Route path="/login" element={<Login />}></Route>
-              <Route path="" element={<Register />}></Route> 
-              <Route path="/user/settings" element={<Setting />}></Route>
+              <Route path="" element={<Register />}></Route>  
+              <Route path="/user/settings" element={<SettingPage />}></Route>
               <Route path="/user" element={<User />}></Route>
             </Routes>
 
@@ -62,7 +61,7 @@ function App() {
           
       </BrowserRouter>
     </div>
-  );  */
+  );
 
-
+} */
 export default App;

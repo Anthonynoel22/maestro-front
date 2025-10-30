@@ -2,8 +2,20 @@
 
 function Admin() {
 
+        // LES COMPOSANTS QUI SERONT SUR LA PAGE:
+        
+        // Nouvelles demandes de projets 
+        // => WaitingProjectList
+        // Liste des clients avec leurs informations 
+        // => ClientList
+        // Les projets validés (avec leur statut etc) 
+        // => ProjectList (version admin)
+        // Nouvelles demandes de contact 
+        // => ContactRequestList
+
     return (
-        <h1>Page admin</h1>
+        <h1>Mon espace administrateur</h1>
+
     )
 }
 

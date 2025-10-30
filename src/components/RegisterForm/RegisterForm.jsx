@@ -1,9 +1,9 @@
-/* import React, { useState } from "react";
+import React, { useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
-import "./Register.scss";
+import "./RegisterForm.scss";
 import { create } from "../../api/apiUser";
 
-function Register() {
+function RegisterForm({setUserHasAccount}) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setconfirmPassword] = useState("");
@@ -27,6 +27,12 @@ function Register() {
                 console.error("inscription échoué", error);
             });
     }
+
+    function handleLogin(event) {
+        event.preventDefault();
+        setUserHasAccount(true);
+    }
+
     return (
         <div className="register-wrapper">
             <div className="header-register">
@@ -88,14 +94,19 @@ function Register() {
                                 />
                             </Form.Group>
                             <div className="form-actions">
-                                <Button type="submit" className="rounded-btn">
+                                <Button
+                                    type="submit"
+                                    className="rounded-btn"
+                                >
                                     S'inscrire
                                 </Button>
-                                <p className="mt-3 mb-0">
-                                    Déjà un compte ?<a href="#">Se connecter</a>
-                                </p>
+                                {/* <p className="mt-3 mb-0">
+                                    Déjà un compte ?
+                                    <a href="#">Se connecter</a>
+                                </p> */}
                             </div>
                         </Form>
+                        <p>Déjà un compte ? <Button onClick={handleLogin}>Connexion</Button></p>
                     </Col>
                 </Row>
             </Container>
@@ -103,4 +114,4 @@ function Register() {
     );
 }
 
-export default Register; */
+export default RegisterForm;
