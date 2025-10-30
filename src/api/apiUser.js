@@ -3,7 +3,17 @@ import api_axios from "./axiosConfig";
 // S'inscrire (nouvel utilisateur)
 // POST/api/user
 // userRoute.post("/user", userController.create);
-
+export async function create(userRegister) {
+    return api_axios
+    .post(`/user`, userRegister)
+    .then(function (res) {
+            console.log(res.data);
+            return res.data;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
 // Se connecter
 export async function loginUser(userData) {
     return api_axios

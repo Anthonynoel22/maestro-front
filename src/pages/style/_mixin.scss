@@ -1,0 +1,8 @@
+@use "../style/var";
+
+
+@mixin medium {
+    @media (min-width: var.$breakpoint-md) {
+        @content;
+    }
+}

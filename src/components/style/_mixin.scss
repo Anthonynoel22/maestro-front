@@ -1,8 +1,8 @@
 @use "../style/var";
 
-
-@mixin medium {
-    @media (min-width: var.$breakpoint-md) {
+// Pour le pc
+@mixin desktop {
+    @media (min-width: var.$breakpoint-desktop) {
         @content;
     }
 }

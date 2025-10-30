@@ -76,7 +76,7 @@ header {
     }
 
     // À partir de medium : affichage complet (desktop)
-    @include mixin.medium {
+    @include mixin.desktop {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;

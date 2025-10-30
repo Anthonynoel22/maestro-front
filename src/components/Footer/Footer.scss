@@ -96,7 +96,7 @@ footer {
     }
 
     // À partir du breakpoint medium 768 px pour le desktop
-    @include mixin.medium {
+    @include mixin.desktop {
         padding: 10px 40px;
 
         .footer-links {
