@@ -63,7 +63,7 @@ function LoginForm({setUserHasAccount}) {
                     Se connecter
                 </Button>
             </Form>
-                <p>Pas encore de compte ? Veuillez vous <Button onClick={handleRegister}>Connecter</Button></p>
+                <p>Pas encore de compte ? Veuillez vous <Button onClick={handleRegister}>Inscrire</Button></p>
         </>
     );
 }
