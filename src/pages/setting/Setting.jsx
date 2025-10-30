@@ -7,6 +7,8 @@ import "./Setting.scss";
 import { useState } from "react";
 import { getMyProfile } from "../../api/apiUser";
 import { updateMyProfile } from "../../api/apiUser";
+import { getMyCompany } from "../../api/apiCompany";
+import { updateCompany } from "../../api/apiCompany";
 import { useEffect } from "react";
 
 function Setting() {
@@ -42,6 +44,34 @@ function Setting() {
         updateMyProfile(newUserData);
     }
 
+    // Voir mes informations d'entreprise
+    const [companySetting, setCompanySetting] = useState({});
+
+    async function getMyCompanySetting() {
+        const myCompagny = await getMyCompany();
+        setCompanySetting(myCompagny);
+        console.log("setting log :", myCompagny);
+    }
+
+    useEffect(() => {
+        getMyCompanySetting();
+    }, []);
+
+    // Modifier mes informations d'entreprise
+    const [newCompanyName, setnewCompanyName] = useState("");
+    const [newCompanyLocalisation, setNewCompanyLocalisation] = useState("");
+    const [newSiret, setNewSiret] = useState("");
+
+    function companyHandelSubmit(event) {
+        event.preventDefault();
+        const newCompanyData = {
+            name: newCompanyName,
+            localisation: newCompanyLocalisation,
+            siret: newSiret,
+        };
+        updateCompany(newCompanyData);
+    }
+
     return (
         <>
             <Container>
@@ -70,7 +100,7 @@ function Setting() {
                                             className="profile-form-item-input"
                                             type="lastname"
                                             placeholder="Votre nom"
-                                            value={
+                                            defaultValue={
                                                 setting?.user?.lastname
                                                     ? setting.user.lastname
                                                     : ""
@@ -95,7 +125,7 @@ function Setting() {
                                             className="profile-form-item-input"
                                             type="firstname"
                                             placeholder="Votre prénom"
-                                            value={
+                                            defaultValue={
                                                 setting?.user?.firstname
                                                     ? setting.user.firstname
                                                     : ""
@@ -120,7 +150,7 @@ function Setting() {
                                             className="profile-form-item-input"
                                             type="email"
                                             placeholder="Votre email"
-                                            value={
+                                            defaultValue={
                                                 setting?.user?.email
                                                     ? setting.user.email
                                                     : ""
@@ -143,7 +173,7 @@ function Setting() {
                                             className="profile-form-item-input"
                                             type="localisation"
                                             placeholder="Votre adresse"
-                                            value={
+                                            defaultValue={
                                                 setting?.user?.localisation
                                                     ? setting.user.localisation
                                                     : ""
@@ -170,7 +200,7 @@ function Setting() {
                                             className="profile-form-item-input"
                                             type="phonenumber"
                                             placeholder="Votre numero de téléphone"
-                                            value={
+                                            defaultValue={
                                                 setting?.user?.phonenumber
                                                     ? setting.user.phonenumber
                                                     : ""
@@ -202,7 +232,11 @@ function Setting() {
                     <Col sm={6}>
                         {/* ENTREPRISE */}
                         <Row>
-                            <Form className="profile-form">
+                            <Form
+                                className="profile-form"
+                                method="post"
+                                onSubmit={(event) => companyHandelSubmit(event)}
+                            >
                                 <Container className="profil-item">
                                     {/* EN-TETE */}
                                     <Row className="profil-item-header">
@@ -218,9 +252,20 @@ function Setting() {
                                             <Form.Label>Nom</Form.Label>
                                             <Form.Control
                                                 className="profile-form-item-input"
-                                                type=""
-                                                placeholder="Dupond Dev"
-                                                // value={name}
+                                                type="name"
+                                                placeholder="Nom de l'entreprise"
+                                                defaultValue={
+                                                    companySetting?.company
+                                                        ?.name
+                                                        ? companySetting.company
+                                                              .name
+                                                        : ""
+                                                }
+                                                onChange={(event) =>
+                                                    setnewCompanyName(
+                                                        event.target.value
+                                                    )
+                                                }
                                             />
                                         </Form.Group>
                                     </Row>
@@ -235,8 +280,19 @@ function Setting() {
                                             <Form.Control
                                                 className="profile-form-item-input"
                                                 type=""
-                                                placeholder="10 rue de la rue 92222 Rueville"
-                                                // value={companyLocalisation}
+                                                placeholder="Adresse de l'entreprise"
+                                                defaultValue={
+                                                    companySetting?.company
+                                                        ?.localisation
+                                                        ? companySetting.company
+                                                              .localisation
+                                                        : ""
+                                                }
+                                                onChange={(event) =>
+                                                    setNewCompanyLocalisation(
+                                                        event.target.value
+                                                    )
+                                                }
                                             />
                                         </Form.Group>
                                     </Row>
@@ -254,7 +310,18 @@ function Setting() {
                                                 className="profile-form-item-input"
                                                 type=""
                                                 placeholder="24586268423368325562561256"
-                                                // value={siret}
+                                                defaultValue={
+                                                    companySetting?.company
+                                                        ?.siret
+                                                        ? companySetting.company
+                                                              .siret
+                                                        : ""
+                                                }
+                                                onChange={(event) =>
+                                                    setNewSiret(
+                                                        event.target.value
+                                                    )
+                                                }
                                             />
                                         </Form.Group>
                                     </Row>

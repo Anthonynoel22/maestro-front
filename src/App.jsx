@@ -1,6 +1,6 @@
 import Header from "./components/Header/Header.jsx";
 import Footer from "./components/Footer/Footer.jsx";
-/* import Description from "./components/Description/Description";
+import Description from "./components/Description/Description";
 import PreviewList from "./components/PreviewList/PreviewList.jsx";
 import ProjectForm from "./components/ProjectForm/ProjectForm.jsx";
 import ClientList from "./components/ClientList/ClientList.jsx";
@@ -12,32 +12,29 @@ import Homepage from "./pages/homepage/Home.jsx";
 import Login from "./pages/login/Login.jsx";
 import Setting from "./pages/setting/Setting.jsx";
 import User from "./pages/user/User.jsx";
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'; */
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Register from "./pages/register/Register.jsx";
 
 import "./index.css";
-import Setting from "./pages/setting/Setting.jsx";
 
 function App() {
     return (
         <div className="App">
             <Header />
             <main>
-                <Register/> 
-{/*                  <Description />
+                {/* <Register /> */}
+                {/*                  <Description />
                 <ProjectForm />
                 <PreviewList /> */}
                 {/* <ClientList /> */}
-                <LoginForm />
+                {/* <LoginForm /> */}
                 <Setting />
             </main>
             <Footer />
         </div>
     );
-    
-  }
-  
-  
+}
+
 /*   return (
     <div className='App'>
       <BrowserRouter>
@@ -62,6 +59,5 @@ function App() {
       </BrowserRouter>
     </div>
   );  */
-
 
 export default App;
