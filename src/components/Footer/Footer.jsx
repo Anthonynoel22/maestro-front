@@ -1,17 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import "./Footer.scss";
 
 const links = [
-    { label: "Nous contacter", href: "/contact" },
-    { label: "Politique de confidentialité", href: "#" },
-    { label: "Informations légales", href: "#" },
-    { label: "CGU", href: "#" },
-    { label: "Accessibilité", href: "#" },
+    { label: "Nous contacter", to: "/contact" },
+    { label: "Politique de confidentialité", to: "/confidentialite" },
+    { label: "Informations légales", to: "/legales" },
+    { label: "CGU", to: "/cgu" },
+    { label: "Accessibilité", to: "/accessibilite" },
 ];
 
-// avec le spread operator je cree un nouveau tableau a partir du tableauu initial
-const mobileLinks = [{ label: "Compositions", href: "#" }, ...links];
+const mobileLinks = [{ label: "Compositions", to: "/compositions" }, ...links];
 
 function Footer() {
     return (
@@ -20,30 +20,29 @@ function Footer() {
                 <ul className="footer-links">
                     {links.map((link, index) => (
                         <li key={index}>
-                            <a href={link.href}>{link.label}</a>
+                            <Link to={link.to}>{link.label}</Link>
                         </li>
                     ))}
                 </ul>
             </nav>
-
             <ul className="footer-icons">
                 <li>
-                    <a href="#" aria-label="Page d’accueil">
+                    <Link to="/" aria-label="Page d’accueil">
                         <i className="bi bi-house"></i>
                         <span>Accueil</span>
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#" aria-label="Espace personnel">
+                    <Link to="/login" aria-label="Espace personnel">
                         <i className="bi bi-person"></i>
                         <span>Connexion</span>
-                    </a>
+                    </Link>
                 </li>
                 <li>
                     <Dropdown>
                         <Dropdown.Toggle
-                            as="a"
-                            href="#"
+                            as={Link}
+                            to="#"
                             className="menu-toggle"
                             aria-label="Menu des liens"
                         >
@@ -52,7 +51,11 @@ function Footer() {
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                             {mobileLinks.map((link, index) => (
-                                <Dropdown.Item key={index} href={link.href}>
+                                <Dropdown.Item
+                                    as={Link}
+                                    to={link.to}
+                                    key={index}
+                                >
                                     {link.label}
                                 </Dropdown.Item>
                             ))}
