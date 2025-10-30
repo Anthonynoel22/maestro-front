@@ -14,10 +14,6 @@ function Home() {
 
     return (
         <>
-            <Link to="/compositions">Compositions</Link>
-            <Link to="/login">Se connecter/S'inscrire</Link>
-            <Link to='/user/settings'>Paramètres</Link>
-
             <h1>Home</h1>
             <Description />
         </>
