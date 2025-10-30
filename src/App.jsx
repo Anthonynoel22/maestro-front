@@ -16,6 +16,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'; */
 import Register from "./pages/register/Register.jsx";
 
 import "./index.css";
+import Setting from "./pages/setting/Setting.jsx";
 
 function App() {
     return (
@@ -25,9 +26,10 @@ function App() {
                 <Register/> 
 {/*                  <Description />
                 <ProjectForm />
-                <PreviewList /> *
-                <ClientList />
-                <LoginForm /> */}
+                <PreviewList /> */}
+                {/* <ClientList /> */}
+                <LoginForm />
+                <Setting />
             </main>
             <Footer />
         </div>
