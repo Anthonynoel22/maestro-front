@@ -5,7 +5,18 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "./DataFormComponent.scss";
 
-function DataFormComponent(props, configFields) {
+function DataFormComponent(data) {
+    console.log("data : ", data);
+    console.log("data.data : ", data.data.user);
+    console.log("data.fields : ", data.fields);
+    console.log("data.fields : ", data.fields[0]);
+
+    const userDatas = Object.entries(data.data.user || {});
+    console.log("userDatas", userDatas);
+
+    const userFields = Object.entries(data.fields || {});
+    console.log("userFields", userFields);
+
     function handelSubmit(event) {
         event.preventDefault();
     }
@@ -24,34 +35,73 @@ function DataFormComponent(props, configFields) {
                                 {/* EN-TETE */}
                                 <Row className="data-form-row-header">
                                     {/* <Col>Header title</Col> */}
-                                    <Col>{props.headertitle}</Col>
+                                    <Col>{data.headertitle}</Col>
                                 </Row>
 
                                 {/* LIGNE */}
 
                                 <Row className="data-form-row-body">
-                                    {configFields.map((configField) => (
+                                    {userDatas.map((userData) => (
                                         <Form.Group
-                                            key={configField.name}
+                                            key={userData.name}
                                             className="data-form-row-body-formgroup"
                                             controlId="data-form-row-body-formgroup-id"
                                         >
                                             <Form.Label>
-                                                {configField.label}
+                                                {userData.label}
                                             </Form.Label>
                                             <Form.Control
                                                 className="data-form-row-body-formcontrol"
-                                                type={configField.type}
-                                                placeholder={`Entrez votre ${configField.label}`}
+                                                type={userData.type}
+                                                placeholder={`Entrez votre ${userData.label}`}
                                                 defaultValue={
-                                                    props?.[configField.name] ||
-                                                    ""
+                                                    data?.[userData.name] || ""
                                                 }
                                                 // onChange={}
                                             />
                                         </Form.Group>
                                     ))}
                                 </Row>
+
+                                {/* <Row className="data-form-row-body">
+                                    {fields.map((field) => (
+                                        <Form.Group
+                                            key={field.name}
+                                            className="data-form-row-body-formgroup"
+                                            controlId="data-form-row-body-formgroup-id"
+                                        >
+                                            <Form.Label>
+                                                {field.label}
+                                            </Form.Label>
+                                            <Form.Control
+                                                className="data-form-row-body-formcontrol"
+                                                type={field.type}
+                                                placeholder={`Entrez votre ${field.label}`}
+                                                defaultValue={
+                                                    data?.[field.name] || ""
+                                                }
+                                                // onChange={}
+                                            />
+                                        </Form.Group>
+                                    ))}
+                                </Row> */}
+
+                                {/* <Row className="data-form-row-body">
+                                    <Form.Group
+                                        key={""}
+                                        className="data-form-row-body-formgroup"
+                                        controlId="data-form-row-body-formgroup-id"
+                                    >
+                                        <Form.Label>{"label"}</Form.Label>
+                                        <Form.Control
+                                            className="data-form-row-body-formcontrol"
+                                            type={""}
+                                            placeholder={`Entrez votre ...`}
+                                            defaultValue={"defaultValue"}
+                                            // onChange={}
+                                        />
+                                    </Form.Group>
+                                </Row> */}
 
                                 {/* BOUTTON */}
                                 <Row className="data-form-button">

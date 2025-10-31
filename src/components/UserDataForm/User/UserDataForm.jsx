@@ -1,8 +1,8 @@
-import DataFormComponent from "../DataFormComponent/DataFormComponent.jsx";
 import "./UserDataForm.scss";
 import { useState } from "react";
 import { useEffect } from "react";
 import { getMyProfile } from "../../../api/apiUser.js";
+import UserConfigFields from "./UserConfigFields.jsx";
 // import { updateMyProfile } from "../../api/apiUser.js";
 
 function UserDataForm() {
@@ -12,7 +12,7 @@ function UserDataForm() {
     async function getMySetting() {
         const myProfile = await getMyProfile();
         setSetting(myProfile);
-        // console.log("setting log :", myProfile);
+        console.log("setting log :", myProfile);
     }
 
     useEffect(() => {
@@ -27,7 +27,7 @@ function UserDataForm() {
     // const [newPhonenumber, setNewPhonenumber] = useState("");
     return (
         <>
-            <DataFormComponent headertitle="Mon profil utilisateur" />
+            <UserConfigFields user={setting} />
         </>
     );
 }
