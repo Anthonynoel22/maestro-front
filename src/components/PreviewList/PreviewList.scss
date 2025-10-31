@@ -1,6 +1,65 @@
+@use "../var.scss";
+@use "../mixin.scss";
 
+.preview__list__title {
+    text-align: center;
+    font-family: var.$font-main;
+    margin: 1rem;
+}
 
-.previewList {
+.preview__list {
+
+    // par defaut mobile first
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+
+    // style desktop
+    @include mixin.desktop {
+        flex-direction: row;
+        align-content: flex-start;
+    }
+
+}
+
+// .option-icon {
+//     background-image: url("/src/assets/images/sort-amount-down-svgrepo-com.png");
+// }
+
+// .preview__list__form__container {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
+
+// .sort-icon {
+//     background-color: white;
+//     color: black;
+// }
+
+// #dropdown-basic {
+//     background-color: white;
+//     border: none;
+// }
+
+.genre__menu {
+    font-size: var.$font-size-base;
+    margin: 2rem;
+    width: calc(100vw - 4rem);
+    border: solid 1px var.$color-admin;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+}
+
+.genre__item {
+    text-align: center;
+    width: 60vw;
+    // display: inline-block;
+    font-size: var.$font-size-base;
+    border-bottom: solid 1px var.$color-admin;
+    // margin: .5rem 3rem .5rem 3rem;
+    font-family: var.$font-alt;
 }
