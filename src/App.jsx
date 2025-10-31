@@ -16,9 +16,16 @@ import User from "./pages/user/User.jsx";
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 // import Register from "./pages/register/Register.jsx";
 import "./index.css";
-
+import { useState } from "react";
+import UserContext from "./UserContext.jsx";
 
 function App() {
+
+  // il faudrait créer le contexte userIs (visiteur/client/admin)
+
+  const [userIs, setUserIs] = useState('visitor');
+
+
 //     return (
 //         <div className="App">
 //             <Header />
@@ -39,6 +46,7 @@ function App() {
   
   
   return (
+    <UserContext.Provider value={userIs}>
     <div className='App'>
       <BrowserRouter>
         
@@ -61,6 +69,7 @@ function App() {
           
       </BrowserRouter>
     </div>
+    </UserContext.Provider>
   );
 
 }
