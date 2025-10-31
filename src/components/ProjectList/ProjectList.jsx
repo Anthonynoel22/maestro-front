@@ -14,6 +14,14 @@ function ProjectList() {
         setProjectList(allProjects);
     }
 
+    // je récupère les projets dans l'API coté back
+    async function getProjects() {
+        // l'api me renvoie la liste des projets
+        const allProjects = await getAllProjectList();
+        // les projets se mettent dans le usestate pour les afficher
+        setProjectList(allProjects);
+    }
+
     // useeffect s'exécute quand le composant apparait sur la page
     useEffect(() => {
         // quand le composant s'affiche, je lance ma fonction getProjects()
