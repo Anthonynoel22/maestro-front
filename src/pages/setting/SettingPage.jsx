@@ -1,3 +1,4 @@
+import CompanyDataForm from "../../components/UserDataForm/Company/CompanyDataForm.jsx";
 import UserDataForm from "../../components/UserDataForm/User/UserDataForm.jsx";
 
 function SettingPage() {
@@ -10,6 +11,7 @@ function SettingPage() {
         <>
             <h1>Setting</h1>
             <UserDataForm />
+            <CompanyDataForm />
         </>
     );
 }

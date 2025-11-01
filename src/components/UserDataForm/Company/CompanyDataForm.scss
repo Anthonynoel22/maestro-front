@@ -1,7 +1,7 @@
 @use "../../var";
 @use "../../mixin";
 
-.data-form-container {
+.profil-item {
     border: solid 1px var.$color-client;
     border-radius: 10px;
     box-shadow: 3px 3px 15px 1px rgba(133, 132, 132, 0.31);
@@ -11,7 +11,7 @@
     margin-bottom: 2rem;
 }
 
-.data-form-row-header {
+.profil-item-header {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     background-color: var.$color-client;
@@ -23,7 +23,7 @@
     padding-bottom: 1rem;
 }
 
-.data-form-row-body {
+.item {
     border: solid 1px var.$color-client;
     font-family: var.$font-alt;
     padding: 0.5rem;
@@ -31,12 +31,12 @@
     margin-right: 1rem;
 }
 
-.data-form-button {
+.item-button {
     justify-content: flex-end;
     margin-right: 1rem;
 }
 
-.data-form-mofifier-button {
+.mofifier-button {
     background-color: var.$color-client;
     border: solid 1px var.$color-client;
     width: max-content;
