@@ -29,3 +29,32 @@ export async function create(contactData) {
             console.log( error);
         });
 }
+
+// PATCH /api/message-contact/:idMessageContact
+// messageContactRoute.patch('/message-contact/:id', messageContactController.update);
+
+export async function update(id, status) {
+    return api_axios
+        .patch(`/message-contact/${id}`,{status})
+        .then(function (res) {
+            console.log(res.data);
+            return res.data;
+        })
+        .catch(function (error) {
+            console.log( error);
+        });
+}
+// DELETE /api/genre/:idMessage-Contact
+//messageContactRoute.delete('/message-contact/:id', messageContactController.delete)
+
+export async function deleteMessage(id) {
+    return api_axios
+    .delete(`/message-contact/${id}`)
+    .then(function(res) {
+        console.log(res.data);
+        return res.data;
+    })
+    .catch(function(error) {
+        console.log( error);
+    });
+}
