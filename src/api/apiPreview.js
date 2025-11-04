@@ -52,3 +52,19 @@ export async function getAllGenres() {
             console.log( error);
         });
 }
+
+export async function addPreview(formData) {
+    return api_axios
+        .post('/admin/preview', formData, {
+            header: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        .then(function (res) {
+            console.log("res.data : ", res.data);
+            return res.data;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}

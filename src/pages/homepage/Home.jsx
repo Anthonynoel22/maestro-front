@@ -14,11 +14,13 @@ function Home() {
     // Présentation des prestations (un titre avec son image et sa description)
     // => Description (version présentation des prestations)
 
+    const locationHome = "/";
+
     return (
         <>
             <h1>Home</h1>
             <Description />
-            <PreviewList />
+            <PreviewList location={locationHome}/>
         </>
     )
 }

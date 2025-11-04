@@ -63,3 +63,23 @@
     // margin: .5rem 3rem .5rem 3rem;
     font-family: var.$font-alt;
 }
+
+.admin__plus {
+    display: flex;
+    justify-content: center;
+    // border: none;
+}
+
+.button__plus {
+    border: none;
+    background-color: white;
+}
+
+.plus__icon, .minus__icon {
+    margin: 2rem;
+    color: lightgray;
+}
+
+.plus__icon:hover, .minus__icon:hover {
+    color: grey;
+}

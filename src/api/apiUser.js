@@ -19,7 +19,7 @@ export async function loginUser(userData) {
     return api_axios
         .post(`/user/login`, userData)
         .then(function (res) {
-            // console.log(res.data);
+            console.log('res.data du login : ', res.data);            
             return res.data;
         })
         .catch(function (error) {
