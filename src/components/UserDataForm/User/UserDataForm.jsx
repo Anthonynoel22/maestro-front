@@ -3,10 +3,10 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import "./UserDataForm.scss";
+import "../DataForm.scss";
 import { useState } from "react";
-import { getMyProfile } from "../../api/apiUser";
-import { updateMyProfile } from "../../api/apiUser";
+import { getMyProfile } from "../../../api/apiUser.js";
+import { updateMyProfile } from "../../../api/apiUser.js";
 import { useEffect } from "react";
 
 function UserDataForm() {
@@ -16,7 +16,7 @@ function UserDataForm() {
     async function getMySetting() {
         const myProfile = await getMyProfile();
         setSetting(myProfile);
-        console.log("setting log :", myProfile);
+        // console.log("setting log :", myProfile);
     }
 
     useEffect(() => {
@@ -198,77 +198,6 @@ function UserDataForm() {
                             {/* ))} */}
                         </Form>
                     </Col>
-
-                    <Col sm={6}>
-                        {/* ENTREPRISE */}
-                        <Row>
-                            <Form className="profile-form">
-                                <Container className="profil-item">
-                                    {/* EN-TETE */}
-                                    <Row className="profil-item-header">
-                                        <Col>Mon Entreprise</Col>
-                                    </Row>
-
-                                    {/* NOM DE L'ENTREPRISE */}
-                                    <Row className="item name-item">
-                                        <Form.Group
-                                            className="profile-form-item"
-                                            controlId="name"
-                                        >
-                                            <Form.Label>Nom</Form.Label>
-                                            <Form.Control
-                                                className="profile-form-item-input"
-                                                type=""
-                                                placeholder="Dupond Dev"
-                                                // value={name}
-                                            />
-                                        </Form.Group>
-                                    </Row>
-
-                                    {/* ADRESSE*/}
-                                    <Row className="item">
-                                        <Form.Group
-                                            className="profile-form-item"
-                                            controlId="companyLocalisation"
-                                        >
-                                            <Form.Label>Adresse</Form.Label>
-                                            <Form.Control
-                                                className="profile-form-item-input"
-                                                type=""
-                                                placeholder="10 rue de la rue 92222 Rueville"
-                                                // value={companyLocalisation}
-                                            />
-                                        </Form.Group>
-                                    </Row>
-
-                                    {/* NUMERO DE SIRET*/}
-                                    <Row className="item siret-item">
-                                        <Form.Group
-                                            className="profile-form-item"
-                                            controlId="siret"
-                                        >
-                                            <Form.Label>
-                                                Numero de siret
-                                            </Form.Label>
-                                            <Form.Control
-                                                className="profile-form-item-input"
-                                                type=""
-                                                placeholder="24586268423368325562561256"
-                                                // value={siret}
-                                            />
-                                        </Form.Group>
-                                    </Row>
-
-                                    {/* BOUTTON */}
-                                    <Row className="item-button">
-                                        <Button className="mofifier-button">
-                                            Modifier
-                                        </Button>
-                                    </Row>
-                                </Container>
-                            </Form>
-                        </Row>
-                    </Col>
                 </Row>
             </Container>
         </>
@@ -328,3 +257,115 @@ export default UserDataForm;
 // //     </Container>
 // // </Form>
 // // </Row> */}
+
+// {/* <Col sm={6}>
+// {/* ENTREPRISE */}
+// <Row>
+//     <Form
+//         className="profile-form"
+//         method="post"
+//         onSubmit={(event) => companyHandelSubmit(event)}
+//     >
+//         <Container className="profil-item">
+//             {/* EN-TETE */}
+//             <Row className="profil-item-header">
+//                 <Col>Mon Entreprise</Col>
+//             </Row>
+
+//             {/* NOM DE L'ENTREPRISE */}
+//             <Row className="item name-item">
+//                 <Form.Group
+//                     className="profile-form-item"
+//                     controlId="name"
+//                 >
+//                     <Form.Label>Nom</Form.Label>
+//                     <Form.Control
+//                         className="profile-form-item-input"
+//                         type="name"
+//                         placeholder="Nom de l'entreprise"
+//                         defaultValue={
+//                             companySetting?.company
+//                                 ?.name
+//                                 ? companySetting.company
+//                                       .name
+//                                 : ""
+//                         }
+//                         onChange={(event) =>
+//                             setnewCompanyName(
+//                                 event.target.value
+//                             )
+//                         }
+//                     />
+//                 </Form.Group>
+//             </Row>
+
+//             {/* ADRESSE*/}
+//             <Row className="item">
+//                 <Form.Group
+//                     className="profile-form-item"
+//                     controlId="companyLocalisation"
+//                 >
+//                     <Form.Label>Adresse</Form.Label>
+//                     <Form.Control
+//                         className="profile-form-item-input"
+//                         type=""
+//                         placeholder="Adresse de l'entreprise"
+//                         defaultValue={
+//                             companySetting?.company
+//                                 ?.localisation
+//                                 ? companySetting.company
+//                                       .localisation
+//                                 : ""
+//                         }
+//                         onChange={(event) =>
+//                             setNewCompanyLocalisation(
+//                                 event.target.value
+//                             )
+//                         }
+//                     />
+//                 </Form.Group>
+//             </Row>
+
+//             {/* NUMERO DE SIRET*/}
+//             <Row className="item siret-item">
+//                 <Form.Group
+//                     className="profile-form-item"
+//                     controlId="siret"
+//                 >
+//                     <Form.Label>
+//                         Numero de siret
+//                     </Form.Label>
+//                     <Form.Control
+//                         className="profile-form-item-input"
+//                         type=""
+//                         placeholder="Numero de siret"
+//                         defaultValue={
+//                             companySetting?.company
+//                                 ?.siret
+//                                 ? companySetting.company
+//                                       .siret
+//                                 : ""
+//                         }
+//                         onChange={(event) =>
+//                             setNewSiret(
+//                                 event.target.value
+//                             )
+//                         }
+//                     />
+//                 </Form.Group>
+//             </Row>
+
+//             {/* BOUTTON */}
+//             <Row className="item-button">
+//                 <Button
+//                     className="mofifier-button"
+//                     variant="mofifier-button"
+//                     type="submit"
+//                 >
+//                     Modifier
+//                 </Button>
+//             </Row>
+//         </Container>
+//     </Form>
+// </Row>
+// </Col> */}

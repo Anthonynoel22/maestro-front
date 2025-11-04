@@ -1,6 +1,6 @@
 import "./Preview.scss";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import UserContext from "../../UserContext.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
@@ -9,6 +9,9 @@ function Preview({title, audiosrc, genres}) {
     const [audioElement, setAudioElement] = useState();
     const [playIsHidden, setPlayIsHidden] = useState(false);
     const [pauseIsHidden, setPauseIsHidden] = useState(true);
+    // const userIs = useContext(UserContext)
+
+    // console.log(userIs);
 
     function toggleHidden() {
         setPlayIsHidden(!playIsHidden);

@@ -25,3 +25,8 @@ dist-ssr
 
 
 html.html
+DataFormComponent.jsx
+DataFormComponent.scss
+UserConfigFields.jsx
+UserDataForm.jsx
+UserDataForm.scss

@@ -5,9 +5,9 @@ import api_axios from "./axiosConfig";
 // userRoute.post("/user", userController.create);
 export async function create(userRegister) {
     return api_axios
-    .post(`/user`, userRegister)
-    .then(function (res) {
-            console.log(res.data);
+        .post(`/user`, userRegister)
+        .then(function (res) {
+            // console.log(res.data);
             return res.data;
         })
         .catch(function (error) {
@@ -19,7 +19,7 @@ export async function loginUser(userData) {
     return api_axios
         .post(`/user/login`, userData)
         .then(function (res) {
-            console.log(res.data);
+            console.log('res.data du login : ', res.data);            
             return res.data;
         })
         .catch(function (error) {
@@ -40,7 +40,7 @@ export async function getMyProfile() {
     return api_axios
         .get(`/user/profile`)
         .then(function (res) {
-            console.log("api console :", res.data);
+            // console.log("api console :", res.data);
             return res.data;
         })
         .catch(function (error) {
@@ -53,7 +53,7 @@ export async function updateMyProfile(newUserData) {
     return api_axios
         .patch(`/user`, newUserData)
         .then(function (res) {
-            console.log("api console :", newUserData);
+            // console.log("api console :", newUserData);
             return res.data;
         })
         .catch(function (error) {
@@ -71,7 +71,7 @@ export async function getAllUsers() {
     return api_axios
         .get(`/admin/user`)
         .then(function (res) {
-            console.log("api console :", res.data);
+            // console.log("api console :", res.data);
             return res.data;
         })
         .catch(function (error) {

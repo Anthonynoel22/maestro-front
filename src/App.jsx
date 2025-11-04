@@ -6,21 +6,22 @@ import Contact from "./pages/contact/Contact.jsx";
 import Homepage from "./pages/homepage/Home.jsx";
 import Login from "./pages/login/Login.jsx";
 import SettingPage from "./pages/setting/SettingPage.jsx";
-import User from "./pages/user/User.jsx"; 
-import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
+import User from "./pages/user/User.jsx";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 
-import { useState } from "react";
+// import { useState } from "react";
 import UserContext from "./UserContext.jsx";
+import { UserProvider } from "./UserProvider.jsx";
 
 function App() {
+    // il faudrait créer le contexte userIs (visiteur/client/admin)
 
-  // il faudrait créer le contexte userIs (visiteur/client/admin)
+    const [userIs, setUserIs] = useState("visitor");
 
-  const [userIs, setUserIs] = useState('visitor');
 
   return (
-    <UserContext.Provider value={userIs}>
+    <UserProvider>
     <div className='App'>
       <BrowserRouter>
         
@@ -40,9 +41,8 @@ function App() {
         
       </BrowserRouter>
     </div>
-    </UserContext.Provider>
+    </UserProvider>
   );
 }
-
 
 export default App;

@@ -1,4 +1,4 @@
-@use "../var.scss";
+@use "../var";
 @use "../mixin";
 
 .profil-item {
@@ -40,11 +40,5 @@
     background-color: var.$color-client;
     border: solid 1px var.$color-client;
     width: max-content;
-}
-
-.profile-item,
-.siret-item {
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
 }
