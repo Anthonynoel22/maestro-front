@@ -6,15 +6,9 @@ import { addPreview } from '../../api/apiPreview.js';
 function PreviewForm({genreList}) {
 
     const [form, setForm] = useState();
-    const [starIsChecked, setStarIsChecked] = useState(false);
 
     function initForm() {
         setForm(document.getElementById('addPreview'));
-    }
-
-    function handleStarChange(e) {
-        e.preventDefault();
-        setStarIsChecked(!starIsChecked);
     }
 
     async function handleSubmit(event) {
@@ -58,7 +52,6 @@ function PreviewForm({genreList}) {
             <Form.Group>
                 <Form.Label htmlFor='star-switch'>Voulez-vous rendre cet extrait accessible sur la page d'accueil ?</Form.Label>
                 <Form.Check
-                    onChange={handleStarChange}
                     name='isStar'
                     type="switch"
                     id="star-switch"
