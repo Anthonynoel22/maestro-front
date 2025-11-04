@@ -119,7 +119,12 @@ function PreviewList({location}) {
                     {/* Ici, on map sur la liste des extraits */}
                     {previewList.length > 0 ? previewList.map((preview) => (
                         // On affiche l'extrait suivant l'index
-                        <Preview key={preview.id} audiosrc={audioscr} title={preview.title} genres={preview.listGenres}/>
+                        <article className="preview__item">
+                            <Preview key={preview.id} audiosrc={audioscr} title={preview.title} genres={preview.listGenres}/>
+                            <div className="pencil-icon__container">
+                                {userIs === 'admin' && <i class="pencil-icon fs-2 bi bi-pencil-square"></i>}
+                            </div>
+                        </article>
                     ))
                     : <p>Pas d'extraits</p>
                     }

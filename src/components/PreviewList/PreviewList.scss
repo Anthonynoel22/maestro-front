@@ -24,6 +24,11 @@
 
 }
 
+.preview__item {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
 // .option-icon {
 //     background-image: url("/src/assets/images/sort-amount-down-svgrepo-com.png");
 // }
@@ -82,4 +87,14 @@
 
 .plus__icon:hover, .minus__icon:hover {
     color: grey;
+}
+
+.pencil-icon__container {
+    display: flex;
+    justify-content: end;
+    // align-items: center;
+}
+
+.pencil-icon {
+    color: black;
 }
