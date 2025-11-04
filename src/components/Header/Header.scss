@@ -10,7 +10,7 @@ header {
     flex-direction: column; // mobile: empilé
     align-items: center;
     justify-content: center;
-    padding: 3px 20px;
+    padding: 1px 20px;
     background-color: var.$color-bg;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     z-index: 10;
@@ -55,14 +55,14 @@ header {
             gap: 10px;
             z-index: 10;
 
-            p {
+/*            p {
                 margin: 0;
                 font-family: var.$font-main;
                 color: var.$color-title-and-text;
                 font-size: 0.95rem;
-            }
+            } */
 
-            button {
+/*             button {
                 background-color: #007bff;
                 color: white;
                 border: none;
@@ -71,7 +71,7 @@ header {
                 cursor: pointer;
                 font-family: var.$font-main;
                 font-size: 0.9rem;
-            }
+            } */
         }
     }
 
@@ -108,7 +108,7 @@ header {
                     transition: color 0.3s ease;
 
                     &:hover {
-                        color: #007bff;
+                        color: var.$color-admin;
                     }
                 }
             }

@@ -11,7 +11,7 @@ footer {
     align-items: center;
     padding: 1px 20px;
     background-color: var.$color-bg;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
     nav {
         width: 100%;
@@ -41,7 +41,7 @@ footer {
 
             a {
                 color: var.$color-title-and-text;
-                font-size: 2rem;
+                font-size: 1.5rem;
                 text-decoration: none;
                 display: flex;
                 flex-direction: column;
@@ -52,13 +52,13 @@ footer {
                 }
 
                 span {
-                    font-size: 0.7rem;
+                    font-size: 0.5rem;
                     color: var.$color-title-and-text;
                     font-family: var.$font-main;
                 }
 
                 &:hover span {
-                    color: #007bff;
+                    color: var.$color-admin;
                 }
             }
         }
@@ -98,7 +98,7 @@ footer {
 
     // À partir du breakpoint medium 768 px pour le desktop
     @include mixin.desktop {
-        padding: 10px 40px;
+        padding: 20px 40px;
 
         .footer-links {
             display: flex;
@@ -120,7 +120,7 @@ footer {
                 transition: color 0.3s ease;
 
                 &:hover {
-                    color: #007bff;
+                    color: var.$color-admin;
                 }
             }
         }

@@ -1,3 +1,6 @@
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import UserDataForm from "../../components/UserDataForm/UserDataForm.jsx";
+
 function User() {
 
     // LES COMPOSANTS QUI SERONT SUR LA PAGE:
@@ -8,7 +11,10 @@ function User() {
     // => ProjectList (version client)
 
     return (
+        <>
         <h1>User</h1>
+        {/* <UserDataForm /> */}
+        </>
     )
 }
 

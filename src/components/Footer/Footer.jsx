@@ -5,7 +5,7 @@ import "./Footer.scss";
 
 const links = [
     { label: "Nous contacter", to: "/contact" },
-    { label: "Politique de confidentialité", to: "/confidentialite" },
+    /* { label: "Politique de confidentialité", to: "/confidentialite" }, */
     { label: "Informations légales", to: "/legales" },
     { label: "CGU", to: "/cgu" },
     { label: "Accessibilité", to: "/accessibilite" },

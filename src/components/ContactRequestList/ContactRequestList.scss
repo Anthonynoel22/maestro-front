@@ -1,0 +1,64 @@
+@use "../style/var.scss";
+@use "../style/mixin.scss";
+
+.contact-requests {
+    width: 99%;
+    max-width: 1600px;
+    position: fixed;
+    bottom: 5rem;
+    left: 50%;
+    transform: translateX(-50%); // centrage -50% de la gauche du conteneur pour le centré
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    background-color: var.$color-bg;
+
+    max-height: 400px;
+    overflow-y: auto;
+
+    .contact-title {
+        background-color: var.$color-admin;
+        color: #000000;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        width: fit-content;
+        margin: 0 auto 1rem auto;
+        text-align: center;
+    }
+
+    .request {
+        border-radius: 6px;
+        background-color: #FFFFFF;
+        padding: 0.8rem 1rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 2px 4px rgb(0 0 0 / 0.1);
+
+        h4 {
+            margin: 0 0 0.4rem 0;
+            font-weight: var.$font-main;
+            font-size: var.$font-size-base;
+            color: #333;
+        }
+
+        p {
+            margin-bottom: 0.5rem;
+            color: #000000;
+        }
+    }
+
+    p.no-requests {
+        text-align: center;
+        color: var.$color-bg;
+        font-weight: var.$font-alt;
+    }
+
+    .actions button {
+        background-color: var.$color-admin;
+        color: #000000;
+        border: none;
+        border-radius: 12px;
+        padding: 10px 20px;
+        margin-right: 10px;
+        cursor: pointer;
+        font-size: var.$font-size-base;
+    }
+}
