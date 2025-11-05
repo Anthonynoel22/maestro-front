@@ -81,15 +81,15 @@ function PreviewList({location}) {
         setIsPlus(!isPlus);
     }
 
-    function handlePencil(e, previewIdSelected) {
-        // e.preventDefault();
-        if (pencilClicked === previewIdSelected) {
-            setPencilIsClicked(!pencilIsClicked);
-        } else {
-            // const previewId = e.target.value;
-            setPencilClicked(previewIdSelected);
-        }
-    }
+    // function handlePencil(e, previewIdSelected) {
+    //     // e.preventDefault();
+    //     if (pencilClicked === previewIdSelected) {
+    //         setPencilIsClicked(!pencilIsClicked);
+    //     } else {
+    //         // const previewId = e.target.value;
+    //         setPencilClicked(previewIdSelected);
+    //     }
+    // }
 
     // useEffect(() => {
 
@@ -140,19 +140,19 @@ function PreviewList({location}) {
                         <article className="preview__item">
                             {/* MODIFIER AUDIOSRC */}
                             <Preview key={preview.id} audiosrc={audioscr} title={preview.title} genres={preview.listGenres}/>
-                            <div className="pencil-icon__container">
+                            {/* <div className="pencil-icon__container">
                                 {userIs === 'admin' && <button onClick={handlePencil(preview.id)}><i className="pencil-icon fs-2 bi bi-pencil-square"></i></button>}
-                            </div>
+                            </div> */}
                         </article>
 
-                        {(pencilIsClicked === true && pencilClicked == preview.id) ?
+                        {/* {(pencilIsClicked === true && pencilClicked == preview.id) ?
                             <article className="update__preview__form">
                                     <UpdatePreviewForm key={index} genreList={genreList} id={preview.id}/>
                             </article>
                             : <article>
                                 
                             </article>
-                        }
+                        } */}
                         </>
                     ))
                     : <p>Pas d'extraits</p>
