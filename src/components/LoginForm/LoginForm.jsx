@@ -4,6 +4,7 @@ import { useState, useContext } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import UserContext from "../../UserContext.jsx";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm({ setUserHasAccount }) {
     const [email, setEmail] = useState("");
@@ -11,6 +12,7 @@ function LoginForm({ setUserHasAccount }) {
     const [showPassword, setShowPassword] = useState(false);
     // il va falloir appeler le userContext, res.data.user(.role)
     const { loginProvider } = useContext(UserContext);
+    const navigate = useNavigate();
 
     async function handelSubmit(event) {
         event.preventDefault();
@@ -18,6 +20,7 @@ function LoginForm({ setUserHasAccount }) {
         const userInfo = await loginUser(loginData);
         console.log("userInfo ", userInfo);
         loginProvider(userInfo.user.role);
+        navigate("/"); // redirection vers la page d'accueil après connexion
     }
 
     function handleRegister(event) {
