@@ -2,11 +2,12 @@ import Preview from "../Preview/Preview.jsx";
 import "./PreviewList.scss"
 import { getAllPreviews, getAllGenres, filterByGenre, getAllStarPreviews } from "../../api/apiPreview.js";
 import { useState, useEffect, useContext } from "react";
-// import { useLocation } from "react-router";
 import UserContext from "../../UserContext.jsx";
-// import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
 import PreviewForm from "../PreviewForm/PreviewForm.jsx";
+import UpdatePreviewForm from "../UpdatePreviewForm/UpdatePreviewForm.jsx";
+import Accordion from 'react-bootstrap/Accordion';
+import { PlusSquareFill, DashSquareFill } from "react-bootstrap-icons";
 
 function PreviewList({location}) {
 
@@ -16,17 +17,18 @@ function PreviewList({location}) {
     const [componentTitle, setComponentTitle] = useState('');
     const [previewForm, setPreviewForm] = useState('');
     const [isPlus, setIsPlus] = useState(true);
+
+    // gestion Accordion
+    const [activeItem, setActiveItem] = useState(null);
+    const [selectedPreview, setSelectedPreview] = useState(null);
+
+
     // ici tu récupères tout l'objet => {userIs, loginProvider, logoutProvider}
-    // pour cela que tu dois faire userIs.userIs
-    // essai de faire {userIs} pour voir si tu y accède en direct ;) 
+    // pour cela que tu dois faire userIs.userIs ou {userIs}
     const {userIs} = useContext(UserContext)
 
     console.log('role après context', userIs);
     console.log(genreList);
-    
-
-    // let location = useLocation().pathname;
-    // console.log(location); // ex : /compositions
     
 
     async function getPreviewList() {
@@ -56,9 +58,7 @@ function PreviewList({location}) {
     function handleChange(e) {
         e.preventDefault();
         const genre = e.target.value;
-        // console.log('genre : ',genre);
         setSelectedGenre(genre);
-        // console.log('selectedGenre : ', selectedGenre);
 
         if (genre == "") {
             getPreviewList();
@@ -77,6 +77,19 @@ function PreviewList({location}) {
         setIsPlus(!isPlus);
     }
 
+    function toggleItem(preview) {
+        const key = String(preview.id);
+        // bascule l'item actif et met à jour selectedPreview : si on reclique sur le même, on ferme et on supprime selectedPreview
+        setActiveItem(prev => (prev === key ? null : key));
+        setSelectedPreview(prev => (prev && prev.id === preview.id ? null : preview));
+    }
+
+    const handleSaved = () => {
+        // ferme l'accordéon et rafraîchit la liste
+        setActiveItem(null);
+        setSelectedPreview(null);
+        getPreviewList();
+    }
 
     useEffect(() => {
         getPreviewList();
@@ -114,29 +127,70 @@ function PreviewList({location}) {
                 </div>
                 }
 
-
+                {/* Un Accordion autonome par preview — grille responsive */}
                 <section className="preview__list">
                     {/* Ici, on map sur la liste des extraits */}
                     {previewList.length > 0 ? previewList.map((preview) => (
-                        // On affiche l'extrait suivant l'index
-                        <Preview key={preview.id} audiosrc={audioscr} title={preview.title} genres={preview.listGenres}/>
-                    ))
-                    : <p>Pas d'extraits</p>
-                    }
-                    {/* Pour le moment en dur pour les tests */}
-                    {/* <Preview audiosrc={audioscr} title="titre 1" genres={genres}/>
-                    <Preview audiosrc={audioscr} title="titre 2" genres={genres}/>
-                    <Preview audiosrc={audioscr} title="titre 3" genres={genres}/> */}
-                </section>
+                        <div className="preview__item" key={preview.id}>
+                        <Accordion
+                            className="preview-card-accordion"
+                            flush
+                            activeKey={activeItem === String(preview.id) ? "0" : null}
+                        >
+                            <Accordion.Item eventKey="0">
+                                <Accordion.Header>
+                                    <div className="preview__item__header d-flex justify-content-between align-items-center w-100">
+                                        <div className="preview__summary">
+                                            <Preview audiosrc={audioscr} title={preview.title} genres={preview.listGenres}/>
+                                        </div>
+                                        {/* controls à droite : collapse + edit */}
+                                        <div className="preview__controls">
+                                            {userIs === 'admin' &&
+                                                <>
+                                                    <span
+                                                        role="button"
+                                                        tabIndex={0}
+                                                        className="collapse-button btn btn-link"
+                                                        onClick={(e) => { e.stopPropagation(); e.preventDefault(); toggleItem(preview); }}
+                                                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); toggleItem(preview); } }}
+                                                        aria-label={activeItem === String(preview.id) ? `Fermer ${preview.title}` : `Ouvrir ${preview.title}`}
+                                                    >
+                                                        <i className={`fs-4 bi ${activeItem === String(preview.id) ? 'bi-chevron-up' : 'bi-chevron-down'}`}></i>
+                                                    </span>
 
-                {userIs === 'admin' &&
+                                                    <span
+                                                        role="button"
+                                                        tabIndex={0}
+                                                        className="edit-button btn btn-link"
+                                                        onClick={(e) => { e.stopPropagation(); e.preventDefault(); toggleItem(preview); }}
+                                                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); setActiveItem(String(preview.id)); setSelectedPreview(preview); } }}
+                                                        aria-label={`Modifier ${preview.title}`}
+                                                    >
+                                                        <i className="pencil-icon fs-4 bi bi-pencil-square"></i>
+                                                    </span>
+                                                </>
+                                            }
+                                        </div>
+                                    </div>
+                                </Accordion.Header>
+                                <Accordion.Body>
+                                    {userIs === 'admin' &&
+                                        <UpdatePreviewForm id={preview.id} preview={preview} genreList={genreList} onSaved={handleSaved} />
+                                    }
+                                </Accordion.Body>
+                            </Accordion.Item>
+                        </Accordion>
+                    </div>
+                )) : <p>Pas d'extraits</p>}
+                </section>
+                {(userIs === 'admin' && location === '/compositions') &&
                 <div>
                     <section className="admin__plus">
                         <button onClick={handleAdd} className="button__plus">
-                            {isPlus === true ?
-                            <i className="plus__icon fs-1 bi bi-plus-square-fill"></i>
+                            {isPlus === true ?                       
+                                <PlusSquareFill size={40} className="plus__icon" />                                               
                             :
-                            <i className="minus__icon fs-1 bi bi-dash-square-fill"></i>
+                                <DashSquareFill size={40} className="minus__icon" />
                             }
                         </button>
                     </section>

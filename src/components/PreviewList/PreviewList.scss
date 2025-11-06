@@ -8,66 +8,142 @@
 }
 
 .preview__list {
+    display: grid;
+    gap: 1rem;
+    padding: 0.5rem;
+    /* mobile = 1 colonne par défaut */
+    grid-template-columns: 1fr;
+}
 
-    // par defaut mobile first
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-
-    // style desktop
-    @include mixin.desktop {
-        flex-direction: row;
-        align-content: flex-start;
+/* 2 colonnes pour tablettes / desktop */
+@media (min-width: 768px) {
+    .preview__list {
+        grid-template-columns: repeat(2, 1fr);
     }
-
 }
 
-// .option-icon {
-//     background-image: url("/src/assets/images/sort-amount-down-svgrepo-com.png");
-// }
-
-// .preview__list__form__container {
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-// }
-
-// .sort-icon {
-//     background-color: white;
-//     color: black;
-// }
-
-// #dropdown-basic {
-//     background-color: white;
-//     border: none;
-// }
-
-.genre__menu {
-    font-size: var.$font-size-base;
-    margin: 2rem;
-    width: calc(100vw - 4rem);
-    border: solid 1px var.$color-admin;
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
+/* 3 colonnes larges */
+@media (min-width: 1200px) {
+    .preview__list {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
-.genre__item {
-    text-align: center;
-    width: 60vw;
-    // display: inline-block;
-    font-size: var.$font-size-base;
-    border-bottom: solid 1px var.$color-admin;
-    // margin: .5rem 3rem .5rem 3rem;
-    font-family: var.$font-alt;
+/* assurer que chaque item prend toute la cellule */
+.preview__item {
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Accordion compact par card */
+.preview-card-accordion {
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* garder l'en-tête compact */
+.preview-card-accordion .accordion-button {
+    padding: 0.5rem;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+}
+
+/* corps compact */
+.preview-card-accordion .accordion-body {
+    padding: 0.5rem;
+}
+
+/* header layout : preview à gauche, action à droite */
+.preview-card-accordion .preview__item__header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+/* zone preview prend toute la place restante */
+.preview-card-accordion .preview__summary {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin-right: 0.25rem;
+}
+
+/* container des contrôles : côte à côte, sans marge superflue */
+.preview-card-accordion .preview__controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    flex: 0 0 auto;
+    margin-left: 0.25rem;
+}
+
+/* bouton collapse compact */
+.preview-card-accordion .collapse-button {
+    padding: 0.15rem;
+    margin: 0;
+    color: inherit;
+    background: transparent;
+    border: none;
+}
+
+/* bouton edit collé */
+.preview-card-accordion .edit-button {
+    padding: 0.15rem;
+    margin: 0;
+    color: inherit;
+    background: transparent;
+    border: none;
+}
+
+/* icônes plus petites et centrées */
+.preview-card-accordion .preview__controls .bi {
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+/* si le composant Preview a padding, on peut l'enlever via une classe si besoin */
+/* .preview-card-accordion .preview__summary .preview { padding-right: 0; } */
+
+/* Désactive le toggle par le bouton généré par Accordion.Header */
+.preview-card-accordion .accordion-button {
+  /* empêche le bouton natif d'intercepter les clics */
+    pointer-events: none;
+}
+
+/* Masquer le chevron par défaut généré par Accordion.Header */
+.preview-card-accordion .accordion-button::after {
+    display: none !important;
+}
+
+/* (optionnel) si tu veux que seul ton chevron controle l'ouverture,
+   garde pointer-events:none sur le bouton natif et réactive tes contrôles */
+.preview-card-accordion .accordion-button {
+  pointer-events: none; /* empêche le bouton natif d'interagir */
+}
+
+/* réautorise l'interaction uniquement pour nos contrôles */
+.preview-card-accordion .preview__controls,
+.preview-card-accordion .preview__controls * {
+    pointer-events: auto;
+}
+
+/* Option : si tu veux empêcher que cliquer sur le résumé (preview) toggle aussi,
+   tu peux rendre la zone summary non interactive : */
+.preview-card-accordion .preview__summary {
+    pointer-events: none;
+}
+
+.accordion-header {
+    width: fit-content;
 }
 
 .admin__plus {
     display: flex;
     justify-content: center;
-    // border: none;
+    margin: 1rem;
 }
 
 .button__plus {
@@ -76,7 +152,6 @@
 }
 
 .plus__icon, .minus__icon {
-    margin: 2rem;
     color: lightgray;
 }
 
