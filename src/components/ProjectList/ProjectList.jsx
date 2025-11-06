@@ -170,7 +170,7 @@ function ProjectList() {
                             </Col>
 
                             <Col className="text-center">
-                            {/* TITRE*/}
+                            {/* TITRE "Projets en cours"*/}
                                 <Badge
                                     pill
                                     style={{
@@ -179,7 +179,7 @@ function ProjectList() {
                                         fontSize: "0.9rem",
                                     }}
                                     className="mb-2 d-block"
-                                >
+                                > 
                                     {project.name}
                                 </Badge>
 
