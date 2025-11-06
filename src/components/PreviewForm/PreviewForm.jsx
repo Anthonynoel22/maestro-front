@@ -83,7 +83,7 @@ function PreviewForm({genreList}) {
                 </Form.Group>
             </div>
             {/* ajout star ou pas */}
-            <div className='form__button__container'><Button className='form__button' type="submit">Ajouter</Button> </div>
+            <div className='form__button__container'><Button className='preview__form__button' type="submit">Ajouter</Button> </div>
         </Form>
     )
 
