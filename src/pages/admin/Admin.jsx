@@ -1,4 +1,5 @@
 import ContactRequestList from "../../components/ContactRequestList/ContactRequestList.jsx";
+import GenreForm from "../../components/GenreForm/GenreForm.jsx";
 // import ClientList from "../../components/ClientList/ClientList.jsx"
 function Admin() {
 
@@ -12,12 +13,15 @@ function Admin() {
         // => ProjectList (version admin)
         // Nouvelles demandes de contact 
         // => ContactRequestList
+        // Formulaire pour CRUD genre
+        // => GenreForm
 
     return (
         <>
         <h1>Mon espace administrateur</h1>
         {/* <ClientList /> */}
         <ContactRequestList />
+        <GenreForm />
         </>
     )
 }
