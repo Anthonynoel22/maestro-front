@@ -1,21 +1,34 @@
-import React from "react";
-import { Link } from "react-router-dom";
+// Footer.jsx
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
+import UserContext from "../../UserContext.jsx";
 import "./Footer.scss";
 
 const links = [
     { label: "Nous contacter", to: "/contact" },
-    /* { label: "Politique de confidentialité", to: "/confidentialite" }, */
     { label: "Informations légales", to: "/legales" },
     { label: "CGU", to: "/cgu" },
     { label: "Accessibilité", to: "/accessibilite" },
 ];
 
+/* Tableau des liens pour mobile.
+Il commence par un lien supplémentaire "Compositions", 
+puis inclut tous les liens précédents grâce à l’opérateur spread (...). */
+
 const mobileLinks = [{ label: "Compositions", to: "/compositions" }, ...links];
 
 function Footer() {
+    const { userIs, logoutProvider } = useContext(UserContext);
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        logoutProvider();
+        navigate("/");
+    };
+
     return (
-        <footer className="footer">
+        <footer className={`footer ${userIs}`}>
             <nav>
                 <ul className="footer-links">
                     {links.map((link, index) => (
@@ -25,6 +38,8 @@ function Footer() {
                     ))}
                 </ul>
             </nav>
+
+            {/* Barre d'icônes mobile */}
             <ul className="footer-icons">
                 <li>
                     <Link to="/" aria-label="Page d’accueil">
@@ -32,12 +47,58 @@ function Footer() {
                         <span>Accueil</span>
                     </Link>
                 </li>
-                <li>
-                    <Link to="/login" aria-label="Espace personnel">
-                        <i className="bi bi-person"></i>
-                        <span>Connexion</span>
-                    </Link>
-                </li>
+
+                {userIs === "visitor" ? (
+                    <li>
+                        <Link to="/login" aria-label="Espace personnel">
+                            <i className="bi bi-person"></i>
+                            <span>Connexion</span>
+                        </Link>
+                    </li>
+                ) : (
+                    <li>
+                        <Dropdown>
+                            <Dropdown.Toggle
+                                as={Link}
+                                className={`menu-toggle person-icon ${userIs}`}
+                                aria-label="Menu utilisateur"
+                            >
+                                <i className="bi bi-person"></i>
+                                <span>Connecté</span>
+                            </Dropdown.Toggle>
+
+                            <Dropdown.Menu>
+                                <Dropdown.Header>
+                                    Espace {userIs}
+                                </Dropdown.Header>
+
+                                {userIs === "admin" && (
+                                    <Dropdown.Item as={Link} to="/admin">
+                                        Mon espace
+                                    </Dropdown.Item>
+                                )}
+                                <Dropdown.Divider/>
+                                {userIs === "client" && (
+                                    <Dropdown.Item as={Link} to="/user">
+                                        Mon espace
+                                    </Dropdown.Item>
+                                )}
+                                <Dropdown.Divider/>
+                                <Dropdown.Item as={Link} to="/user/settings">
+                                    Paramètre de compte
+                                </Dropdown.Item>
+
+                                <Dropdown.Divider/>
+
+                                <Dropdown.Item onClick={handleLogout}>
+                                    Se déconnecter
+                                </Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </li>
+                )}
+
+                {/* Menu des liens pour mobiles*/}
                 <li>
                     <Dropdown>
                         <Dropdown.Toggle

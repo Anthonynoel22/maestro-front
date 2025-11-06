@@ -13,17 +13,25 @@ footer {
     background-color: var.$color-bg;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
+    .person-icon.admin i {
+        color: var.$color-admin;
+    }
+
+    .person-icon.client i {
+        color: var.$color-client;
+    }
+
     nav {
         width: 100%;
         display: flex;
         justify-content: center;
     }
 
-    // pas de liens sur mobile 
+    // pas de liens sur mobile
     .footer-links {
         display: none;
     }
-        // icones sur mobiles
+    // icones sur mobiles
     .footer-icons {
         display: flex;
         justify-content: center;
@@ -66,7 +74,7 @@ footer {
         .dropdown-toggle::after {
             display: none;
         }
-        //menu deroulant pour afficher les liens 
+        //menu deroulant pour afficher les liens
         .dropdown-menu {
             bottom: 100%; // par rapport au viewport
             left: 0;
@@ -128,7 +136,7 @@ footer {
         .footer-icons {
             display: none;
         }
-        //liens visible sur desktop 
+        //liens visible sur desktop
         .desktop-only-link {
             display: block;
         }

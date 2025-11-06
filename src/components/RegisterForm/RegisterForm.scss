@@ -1,46 +1,81 @@
 .register-wrapper {
-    position: relative;
-    min-height: 100vh;
-    background-color: #FFFFFF;
+  position: relative;
+  min-height: 100vh;
+  background-color: #ffffff;
 }
 
 .header-register {
-    text-align: center;
-    padding-top: 5rem;
+  text-align: center;
+  padding-top: 5rem;
 
-    h2 {
-        margin-bottom: 1rem;
-    }
+  h2 {
+    margin-bottom: 1rem;
+  }
 }
 
 .register-container {
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding-top: 8rem;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding-top: 8rem;
 
-    .mb-3 {
-        padding-bottom: 1rem;
+  .mb-3 {
+    padding-bottom: 1rem;
+  }
+
+  .form-check {
+    margin-bottom: 5rem;
+  }
+
+  .form-actions {
+    text-align: center;
+
+    p {
+      padding-top: 1.5rem; /* espace entre le bouton et le lien */
+      a {
+        margin-left: 1.5rem; /* espace entre le texte et le lien */
+      }
     }
 
-    .form-check {
-        margin-bottom: 5rem;
+    .rounded-btn {
+      border-radius: 50px;
+      padding: 1rem 4rem;
     }
-
-    .form-actions {
-        text-align: center;
-
-        p {
-            padding-top: 1.5rem; /* espace entre le bouton et le lien */
-            a {
-                margin-left: 1.5rem; /* espace entre le texte et le lien */
-            }
-        }
-
-        .rounded-btn {
-            border-radius: 50px;
-            padding: 1rem 4rem;
-        }
-    }
+  }
 }
+
+.password-wrapper {
+  position: relative;
+
+  .show-password-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .show-password-btn:hover {
+    color: #000;
+  }
+
+  .show-password-btn svg {
+    vertical-align: middle;
+    position: relative;
+    top: 8px; /* décale un peu l’icône vers le bas */
+  }
+
+  input {
+    padding-right: 40px;
+  }
+}
+
+
