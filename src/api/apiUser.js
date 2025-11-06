@@ -84,7 +84,7 @@ export async function getAllUsers() {
 // userRoute.get("/admin/user/filter", userController.sort);
 
 // Voir un seul utilisateur
-export async function getOneUSer(id) {
+export async function getOneUser(id) {
     return api_axios
         .get(`/admin/user/${id}`)
         .then(function (res) {

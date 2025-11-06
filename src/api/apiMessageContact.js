@@ -7,7 +7,7 @@ export async function findAll() {
     return api_axios
         .get(`/message-contact`)
         .then(function (res) {
-            console.log(res.data);
+            // console.log(res.data);
             return res.data;
         })
         .catch(function (error) {
@@ -15,18 +15,17 @@ export async function findAll() {
         });
 }
 
-
 // POST /api/message-contact
 // messageContactRoute.post('/message-contact', messageContactController.create);
 export async function create(contactData) {
     return api_axios
         .post(`/message-contact`, contactData)
         .then(function (res) {
-            console.log(res.data);
+            // console.log(res.data);
             return res.data;
         })
         .catch(function (error) {
-            console.log( error);
+            console.log(error);
         });
 }
 
@@ -35,13 +34,13 @@ export async function create(contactData) {
 
 export async function update(id, status) {
     return api_axios
-        .patch(`/message-contact/${id}`,{status})
+        .patch(`/message-contact/${id}`, { status })
         .then(function (res) {
-            console.log(res.data);
+            // console.log(res.data);
             return res.data;
         })
         .catch(function (error) {
-            console.log( error);
+            console.log(error);
         });
 }
 // DELETE /api/genre/:idMessage-Contact
@@ -49,12 +48,12 @@ export async function update(id, status) {
 
 export async function deleteMessage(id) {
     return api_axios
-    .delete(`/message-contact/${id}`)
-    .then(function(res) {
-        console.log(res.data);
-        return res.data;
-    })
-    .catch(function(error) {
-        console.log( error);
-    });
+        .delete(`/message-contact/${id}`)
+        .then(function (res) {
+            // console.log(res.data);
+            return res.data;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 }

@@ -10,6 +10,10 @@ import GenreList from "../../components/GenresList.jsx";
 import WaitingProjectList from "../../components/WaitingProjectList/WaitingProjectList.jsx";
 import ClientCard from "../../components/ClientList/Clientcard/ClientCard.jsx";
 import FullClientCard from "../../components/ClientList/FullClientCard.jsx";
+import { useState } from "react";
+import { useEffect } from "react";
+import { getAllUsers } from "../../api/apiUser.js";
+import { getAllCompany } from "../../api/apiCompany.js";
 
 function Admin() {
     // LES COMPOSANTS QUI SERONT SUR LA PAGE:
@@ -22,6 +26,27 @@ function Admin() {
     // => ProjectList (version admin)
     // Nouvelles demandes de contact
     // => ContactRequestList
+
+    // Recuperer la liste des clients et les faires passer aux composants
+    const [clients, setClients] = useState([]);
+    const [company, setCompany] = useState([]);
+
+    async function getClients() {
+        const clients = await getAllUsers();
+        setClients(clients);
+        console.log("Dans ma page admin :", clients);
+    }
+
+    async function getCompany() {
+        const companies = await getAllCompany();
+        setCompany(companies);
+        console.log("Dans ma page admin :", clients);
+    }
+
+    useEffect(() => {
+        getClients();
+        getCompany();
+    }, []);
 
     return (
         <>
@@ -54,12 +79,19 @@ function Admin() {
                     <GenreList />
                 </Row>
 
-                <Row className="list-item">
-                    <h2 className="admin-item-title">La liste des clients</h2>
-                    {/* <ClientList /> */}
-                    {/* <ClientCard /> */}
-                    <FullClientCard />
-                </Row>
+                {clients != [] &&
+                    clients.map((client) => (
+                        <Row className="list-item">
+                            <h2 className="admin-item-title">
+                                La liste des clients
+                            </h2>
+                            <FullClientCard
+                                key={client.id}
+                                client={client}
+                                company={company}
+                            />
+                        </Row>
+                    ))}
             </Container>
         </>
     );
