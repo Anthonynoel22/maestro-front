@@ -84,5 +84,14 @@ export async function getAllUsers() {
 // userRoute.get("/admin/user/filter", userController.sort);
 
 // Voir un seul utilisateur
-// GET/api/admin/user/:idUser
-// userRoute.get("/admin/user/:idUser", userController.findByPk);
+export async function getOneUSer(id) {
+    return api_axios
+        .get(`/admin/user/${id}`)
+        .then(function (res) {
+            console.log(res.data);
+            return res.data;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}

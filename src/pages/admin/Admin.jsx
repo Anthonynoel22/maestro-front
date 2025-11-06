@@ -8,6 +8,8 @@ import Col from "react-bootstrap/Col";
 import "./Admin.scss";
 import GenreList from "../../components/GenresList.jsx";
 import WaitingProjectList from "../../components/WaitingProjectList/WaitingProjectList.jsx";
+import ClientCard from "../../components/ClientList/Clientcard/ClientCard.jsx";
+import FullClientCard from "../../components/ClientList/FullClientCard.jsx";
 
 function Admin() {
     // LES COMPOSANTS QUI SERONT SUR LA PAGE:
@@ -54,7 +56,9 @@ function Admin() {
 
                 <Row className="list-item">
                     <h2 className="admin-item-title">La liste des clients</h2>
-                    <ClientList />
+                    {/* <ClientList /> */}
+                    {/* <ClientCard /> */}
+                    <FullClientCard />
                 </Row>
             </Container>
         </>

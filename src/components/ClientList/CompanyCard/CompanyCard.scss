@@ -1,4 +1,4 @@
-.client-card {
+.company-card {
     border-radius: 10px;
     box-shadow: 3px 3px 15px 3px rgba(133, 132, 132, 0.31);
     padding: 1rem;
@@ -6,21 +6,21 @@
     margin-bottom: 0.5rem;
 }
 
-.client-card-header-title {
+.company-card-header-title {
     margin: 0;
     padding: 0.3rem;
 }
 
-.client-card_item-result {
+.company-card_item-result {
     margin: 0;
 }
 
-.client-card_div {
+.company-card_div {
     display: flex;
     column-gap: 0.5rem;
 }
 
-.client-card-header {
+.company-card-header {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     background-color: #e07a5f;
@@ -29,7 +29,7 @@
     padding: 0.6rem;
 }
 
-.client-card_item {
+.company-card_item {
     color: #e07a5f;
     margin: 0;
 }
