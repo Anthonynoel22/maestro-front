@@ -16,6 +16,17 @@ export async function getAllPreviews() {
         });
 }
 
+export async function getPreviewById(id) {
+    return api_axios
+        .get(`/preview/${id}`)
+        .then(function (res) {
+            return res.data;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+
 export async function getAllStarPreviews() {
     return api_axios
         .get('/preview/star')
@@ -62,6 +73,30 @@ export async function addPreview(formData) {
         })
         .then(function (res) {
             console.log("res.data : ", res.data);
+            return res.data;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+
+export async function updatePreview(id, newPreviewData) {
+    return api_axios
+        .patch(`/admin/preview/${id}`, newPreviewData)
+        .then(function (res) {
+            console.log('updatePreview res.data : ', res.data);
+            return res.data;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+
+export async function deletePreview(id) {
+    return api_axios
+        .delete(`/admin/preview/${id}`)
+        .then(function (res) {
+            console.log(res.data);
             return res.data;
         })
         .catch(function (error) {

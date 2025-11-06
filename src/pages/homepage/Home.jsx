@@ -1,7 +1,6 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Description from '../../components/Description/Description.jsx';
 import PreviewList from '../../components/PreviewList/PreviewList.jsx';
-// import { useEffect } from 'react';
+//import { useEffect } from 'react';
 
 function Home() {
 
