@@ -97,7 +97,7 @@ function PreviewList({location}) {
 
     // test genres en dur pour map ensuite
     // const genres = ["pop", "rock", "classique"]
-    const audioscr = "/src/assets/RAYE.mp3"
+    // const audioscr = "/src/assets/RAYE.mp3"
 
     return (
         <>
@@ -141,7 +141,7 @@ function PreviewList({location}) {
                                 <Accordion.Header>
                                     <div className="preview__item__header d-flex justify-content-between align-items-center w-100">
                                         <div className="preview__summary">
-                                            <Preview audiosrc={audioscr} title={preview.title} genres={preview.listGenres}/>
+                                            <Preview audiosrc={preview.link} title={preview.title} genres={preview.listGenres}/>
                                         </div>
                                         {/* controls à droite : collapse + edit */}
                                         <div className="preview__controls">
