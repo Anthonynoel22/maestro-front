@@ -2,6 +2,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Accordion from 'react-bootstrap/Accordion';
 import Button from 'react-bootstrap/esm/Button';
 import Form from 'react-bootstrap/Form';
+import './GenreForm.scss'
 import { addAGenre, getAllGenres } from '../../api/apiGenre.js';
 import { useEffect, useState } from 'react';
 
@@ -43,30 +44,30 @@ function GenreForm() {
     return (
         <>
             <div className='genre__container'>
-                <h1>Formulaire genre</h1>
+                <h1>Genre</h1>
                 <Accordion>
-                    <Accordion.Item eventKey="1">
-                        <Accordion.Header>Liste des genres</Accordion.Header>
+                    <Accordion.Item className='genre__accordion__item' eventKey="1">
+                        <Accordion.Header className='genre__accordion__title'>Liste des genres</Accordion.Header>
                             <Accordion.Body>
-                        <ListGroup>
-                        {genreList.length > 0 ?
-                            genreList.map((genre) => (
-                                <ListGroup.Item key={genre.id}>
-                                    {genre.label}
-                                </ListGroup.Item>
-                            ))
-                            :
-                            <ListGroup.Item>
-                                Aucun genre trouvé
-                            </ListGroup.Item>
-                        }
-                        </ListGroup>
-                        </Accordion.Body>
+                                <ListGroup>
+                                    {genreList.length > 0 ?
+                                        genreList.map((genre) => (
+                                            <ListGroup.Item className='genre__list__item' key={genre.id}>
+                                                {genre.label}
+                                            </ListGroup.Item>
+                                        ))
+                                        :
+                                        <ListGroup.Item className='genre__list__item'>
+                                            Aucun genre trouvé
+                                        </ListGroup.Item>
+                                    }
+                                </ListGroup>
+                            </Accordion.Body>
                         </Accordion.Item>
-                        <Accordion.Item eventKey="0">
-                            <Accordion.Header>Ajouter un genre</Accordion.Header>
+                        <Accordion.Item className='genre__accordion__item' eventKey="0">
+                            <Accordion.Header className='genre__accordion__title'>Ajouter un genre</Accordion.Header>
                             <Accordion.Body>
-                                <Form onSubmit={(e) => {e.preventDefault(); handleAddGenre(e) } }>
+                                <Form className='genre__form' onSubmit={(e) => {e.preventDefault(); handleAddGenre(e) } }>
                                     <Form.Label htmlFor='genre'>Ajout d'un genre</Form.Label>
                                     <Form.Control
                                     onChange={(e) => setGenreToAdd(e.target.value)}
@@ -76,9 +77,11 @@ function GenreForm() {
                                         name='genre'
                                         aria-describedby="Insert genre to add"
                                     />
-                                    <Button type='submit'>
-                                    {saving ? "Ajout..." : "Ajouter"}
-                                    </Button>
+                                    <div className='genre__button__container'>
+                                        <Button className='genre__form__button' type='submit'>
+                                        {saving ? "Ajout..." : "Ajouter"}
+                                        </Button>
+                                    </div>
                                 </Form>
                             </Accordion.Body>
                         </Accordion.Item>
