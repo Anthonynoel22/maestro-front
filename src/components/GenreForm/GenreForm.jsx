@@ -4,14 +4,22 @@ import Button from 'react-bootstrap/esm/Button';
 import Form from 'react-bootstrap/Form';
 import {Trash} from "react-bootstrap-icons";
 import './GenreForm.scss'
-import { addAGenre, getAllGenres } from '../../api/apiGenre.js';
+import { addAGenre, getAllGenres, deleteGenre } from '../../api/apiGenre.js';
 import { useEffect, useState } from 'react';
+import Modal from 'react-bootstrap/Modal';
 
 function GenreForm() {
 
     const [genreList, setGenreList] = useState([]);
     const [genreToAdd, setGenreToAdd] = useState('');
     const [saving, setSaving] = useState(false);
+    // const [idToDelete, setIdToDelete] = useState('');
+
+        // Modal
+        const [show, setShow] = useState(false);
+
+        const handleClose = () => setShow(false);
+        const handleShow = () => setShow(true);
 
     async function getListGenres() {
         const allGenreList = await getAllGenres();
@@ -31,11 +39,24 @@ function GenreForm() {
             const genreAdded = await addAGenre(genreToAdd);
             handleOnSaved();
         } catch (error) {
-            console.error("Erreur lors de la suppression de l'extrait : ", error);
+            console.error("Erreur lors de l'ajout du genre' : ", error);
         } finally {
             setSaving(false);
         }
         
+    }
+
+    async function handleDelete(id) {
+        console.log('id to delete : ', id);
+        setSaving(true);
+        try {
+            const genreToDelete = await deleteGenre(id);
+            handleOnSaved();
+        } catch (error) {
+            console.error("Erreur lors de la suppression du genre : ", error);
+        } finally {
+            setSaving(false);
+        }
     }
 
     useEffect(() => {
@@ -52,12 +73,31 @@ function GenreForm() {
                             <Accordion.Body>
                                 <ListGroup>
                                     {genreList.length > 0 ?
-                                        genreList.map((genre) => (
-                                            <ListGroup.Item key={genre.id}>
+                                        genreList.map((genre, index) => (
+                                            <><ListGroup.Item key={genre.id}>
                                                 <div className='genre__list__item genre__list__item--trash' >
-                                                    <p className='genre__label'>{genre.label}</p> <Trash/>
+                                                    <label htmlFor='genre' id={genre.label} className='genre__label'>{genre.label}</label>
+                                                    <div onClick={(e) => {e.preventDefault(); handleShow()}} className='trash__icon'>
+                                                        <Trash />
+                                                    </div>
                                                 </div>
                                             </ListGroup.Item>
+
+                                        <Modal key={index} show={show} onHide={handleClose}>
+                                            <Modal.Header closeButton>
+                                            <Modal.Title>Supprimer le genre</Modal.Title>
+                                            </Modal.Header>
+                                            <Modal.Body>Etes-vous sûr de vouloir supprimer le genre ?</Modal.Body>
+                                            <Modal.Footer>
+                                            <Button variant="secondary" onClick={handleClose}>
+                                                Annuler
+                                            </Button>
+                                            <Button variant="primary" onClick={(e) => {e.preventDefault(); handleDelete(genre.id); handleClose()}}>
+                                                Supprimer le genre
+                                            </Button>
+                                            </Modal.Footer>
+                                        </Modal>
+                                        </>
                                         ))
                                         :
                                         <ListGroup.Item className='genre__list__item'>
@@ -81,7 +121,7 @@ function GenreForm() {
                                         aria-describedby="Insert genre to add"
                                     />
                                     <div className='genre__button__container'>
-                                        <Button className='genre__form__button' type='submit'>
+                                        <Button id='button__red' className='genre__form__button' type='submit'>
                                         {saving ? "Ajout..." : "Ajouter"}
                                         </Button>
                                     </div>
