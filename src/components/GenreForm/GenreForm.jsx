@@ -13,7 +13,7 @@ function GenreForm() {
     const [genreList, setGenreList] = useState([]);
     const [genreToAdd, setGenreToAdd] = useState('');
     const [saving, setSaving] = useState(false);
-    // const [idToDelete, setIdToDelete] = useState('');
+    const [idToDelete, setIdToDelete] = useState(null);
 
         // Modal
         const [show, setShow] = useState(false);
@@ -46,11 +46,15 @@ function GenreForm() {
         
     }
 
+
     async function handleDelete(id) {
+        handleOnSaved();
         console.log('id to delete : ', id);
         setSaving(true);
         try {
-            const genreToDelete = await deleteGenre(id);
+            console.log(id);
+            // setIdToDelete(id);
+            await deleteGenre(id);
             handleOnSaved();
         } catch (error) {
             console.error("Erreur lors de la suppression du genre : ", error);
@@ -65,52 +69,57 @@ function GenreForm() {
 
     return (
         <>
-            <div className='genre__container'>
+            <section className='genre__container'>
                 <h2 className='genre__title'>Les Genres</h2>
                 <Accordion>
                     <Accordion.Item className='genre__accordion__item' eventKey="1">
                         <Accordion.Header className='genre__accordion__title'>Liste des genres</Accordion.Header>
                             <Accordion.Body>
                                 <ListGroup>
+                                    
                                     {genreList.length > 0 ?
-                                        genreList.map((genre, index) => (
-                                            <><ListGroup.Item key={genre.id}>
-                                                <div className='genre__list__item genre__list__item--trash' >
-                                                    <label htmlFor='genre' id={genre.label} className='genre__label'>{genre.label}</label>
-                                                    <div onClick={(e) => {e.preventDefault(); handleShow()}} className='trash__icon'>
-                                                        <Trash />
-                                                    </div>
-                                                </div>
-                                            </ListGroup.Item>
+                                        genreList.map((genre) => (
+                                            <>
+                                            <Form key={genre.id}>
+                                                <ListGroup.Item >
+                                                    <Form.Group className='genre__list__item genre__list__item--trash' >
+                                                        <Form.Label htmlFor='genre' id={genre.label} className='genre__label' >{genre.label}</Form.Label>
+                                                        <Button id={genre.id} name='genre' onClick={(e) => {e.preventDefault(); setIdToDelete(genre.id); handleShow()}} className='trash__icon'>
+                                                                <Trash />
+                                                        </Button>
+                                                    </Form.Group>
+                                                </ListGroup.Item>
+                                            </Form>
 
-                                        <Modal key={index} show={show} onHide={handleClose}>
-                                            <Modal.Header closeButton>
-                                            <Modal.Title>Supprimer le genre</Modal.Title>
-                                            </Modal.Header>
-                                            <Modal.Body>Etes-vous sûr de vouloir supprimer le genre ?</Modal.Body>
-                                            <Modal.Footer>
-                                            <Button variant="secondary" onClick={handleClose}>
-                                                Annuler
-                                            </Button>
-                                            <Button variant="primary" onClick={(e) => {e.preventDefault(); handleDelete(genre.id); handleClose()}}>
-                                                Supprimer le genre
-                                            </Button>
-                                            </Modal.Footer>
-                                        </Modal>
-                                        </>
+                                            </>
                                         ))
                                         :
                                         <ListGroup.Item className='genre__list__item'>
                                             Aucun genre trouvé
                                         </ListGroup.Item>
                                     }
+                                    
                                 </ListGroup>
                             </Accordion.Body>
                         </Accordion.Item>
+                        <Modal show={show} onHide={handleClose}>
+                            <Modal.Header closeButton>
+                            <Modal.Title>Supprimer le genre</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>Etes-vous sûr de vouloir supprimer le genre ?</Modal.Body>
+                            <Modal.Footer>
+                            <Button variant="secondary" onClick={handleClose}>
+                                Annuler
+                            </Button>
+                            <Button variant="primary" onClick={(e) => {e.preventDefault(); handleDelete(idToDelete); handleClose()}}>
+                                Supprimer le genre
+                            </Button>
+                            </Modal.Footer>
+                        </Modal>
                         <Accordion.Item className='genre__accordion__item' eventKey="0">
                             <Accordion.Header className='genre__accordion__title'>Ajouter un genre</Accordion.Header>
                             <Accordion.Body>
-                                <Form className='genre__form' onSubmit={(e) => {e.preventDefault(); handleAddGenre(e) } }>
+                                <Form className='genre__form' onSubmit={(e) => {e.preventDefault(); handleAddGenre(e)} }>
                                     <Form.Label htmlFor='genre'>Ajout d'un genre</Form.Label>
                                     <Form.Control
                                     onChange={(e) => setGenreToAdd(e.target.value)}
@@ -130,7 +139,7 @@ function GenreForm() {
                         </Accordion.Item>
                 </Accordion>
 
-            </div>
+            </section>
         </>
     )
 
