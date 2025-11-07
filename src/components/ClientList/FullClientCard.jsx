@@ -10,7 +10,7 @@ function FullClientCard({ client }) {
             <Container className="full-client-card-container">
                 {client != [] &&
                     client.map((client) => (
-                        <Row>
+                        <Row className="client-card-row">
                             <Col className="client-card-columne">
                                 <ClientCard client={client} />
                             </Col>

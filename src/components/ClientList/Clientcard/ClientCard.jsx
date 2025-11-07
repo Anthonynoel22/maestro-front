@@ -1,3 +1,4 @@
+import { Container } from "react-bootstrap";
 import "./ClientCard.scss";
 // import { useState } from "react";
 // import { useEffect } from "react";
@@ -10,8 +11,13 @@ function ClientCard({ client }) {
         <section className="client-card">
             <div className="client-card-header">
                 <p className="client-card-header-title">
-                    {client.firstname}
-                    {client.lastname}
+                    Information du client
+                </p>
+            </div>
+            <div className="client-card_div">
+                <p className="client-card_item">Nom prénom</p>
+                <p className="client-card_item-result">
+                    {client.firstname} {client.lastname}
                 </p>
             </div>
             <div className="client-card_div">
@@ -31,3 +37,6 @@ function ClientCard({ client }) {
 }
 
 export default ClientCard;
+
+{
+}

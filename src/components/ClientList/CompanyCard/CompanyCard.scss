@@ -1,37 +1,38 @@
 .company-card {
+    border: solid 1px #e07a5f;
     border-radius: 10px;
-    box-shadow: 3px 3px 15px 3px rgba(133, 132, 132, 0.31);
-    padding: 0.5rem;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
+    padding-bottom: 1.2rem;
 }
 
 .company-card-header-title {
-    margin: 0;
-    font-size: 0.8rem;
-}
-
-.company-card_item-result {
-    margin: 0;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+    padding: 0.2rem;
 }
 
 .company-card_div {
     display: flex;
     column-gap: 0.5rem;
     font-size: 0.7rem;
-    margin-bottom: 0.2rem;
+    padding-left: 0.5rem;
 }
 
 .company-card-header {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     background-color: #e07a5f;
-    color: white;
+    color: black;
     margin-bottom: 0.5rem;
-    padding: 0.6rem;
+    padding: 0.2rem;
 }
 
 .company-card_item {
     color: #e07a5f;
+    margin: 0;
+}
+
+.company-card_item-result {
     margin: 0;
 }

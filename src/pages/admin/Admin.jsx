@@ -1,19 +1,16 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import ContactRequestList from "../../components/ContactRequestList/ContactRequestList.jsx";
 import ProjectList from "../../components/ProjectList/ProjectList.jsx";
-import ClientList from "../../components/ClientList/ClientList.jsx";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./Admin.scss";
 import GenreList from "../../components/GenresList.jsx";
 import WaitingProjectList from "../../components/WaitingProjectList/WaitingProjectList.jsx";
-import ClientCard from "../../components/ClientList/Clientcard/ClientCard.jsx";
 import FullClientCard from "../../components/ClientList/FullClientCard.jsx";
 import { useState } from "react";
 import { useEffect } from "react";
 import { getAllUsers } from "../../api/apiUser.js";
-import { getAllCompany } from "../../api/apiCompany.js";
 
 function Admin() {
     // LES COMPOSANTS QUI SERONT SUR LA PAGE:
@@ -66,14 +63,17 @@ function Admin() {
                     </Col>
                 </Row>
 
-                <Row className="list-item">
-                    <h2 className="admin-item-title">Les genres</h2>
-                    <GenreList />
-                </Row>
-
-                <Row className="list-item">
-                    <h2 className="admin-item-title">La liste des clients</h2>
-                    <FullClientCard key={clients.id} client={clients} />
+                <Row>
+                    <Col className="list-item genre-list-item">
+                        <h2 className="admin-item-title">Les genres</h2>
+                        <GenreList />
+                    </Col>
+                    <Col className="list-item full-card-list-item">
+                        <h2 className="admin-item-title">
+                            La liste des clients
+                        </h2>
+                        <FullClientCard key={clients.id} client={clients} />
+                    </Col>
                 </Row>
             </Container>
         </>

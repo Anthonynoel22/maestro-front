@@ -1,37 +1,38 @@
 .client-card {
+    border: solid 1px #9dc4b5;
     border-radius: 10px;
-    box-shadow: 3px 3px 15px 3px rgba(133, 132, 132, 0.31);
-    padding: 0.5rem;
+    padding-bottom: 0.2rem;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
 
 .client-card-header-title {
-    margin: 0;
-    font-size: 0.8rem;
-}
-
-.client-card_item-result {
-    margin: 0;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+    padding: 0.2rem;
 }
 
 .client-card_div {
     display: flex;
     column-gap: 0.5rem;
     font-size: 0.7rem;
-    margin-bottom: 0.2rem;
+    padding-left: 0.5rem;
 }
 
 .client-card-header {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    background-color: #e07a5f;
-    color: white;
+    background-color: #9dc4b5;
+    color: black;
     margin-bottom: 0.5rem;
-    padding: 0.6rem;
+    padding: 0.2rem;
 }
 
 .client-card_item {
     color: #e07a5f;
+    margin: 0;
+}
+
+.client-card_item-result {
     margin: 0;
 }
