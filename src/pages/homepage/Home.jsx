@@ -1,27 +1,60 @@
-import Description from '../../components/Description/Description.jsx';
-import PreviewList from '../../components/PreviewList/PreviewList.jsx';
-//import { useEffect } from 'react';
+import React, { useEffect, useState,useContext } from "react";
+import Description from "../../components/Description/Description.jsx";
+import DescriptionItem from "../../components/Description/DescriptionItem/DescriptionItem.jsx";
+import DescriptionForm from "../../components/DescriptionForm/DescriptionForm.jsx";
+import PreviewList from "../../components/PreviewList/PreviewList.jsx";
+import { getAllDescription } from "../../api/apiDescription.js";
+import UserContext from "../../UserContext.jsx";
+const locationHome = "/";
 
 function Home() {
+    const [descriptions, setDescriptions] = useState([]);
+        const { userIs } = useContext(UserContext);
 
-    // LES COMPOSANTS QUI SERONT SUR LA PAGE:
+    // Récupère toutes les descriptions (compositeur, prestation, etc.)
+    useEffect(() => {
+        getAllDescription()
+            .then((data) => setDescriptions(data))
+            .catch((err) => console.error(err));
+    }, []);
 
-    // Présentation du compositeur (un titre avec son image et sa description)
-    // => Description (version présentation du compositeur)
-    // Les compositions star
-    // => PreviewList (version filtrée par isStar === true)
-    // Présentation des prestations (un titre avec son image et sa description)
-    // => Description (version présentation des prestations)
+    // Rafraîchit après création, update ou delete
+    function refreshDescriptions() {
+        getAllDescription()
+            .then((data) => setDescriptions(data))
+            .catch((err) => console.error(err));
+    }
 
-    const locationHome = "/";
+    // Sépare les deux descriptions principales
+    const presentationCompositeur = descriptions.find((d) => d.id === 1);
+    const prestation = descriptions.find((d) => d.id === 2);
 
     return (
         <>
-            {/* <h1>Home</h1> */}
-            <Description />
-            <PreviewList location={locationHome}/>
+            {/* Présentation du compositeur */}
+            {presentationCompositeur && (
+                <DescriptionItem description={presentationCompositeur} />
+            )}
+            {userIs === "admin" && (
+                <section className="description__form">
+                    <h3>Ajouter une description</h3>
+                    <DescriptionForm onAction={refreshDescriptions} />
+                </section>
+            )}
+
+            {/* Compositions stars */}
+            <PreviewList location={locationHome} />
+
+            {/* Prestation */}
+            {prestation && <DescriptionItem description={prestation} />}
+            {userIs === "admin" && (
+                <section className="description__form">
+                    <h3>Ajouter une description</h3>
+                    <DescriptionForm onAction={refreshDescriptions} />
+                </section>
+            )}
         </>
-    )
+    );
 }
 
 export default Home;

@@ -1,10 +1,8 @@
-// DescriptionForm.js
-
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { create, update, deleteDescription } from "../../api/apiDescription.js";
 
-function DescriptionForm() {
+function DescriptionForm({ onAction }) {
   const [id, setId] = useState("");
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
@@ -19,59 +17,90 @@ function DescriptionForm() {
     if (imageFile) formData.append("image", imageFile);
 
     create(formData)
-      .then((response) => console.log("Description envoyée :", response))
+      .then((response) => {
+        console.log("Description créée :", response);
+        resetForm();
+        if (onAction) onAction(); // actualise la page Home
+      })
       .catch((error) => console.error("Erreur :", error));
   }
 
-function handleUpdate() {
-  const formData = new FormData();
-  formData.append("title", title);
-  formData.append("text", text);
-  if (imageFile) formData.append("image", imageFile);
+  function handleUpdate() {
+    if (!id) {
+      alert("Veuillez renseigner un ID pour mettre à jour une description");
+      return;
+    }
 
-  update(id, formData)
-    .then((response) => console.log("Description mise à jour :", response))
-    .catch((error) => console.error("Erreur :", error));
-}
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("text", text);
+    if (imageFile) formData.append("image", imageFile);
 
+    update(id, formData)
+      .then((response) => {
+        console.log("Description mise à jour :", response);
+        resetForm();
+        if (onAction) onAction();
+      })
+      .catch((error) => console.error("Erreur :", error));
+  }
 
   function handleDelete() {
+    if (!id) {
+      alert("Veuillez renseigner un ID pour supprimer une description");
+      return;
+    }
+
     deleteDescription(id)
-      .then((response) => console.log("Description supprimée :", response))
+      .then((response) => {
+        console.log("Description supprimée :", response);
+        resetForm();
+        if (onAction) onAction();
+      })
       .catch((error) => console.error("Erreur :", error));
+  }
+
+  function resetForm() {
+    setId("");
+    setTitle("");
+    setText("");
+    setImageFile(null);
   }
 
   return (
-    <Form onSubmit={handleSubmit} method="post" encType="multipart/form-data">
+    <Form onSubmit={handleSubmit} method="post" encType="multipart/form-data" className="mb-5">
       <Form.Group controlId="formId">
         <Form.Label>ID (pour update / delete)</Form.Label>
         <Form.Control
           type="text"
           value={id}
+          placeholder="Entrez l'ID existant"
           onChange={(e) => setId(e.target.value)}
         />
       </Form.Group>
 
-      <Form.Group controlId="formTitle">
+      <Form.Group controlId="formTitle" className="mt-3">
         <Form.Label>Titre</Form.Label>
         <Form.Control
           type="text"
           value={title}
+          placeholder="Titre de la description"
           onChange={(e) => setTitle(e.target.value)}
         />
       </Form.Group>
 
-      <Form.Group controlId="formText">
+      <Form.Group controlId="formText" className="mt-3">
         <Form.Label>Texte</Form.Label>
         <Form.Control
           as="textarea"
           rows={3}
           value={text}
+          placeholder="Texte de la description"
           onChange={(e) => setText(e.target.value)}
         />
       </Form.Group>
 
-      <Form.Group controlId="formImage">
+      <Form.Group controlId="formImage" className="mt-3">
         <Form.Label>Image</Form.Label>
         <Form.Control
           type="file"
@@ -79,17 +108,27 @@ function handleUpdate() {
         />
       </Form.Group>
 
-      <Button variant="primary" type="submit" className="mt-3">
-        Créer
-      </Button>
-
-      <Button variant="warning" type="button" className="mt-3 ms-2" onClick={handleUpdate}>
-        Mettre à jour
-      </Button>
-
-      <Button variant="danger" type="button" className="mt-3 ms-2" onClick={handleDelete}>
-        Supprimer
-      </Button>
+      <div className="mt-4">
+        <Button variant="primary" type="submit">
+          Créer
+        </Button>
+        <Button
+          variant="warning"
+          type="button"
+          className="ms-2"
+          onClick={handleUpdate}
+        >
+          Mettre à jour
+        </Button>
+        <Button
+          variant="danger"
+          type="button"
+          className="ms-2"
+          onClick={handleDelete}
+        >
+          Supprimer
+        </Button>
+      </div>
     </Form>
   );
 }
