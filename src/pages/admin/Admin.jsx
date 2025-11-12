@@ -7,9 +7,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./Admin.scss";
 import FullClientCard from "../../components/ClientList/FullClientCard.jsx";
-import { useState } from "react";
-import { useEffect } from "react";
-import { getAllUsers } from "../../api/apiUser.js";
 
 function Admin() {
     // LES COMPOSANTS QUI SERONT SUR LA PAGE:
@@ -23,19 +20,6 @@ function Admin() {
     // Nouvelles demandes de contact
     // => ContactRequestList
 
-    // Recuperer la liste des clients et les faires passer aux composants
-    const [clients, setClients] = useState([]);
-
-    async function getClients() {
-        const clients = await getAllUsers();
-        setClients(clients);
-        console.log("Dans ma page admin :", clients);
-    }
-
-    useEffect(() => {
-        getClients();
-    }, []);
-
     return (
         <>
             <h1 className="admin-page-title">Mon espace administrateur</h1>
@@ -43,7 +27,7 @@ function Admin() {
             <Container className="admin-container">
                 <Row className="list-item project-list-item">
                     <h2 className="admin-item-title">Les projets en cours</h2>
-                    <ProjectList />
+                    {/* <ProjectList /> */}
                 </Row>
 
                 <Row>
@@ -58,7 +42,7 @@ function Admin() {
                         <h2 className="admin-item-title">
                             Les demandes de projets
                         </h2>
-                        <ProjectList />
+                        {/* <ProjectList /> */}
                     </Col>
                 </Row>
 
@@ -71,7 +55,7 @@ function Admin() {
                         <h2 className="admin-item-title">
                             La liste des clients
                         </h2>
-                        <FullClientCard key={clients.id} client={clients} />
+                        <FullClientCard />
                     </Col>
                 </Row>
             </Container>

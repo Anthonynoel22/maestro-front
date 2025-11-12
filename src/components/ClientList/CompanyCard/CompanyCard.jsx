@@ -1,7 +1,7 @@
 import "./CompanyCard.scss";
 
 function CompanyCard({ company }) {
-    console.log("Dans CompanyCard", company);
+    // console.log("Dans CompanyCard", company);
 
     return (
         <section className="company-card">

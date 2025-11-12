@@ -5,7 +5,7 @@ import "./ClientCard.scss";
 // import { getOneUSer } from "../../../api/apiUser.js";
 
 function ClientCard({ client }) {
-    console.log("Dans ClientCard", client);
+    // console.log("Dans ClientCard", client);
 
     return (
         <section className="client-card">
@@ -17,7 +17,7 @@ function ClientCard({ client }) {
             <div className="client-card_div">
                 <p className="client-card_item">Nom prénom</p>
                 <p className="client-card_item-result">
-                    {client.firstname} {client.lastname}
+                    {client.lastname} {client.firstname}
                 </p>
             </div>
             <div className="client-card_div">

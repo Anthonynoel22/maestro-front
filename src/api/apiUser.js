@@ -79,9 +79,21 @@ export async function getAllUsers() {
         });
 }
 
+// GET http://localhost:3000/api/admin/user/filter?by=lastnameSelected
 // Trier les utilisateurs
 // GET/api/admin/user/(filtre)
 // userRoute.get("/admin/user/filter", userController.sort);
+export async function getSortedUsers(usersSorted) {
+    return api_axios
+        .get("/admin/user/filter" + "?" + "by=" + usersSorted)
+        .then(function (res) {
+            console.log(res.data);
+            return res.data;
+        })
+        .catch(function (error) {
+            console.error(error);
+        });
+}
 
 // Voir un seul utilisateur
 export async function getOneUser(id) {
