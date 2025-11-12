@@ -1,0 +1,144 @@
+@use "../style/var.scss";
+@use "../style/mixin.scss";
+
+
+.genre__container {
+    margin: 3rem;
+    padding: 1rem;
+    border: solid 1px var.$color-admin;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @include mixin.desktop {
+    max-width: calc(100vw/2 - 6rem);
+    }
+}
+
+.genre__title {
+    font-family: var.$font-main;
+    font-size: var.$font-size-h2;
+    text-align: center;
+    background-color: var.$color-admin;
+    color: white;
+    padding: .5rem;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+
+
+.genre__accordion__item {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.genre__accordion__title {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.genre__list__item {
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+}
+
+
+.accordion-button {
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.accordion-header {
+    width: 100%;
+}
+
+.genre__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.genre__button__container {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.accordion-collapse {
+    width: 100%;
+}
+
+
+.genre__list__item--trash {
+    // display: flex;
+    // flex-direction: row;
+    // gap: 3rem;
+    // // justify-content: space-around;
+    // // border: solid 1px var.$color-admin;
+    // // justify-content: space-evenly;
+    // align-items: center;
+    // margin: .7rem 0 .7rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+}
+
+.genre__label {
+    vertical-align: middle;
+    margin: 0;
+}
+
+.genre__form__button {
+    background-color: var.$color-admin;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    // margin: 1rem;
+    padding: .7rem 2rem .7rem 2rem;
+    max-width: 10rem;
+}
+
+.genre__form__button:hover {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    background-color: #CE4B27;
+}
+
+#button__red {
+    background-color: var.$color-admin;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    // margin: 1rem;
+    padding: .7rem 2rem .7rem 2rem;
+    max-width: 10rem;
+}
+
+#button__red:hover {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    background-color: #CE4B27;
+}
+
+.trash__icon {
+    padding: .5rem .7rem .5rem .7rem;
+    color: var.$color-admin;
+}
+
+.trash__icon:hover {
+    background-color: lightgray;
+    border-radius: 5px;
+}
+
+.genre__form__item {
+    border-radius: 10px;
+}
+

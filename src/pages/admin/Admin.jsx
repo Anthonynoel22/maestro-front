@@ -1,10 +1,11 @@
 import ContactRequestList from "../../components/ContactRequestList/ContactRequestList.jsx";
+import GenreForm from "../../components/GenreForm/GenreForm.jsx";
+// import ClientList from "../../components/ClientList/ClientList.jsx"
 import ProjectList from "../../components/ProjectList/ProjectList.jsx";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./Admin.scss";
-import GenreList from "../../components/GenresList.jsx";
 import WaitingProjectList from "../../components/WaitingProjectList/WaitingProjectList.jsx";
 import FullClientCard from "../../components/ClientList/FullClientCard.jsx";
 import { useState } from "react";
@@ -32,6 +33,20 @@ function Admin() {
         console.log("Dans ma page admin :", clients);
     }
 
+        // LES COMPOSANTS QUI SERONT SUR LA PAGE:
+        
+        // Nouvelles demandes de projets 
+        // => WaitingProjectList
+        // Liste des clients avec leurs informations 
+        // => ClientList
+        // Les projets validés (avec leur statut etc) 
+        // => ProjectList (version admin)
+        // Nouvelles demandes de contact 
+        // => ContactRequestList
+        // Formulaire pour CRUD genre
+        // => GenreForm
+
+  
     useEffect(() => {
         getClients();
     }, []);
@@ -65,7 +80,7 @@ function Admin() {
                 <Row>
                     <Col className="list-item genre-list-item">
                         <h2 className="admin-item-title">Les genres</h2>
-                        <GenreList />
+                        <GenreForm />
                     </Col>
                     <Col className="list-item full-card-list-item">
                         <h2 className="admin-item-title">

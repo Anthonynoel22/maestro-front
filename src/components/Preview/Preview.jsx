@@ -9,28 +9,38 @@ function Preview({title, audiosrc, genres}) {
     const [audioElement, setAudioElement] = useState();
     const [playIsHidden, setPlayIsHidden] = useState(false);
     const [pauseIsHidden, setPauseIsHidden] = useState(true);
+
+    const URL = "http://localhost:3000/"
+
     // const userIs = useContext(UserContext)
 
     // console.log(userIs);
+    // const audioLink = `/${audiosrc}`;
+    // console.log('audiosrc', audiosrc);
+    // console.log('audioLink', audioLink);
 
     function toggleHidden() {
         setPlayIsHidden(!playIsHidden);
         setPauseIsHidden(!pauseIsHidden);
     }
 
-    function handlePlay() {
-        audioElement.play();
+    async function handlePlay() {
+        console.log('hanlde play ', handlePlay);
+        
+        await audioElement.play();
         toggleHidden();
     }
 
-    function handlePause() {
-        audioElement.pause();
+    async function handlePause() {
+        await audioElement.pause();
         toggleHidden();
     }
 
     useEffect(() => {
-        setAudioElement(new Audio(audiosrc));
-    }, [audiosrc])
+        setAudioElement(new Audio(URL + audiosrc));
+        // console.log(audioElement);
+        
+    }, [])
 
     return (
         <>
@@ -40,7 +50,7 @@ function Preview({title, audiosrc, genres}) {
                     <figcaption className="preview__title">{title}</figcaption>
                     <audio className="audio">
                         {/* à mettre la source dynamiquement, et le type */}
-                        {/* <source src={audiosrc} type="audio/mpeg"/> */}
+                        <source src={`${URL}${audiosrc}`} type="audio/mpeg"/>
                     </audio>
                 </figure>
                 <div className="buttons">
