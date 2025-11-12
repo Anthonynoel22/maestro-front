@@ -6,7 +6,12 @@
     margin-top: 12px;
 }
 
-
+.bg-color-client {
+    background-color: var.$color-client ;
+}
+.bg-color-admin {
+    background-color: var.$color-admin ;
+}
 
 // $color-title-text: #000000;
 // $color-bg: #F4F1DE;

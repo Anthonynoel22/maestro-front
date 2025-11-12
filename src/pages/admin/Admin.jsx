@@ -1,9 +1,5 @@
 import ContactRequestList from "../../components/ContactRequestList/ContactRequestList.jsx";
-<<<<<<< HEAD
-import ProjectList from "../../components/ProjectList/ProjectList.jsx";
-=======
 import GenreForm from "../../components/GenreForm/GenreForm.jsx";
->>>>>>> a1f98e56da1e6b65f5fafc55fc6f9a387c2c2713
 // import ClientList from "../../components/ClientList/ClientList.jsx"
 import ProjectList from "../../components/ProjectList/ProjectList.jsx";
 import Container from "react-bootstrap/Container";
@@ -57,12 +53,6 @@ function Admin() {
 
     return (
         <>
-<<<<<<< HEAD
-        <h1>Mon espace administrateur</h1>
-        {/* <ClientList /> */}
-        <ContactRequestList />
-        <ProjectList />
-=======
             <h1 className="admin-page-title">Mon espace administrateur</h1>
 
             <Container className="admin-container">
@@ -100,7 +90,6 @@ function Admin() {
                     </Col>
                 </Row>
             </Container>
->>>>>>> a1f98e56da1e6b65f5fafc55fc6f9a387c2c2713
         </>
     );
 }
