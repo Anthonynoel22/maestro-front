@@ -52,7 +52,6 @@ function ProjectList() {
             setStatusList (result.Liststatus);
                 // les projets se mettent dans le usestate pour les afficher
             setProjectList(result.projects);
-            setProjectResume(result.resume);
         }
     }
 
@@ -131,17 +130,17 @@ function ProjectList() {
 return (
     <section className="title__container">
         <h3 className="title">Projets en cours</h3>
+
         {/* TRIER LES PROJETS PAR STATUS */}
-        <Form.Select size="lg" onChange={handleChange} aria-label="Sort by genre" className="mb-4">
+        <Form.Select size="lg"onChange={handleChange} aria-label="Sort by genre" className="mb-4">
                     
             <option value=''>Trier par statut</option>
             {/* Si la liste de projets et de statuts n'est pas vide, on affiche la liste des status, sinon on affiche "Pas de statut"*/}
             {(projectList.length > 0 && statusList.length != 0) ? statusList.map((status) => (
-            
                 <option value={status} key={status}>{status}</option>
             ))
             :
-            <option>Pas de statut</option>
+                <option>Pas de statut</option>
             }
         </Form.Select>
 
@@ -156,7 +155,6 @@ return (
                         style={{
                             width: "100%",
                             border: "2px" ,
-                            borderColor:"red"
                         }}
                     >
                     
@@ -164,22 +162,22 @@ return (
                         <Card.Body>
                             <Row className="align-items-center">
                                 <Col xs="auto">
-                                < Trash size={30} onClick={(e) => {e.preventDefault(); handleShow() }}/>
+                                    < Trash size={30} onClick={(e) => {e.preventDefault(); handleShow() }}/>
                                 
-                                    <Modal show={show} onHide={handleClose}>
-                                        <Modal.Header closeButton>
-                                        <Modal.Title>Supprimer un projet</Modal.Title>
-                                        </Modal.Header>
-                                        <Modal.Body>Etes-vous sur de vouloir le supprimer ?</Modal.Body>
-                                        <Modal.Footer>
-                                        <Button variant="secondary" onClick={handleClose}>
-                                            Annuler
-                                        </Button>
-                                        <Button variant="primary" onClick={(e) => {e.preventDefault(); handleDelete(project.id); handleClose()}}>
-                                            Supprimer
-                                        </Button>
-                                        </Modal.Footer>
-                                    </Modal>
+                                        <Modal show={show} onHide={handleClose}>
+                                            <Modal.Header closeButton>
+                                                <Modal.Title>Supprimer un projet</Modal.Title>
+                                            </Modal.Header>
+                                                <Modal.Body>Etes-vous sur de vouloir le supprimer ?</Modal.Body>
+                                                    <Modal.Footer>
+                                                        <Button variant="secondary" onClick={handleClose}>
+                                                            Annuler
+                                                        </Button>
+                                                        <Button variant="primary" onClick={(e) => {e.preventDefault(); handleDelete(project.id); handleClose()}}>
+                                                            Supprimer
+                                                        </Button>
+                                                    </Modal.Footer>
+                                        </Modal>
                                 </Col>
 
                                 <Col className="text-center">
@@ -200,7 +198,6 @@ return (
                                     <p class="border rounded">
                                         {project.resume}
                                     </p>
-
 
                                     {/* STATUS*/}
                                     {userIs === 'admin' &&
@@ -231,7 +228,6 @@ return (
                                         }}
                                         className="deadline__badge d-block"
                                         bg={userIs === "admin" ? 'color-admin' : 'color-client'}
-                                        
                                     >
                                         {project.deadline}
                                     </Badge>

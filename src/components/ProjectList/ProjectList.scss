@@ -33,9 +33,10 @@
     border-color: var.$color-admin;
 }
 
+
+
 @media (min-width: var.$breakpoint-desktop) {
     .align-items-center{
         max-width: 700px;
-        // border: solid 1px red;
 }
 }
