@@ -95,6 +95,7 @@ function ProjectList() {
 
     console.log('status list : ', statusList)
 
+    // met à jour le status du projet
     function handleChangeStatus(e) {
         e.preventDefault();
         console.log(e.target);
@@ -119,7 +120,6 @@ function ProjectList() {
 
 
 
-
     // useeffect s'exécute quand le composant apparait sur la page
     useEffect(() => {
         // quand le composant s'affiche, je lance ma fonction getProjects()
@@ -132,7 +132,7 @@ return (
     <section className="title__container">
         <h3 className="title">Projets en cours</h3>
         {/* TRIER LES PROJETS PAR STATUS */}
-        <Form.Select size="lg" onChange={handleChange} aria-label="Sort by genre">
+        <Form.Select size="lg" onChange={handleChange} aria-label="Sort by genre" className="mb-4">
                     
             <option value=''>Trier par statut</option>
             {/* Si la liste de projets et de statuts n'est pas vide, on affiche la liste des status, sinon on affiche "Pas de statut"*/}
@@ -143,106 +143,107 @@ return (
             :
             <option>Pas de statut</option>
             }
-        
-        {/* LISTE DES PROJETS */}
         </Form.Select>
-        <div className="projects__container">
+
+        {/* LISTE DES PROJETS */}
+        <Row className="projects__container justify-content-center">
         {/* si projectList existe (!=null) et n’est pas vide (length != 0), alors j’affiche la liste des projets avec map, sinon on affiche pas de projet */}
         {(projectList != null && projectList.length != 0) ? projectList.map((project) => (
-            <Form key={project.id}>
-            <Card 
-                className="border border-primary rounded-3 shadow-sm"
-                style={{
-                    backgroundColor: "#f8f5e4",
-                    maxWidth: "400px",
-                    borderWidth: "2px",
-                }}
-            >
-            
-                {/* SUPPRESSION PROJET*/}
-                <Card.Body>
-                    <Row className="align-items-center">
-                        <Col xs="auto">
-                        < Trash size={30} onClick={(e) => {e.preventDefault(); handleShow() }}/>
-                        
-                            <Modal show={show} onHide={handleClose}>
-                                <Modal.Header closeButton>
-                                <Modal.Title>Supprimer un projet</Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body>Etes-vous sur de vouloir le supprimer ?</Modal.Body>
-                                <Modal.Footer>
-                                <Button variant="secondary" onClick={handleClose}>
-                                    Annuler
-                                </Button>
-                                <Button variant="primary" onClick={(e) => {e.preventDefault(); handleDelete(project.id); handleClose()}}>
-                                    Supprimer
-                                </Button>
-                                </Modal.Footer>
-                            </Modal>
-                        </Col>
-
-                        <Col className="text-center">
-                        {/* TITRE PROJET "en cours" */}
-                            <Badge
-                                pill
-                                style={{
-                                    color: "black",
-                                    fontSize: "0.9rem",
-                                }}
-                                className="test mb-2 d-block"
-                                bg={userIs === "admin" ? 'color-admin' : 'color-client'}
-                            > 
-                                {project.name}
-                            </Badge>
-                            
-                            {/* DESCRIPTION/RESUME PROJET */}
-                            <p className={`project__resume ${userIs === "admin" ? "bg-color-admin" : "bg-color-client"}`}
-                            >
-                                {project.resume}
-                            </p>
-
-
-                            {/* STATUS*/}
-                            {userIs === 'admin' &&
-                            <div>
-                                <section className="update__status">
-                                    <Form.Group>
-                                        <Form.Label htmlFor="status-select">Selectionner le status</Form.Label>
-
-                                        <Form.Select defaultValue={project.status} onChange={handleChangeStatus} name="status" id="status-select">
-                                            {statusList.length > 0 ?
-                                            statusList.map((status, index) => (
-                                                <option value={status} id={project.id} key={index}>{status}</option>
-                                            )):
-                                            <option value="noStatus">pas de status</option>
-                                            }
-                                        </Form.Select>
-                                    </Form.Group>
-                                </section>
-                            </div>
-                            }       
-
-                            {/* DEADLINE*/}
-                            <Badge
-                                pill 
-                                style={{
-                                    color: "black",
-                                    fontSize: "0.9rem",
-                                }}
-                                className="deadline__badge d-block"
-                                bg={userIs === "admin" ? 'color-admin' : 'color-client'}
+            <Col key={project.id} lg={12} sm={4} className="mb-5" >
+                <Form >
+                    <Card 
+                        className="border border-primary rounded-3 shadow-sm"
+                        style={{
+                            width: "100%",
+                            border: "2px" ,
+                            borderColor:"red"
+                        }}
+                    >
+                    
+                        {/* SUPPRESSION PROJET*/}
+                        <Card.Body>
+                            <Row className="align-items-center">
+                                <Col xs="auto">
+                                < Trash size={30} onClick={(e) => {e.preventDefault(); handleShow() }}/>
                                 
-                            >
-                                {project.deadline}
-                            </Badge>
-                        </Col>
-                    </Row>
-                </Card.Body>
-            </Card>
-        </Form>
+                                    <Modal show={show} onHide={handleClose}>
+                                        <Modal.Header closeButton>
+                                        <Modal.Title>Supprimer un projet</Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>Etes-vous sur de vouloir le supprimer ?</Modal.Body>
+                                        <Modal.Footer>
+                                        <Button variant="secondary" onClick={handleClose}>
+                                            Annuler
+                                        </Button>
+                                        <Button variant="primary" onClick={(e) => {e.preventDefault(); handleDelete(project.id); handleClose()}}>
+                                            Supprimer
+                                        </Button>
+                                        </Modal.Footer>
+                                    </Modal>
+                                </Col>
+
+                                <Col className="text-center">
+                                {/* TITRE PROJET "en cours" */}
+                                    <Badge
+                                        pill
+                                        style={{
+                                            color: "black",
+                                            fontSize: "0.9rem",
+                                        }}
+                                        className="test mb-2 d-block"
+                                        bg={userIs === "admin" ? 'color-admin' : 'color-client'}
+                                    > 
+                                        {project.name}
+                                    </Badge>
+                                    
+                                    {/* DESCRIPTION/RESUME PROJET */}
+                                    <p class="border rounded">
+                                        {project.resume}
+                                    </p>
+
+
+                                    {/* STATUS*/}
+                                    {userIs === 'admin' &&
+                                    <div>
+                                        <section className="update__status">
+                                            <Form.Group>
+                                                <Form.Label htmlFor="status-select">Selectionner le status</Form.Label>
+
+                                                <Form.Select defaultValue={project.status} onChange={handleChangeStatus} name="status" id="status-select">
+                                                    {statusList.length > 0 ?
+                                                    statusList.map((status, index) => (
+                                                        <option value={status} id={project.id} key={index}>{status}</option>
+                                                    )):
+                                                    <option value="noStatus">pas de status</option>
+                                                    }
+                                                </Form.Select>
+                                            </Form.Group>
+                                        </section>
+                                    </div>
+                                    }       
+
+                                    {/* DEADLINE*/}
+                                    <Badge
+                                        pill 
+                                        style={{
+                                            color: "black",
+                                            fontSize: "0.9rem",
+                                        }}
+                                        className="deadline__badge d-block"
+                                        bg={userIs === "admin" ? 'color-admin' : 'color-client'}
+                                        
+                                    >
+                                        {project.deadline}
+                                    </Badge>
+                                </Col>
+                            </Row>
+                        </Card.Body>
+                    </Card>
+                </Form>
+            </Col>
         ))
     : <p>pas de projet</p>}
-        </div>
+        </Row>
     </section>
 );
 }
