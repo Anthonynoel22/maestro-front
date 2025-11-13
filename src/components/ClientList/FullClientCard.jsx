@@ -1,4 +1,4 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import ClientCard from "./Clientcard/ClientCard.jsx";
 import CompanyCard from "./CompanyCard/CompanyCard.jsx";
 import "./FullClientCard.scss";
@@ -34,6 +34,11 @@ function FullClientCard() {
         }
     }
 
+    // function handleDisable(event) {
+    //     event.preventDefault();
+    //     console.log("boutton de désactivation cliqué");
+    // }
+
     useEffect(() => {
         getClients();
     }, []);
@@ -56,7 +61,7 @@ function FullClientCard() {
                 <Container className="full-client-card-container">
                     {clients != [] &&
                         clients.map((client) => (
-                            <Row key={client.id} className="client-card-row">
+                            <Row key={client.id} className="client-card-row ">
                                 <Col
                                     sm
                                     className="card-column client-card-column"
@@ -72,6 +77,14 @@ function FullClientCard() {
                                         <CompanyCard company={client.company} />
                                     </Col>
                                 )}
+                                <Col sm={1}>
+                                    <button
+                                        className="disable-button"
+                                        // onSubmit={handleDisable}
+                                    >
+                                        D
+                                    </button>
+                                </Col>
                             </Row>
                         ))}
                 </Container>

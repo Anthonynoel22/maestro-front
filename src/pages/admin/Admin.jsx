@@ -47,7 +47,7 @@ function Admin() {
                 </Row>
 
                 <Row className="row-3">
-                    <Col className="list-item genre-list-item">
+                    <Col sm={5} className="list-item genre-list-item">
                         <h2 className="admin-item-title">Les genres</h2>
                         <GenreForm />
                     </Col>

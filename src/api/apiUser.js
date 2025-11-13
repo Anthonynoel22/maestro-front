@@ -61,12 +61,22 @@ export async function updateMyProfile(newUserData) {
         });
 }
 
-// Supprimer un utilisateur (désactiver)
-// DELETE/api/user
-// userRoute.delete('/user', userController.quelque chose)
+// Désactiver un utilisateur
+// PATCH/api/admin/user/:idUser
+// userRoute.patch("/admin/user/:id", userController.disable);
+export async function disableUser(newUserAccountStatus, id) {
+    return api_axios
+        .patch(`/admin/user/${id}`)
+        .then.then(function (res) {
+            console.log("api console :", newUserAccountStatus);
+            return res.data;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
 
 // Voir la liste des utilisateurs
-
 export async function getAllUsers() {
     return api_axios
         .get(`/admin/user`)
