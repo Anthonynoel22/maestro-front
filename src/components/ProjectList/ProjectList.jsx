@@ -8,6 +8,7 @@ import "./ProjectList.scss";
 import { Trash } from "react-bootstrap-icons";
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from "react-router-dom";
+import Container from 'react-bootstrap/Container';
 
 
 
@@ -145,15 +146,16 @@ return (
         </Form.Select>
 
         {/* LISTE DES PROJETS */}
-        <Row className="projects__container justify-content-center">
+        <Container fluid>
+        <Row>
         {/* si projectList existe (!=null) et n’est pas vide (length != 0), alors j’affiche la liste des projets avec map, sinon on affiche pas de projet */}
         {(projectList != null && projectList.length != 0) ? projectList.map((project) => (
-            <Col key={project.id} lg={12} sm={4} className="mb-5" >
+            <Col key={project.id} className="mb-5" >
                 <Form >
                     <Card 
                         className="border border-primary rounded-3 shadow-sm"
                         style={{
-                            width: "100%",
+                            // width: "100%",
                             border: "2px" ,
                         }}
                     >
@@ -188,7 +190,7 @@ return (
                                             color: "black",
                                             fontSize: "0.9rem",
                                         }}
-                                        className="test mb-2 d-block"
+                                        className="mb-2 d-block"
                                         bg={userIs === "admin" ? 'color-admin' : 'color-client'}
                                     > 
                                         {project.name}
@@ -240,6 +242,7 @@ return (
         ))
     : <p>pas de projet</p>}
         </Row>
+        </Container>
     </section>
 );
 }

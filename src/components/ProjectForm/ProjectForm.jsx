@@ -26,8 +26,8 @@ function ProjectForm() {
             <h2 className="title">Nouvelle demande de projet</h2>
 
             {/* Titre du projet */}
-            <Form.Group className="form__title" controlId="FormTitleProject">
-                <Form.Label className="form__title">
+            <Form.Group controlId="FormTitleProject">
+                <Form.Label className="form__title" >
                     Titre du projet*
                 </Form.Label>
                 <Form.Control
