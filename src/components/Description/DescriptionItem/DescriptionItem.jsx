@@ -8,10 +8,8 @@ function DescriptionItem({ description }) {
                 /*Si description.image_link vaut "app/images/photo.jpg", alors :
                 .replace(/^app\//, "") donne "images/photo.jpg"
                 L’URL finale devient : "http://localhost:3000/images/photo.jpg" */
-                src={`http://localhost:3000/${description.image_link.replace(
-                    /^app\//,
-                    ""
-                )}`}
+
+                src={`http://localhost:3000/${description.image_link.replace(/^app\//,"")}`}
                 alt="présentation du compositeur"
             />
             <p className="description__text">{description.text}</p>

@@ -26,8 +26,8 @@ function Home() {
     }
 
     // je parcourt un tableau avec .find pour trouvé les id qui sont strictement égal à celle ci 
-    const presentationCompositeur = descriptions.find((d) => d.id === 1);
-    const prestation = descriptions.find((d) => d.id === 2);
+    const presentationCompositeur = descriptions.find((d) => d.number === 1);
+    const prestation = descriptions.find((d) => d.number === 2);
 
     /* Affiche la description du compositeur .
 Affiche le formulaire d’administration si l’utilisateur est admin.
@@ -42,7 +42,7 @@ Affiche à nouveau le formulaire d’administration si l’utilisateur est admin
             )}
             {userIs === "admin" && (
                 <section>
-                    <DescriptionForm onAction={refreshDescriptions} />
+                    <DescriptionForm description={presentationCompositeur} onAction={refreshDescriptions} />
                 </section>
             )}
 
@@ -55,7 +55,7 @@ Affiche à nouveau le formulaire d’administration si l’utilisateur est admin
             )}
             {userIs === "admin" && (
                 <section>
-                    <DescriptionForm onAction={refreshDescriptions} />
+                    <DescriptionForm description={prestation} onAction={refreshDescriptions} />
                 </section>
             )}
         </>
