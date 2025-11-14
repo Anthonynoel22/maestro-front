@@ -26,6 +26,16 @@ function UserDataForm() {
     function handelSubmit(event) {
         event.preventDefault();
         updateMyProfile(setting);
+        getMySetting();
+    }
+
+    function handleSwitch(event) {
+        console.log("Dans handelSwitch", event.target.checked);
+        setSetting((prevSetting) => ({
+            ...prevSetting, // ← on copie l’ancien objet
+            isActive: event.target.checked, // ← on remplace seulement fistname
+        }));
+        console.log("Dans handelSwitch", setting);
     }
 
     return (
@@ -182,6 +192,24 @@ function UserDataForm() {
                                     </Form.Group>
                                 </Row>
 
+                                <Row className="item profile-item">
+                                    <Form.Group className="profile-form-item profile-form-item-toggle">
+                                        <Form.Check
+                                            className="form__input"
+                                            name="disable"
+                                            type="switch"
+                                            id="disable-user"
+                                            label="Compte activé"
+                                            defaultChecked={
+                                                setting?.isActive
+                                                    ? setting.isActive
+                                                    : false
+                                            }
+                                            onChange={handleSwitch}
+                                        />
+                                    </Form.Group>
+                                </Row>
+
                                 {/* BOUTTON */}
                                 <Row className="item-button">
                                     <Button
@@ -202,167 +230,3 @@ function UserDataForm() {
 }
 
 export default UserDataForm;
-
-// {/* <Row>
-// <Form className="profile-form">
-//     <Container className="profil-item">
-//         {/* EN-TETE */}
-//         // <Row className="profil-item-header">
-//         //     <Col>Modifier mon mot de passe</Col>
-//         // </Row>
-
-//         {/* MOT DE PASSE*/}
-//         // <Row className="item password-item">
-//         //     <Form.Group
-//         //         className="profile-form-item"
-//         //         controlId="password"
-//         //     >
-//         //         <Form.Label>
-//         //             Nouveau mot de passe
-//         //         </Form.Label>
-//         //         <Form.Control
-//         //             className="profile-form-item-input"
-//         //             type="password"
-//         //             placeholder="Mot de passe"
-//         //             // value={password}
-//         //         />
-//         //     </Form.Group>
-//         // </Row>
-//         // <Row className="item password-item">
-//         //     <Form.Group
-//         //         className="profile-form-item"
-//         //         controlId="password"
-//         //     >
-//         //         <Form.Label>
-//         //             Retapper le mot de passe
-//         //         </Form.Label>
-//         //         <Form.Control
-//         //             className="profile-form-item-input"
-//         //             type="password"
-//         //             placeholder="Mot de passe"
-//         //             // value={password}
-//         //         />
-//         //     </Form.Group>
-//         // </Row>
-
-//         {/* BOUTTON */}
-// //         <Row className="item-button">
-// //             <Button className="mofifier-button">
-// //                 Modifier
-// //             </Button>
-// //         </Row>
-// //     </Container>
-// // </Form>
-// // </Row> */}
-
-// {/* <Col sm={6}>
-// {/* ENTREPRISE */}
-// <Row>
-//     <Form
-//         className="profile-form"
-//         method="post"
-//         onSubmit={(event) => companyHandelSubmit(event)}
-//     >
-//         <Container className="profil-item">
-//             {/* EN-TETE */}
-//             <Row className="profil-item-header">
-//                 <Col>Mon Entreprise</Col>
-//             </Row>
-
-//             {/* NOM DE L'ENTREPRISE */}
-//             <Row className="item name-item">
-//                 <Form.Group
-//                     className="profile-form-item"
-//                     controlId="name"
-//                 >
-//                     <Form.Label>Nom</Form.Label>
-//                     <Form.Control
-//                         className="profile-form-item-input"
-//                         type="name"
-//                         placeholder="Nom de l'entreprise"
-//                         defaultValue={
-//                             companySetting?.company
-//                                 ?.name
-//                                 ? companySetting.company
-//                                       .name
-//                                 : ""
-//                         }
-//                         onChange={(event) =>
-//                             setnewCompanyName(
-//                                 event.target.value
-//                             )
-//                         }
-//                     />
-//                 </Form.Group>
-//             </Row>
-
-//             {/* ADRESSE*/}
-//             <Row className="item">
-//                 <Form.Group
-//                     className="profile-form-item"
-//                     controlId="companyLocalisation"
-//                 >
-//                     <Form.Label>Adresse</Form.Label>
-//                     <Form.Control
-//                         className="profile-form-item-input"
-//                         type=""
-//                         placeholder="Adresse de l'entreprise"
-//                         defaultValue={
-//                             companySetting?.company
-//                                 ?.localisation
-//                                 ? companySetting.company
-//                                       .localisation
-//                                 : ""
-//                         }
-//                         onChange={(event) =>
-//                             setNewCompanyLocalisation(
-//                                 event.target.value
-//                             )
-//                         }
-//                     />
-//                 </Form.Group>
-//             </Row>
-
-//             {/* NUMERO DE SIRET*/}
-//             <Row className="item siret-item">
-//                 <Form.Group
-//                     className="profile-form-item"
-//                     controlId="siret"
-//                 >
-//                     <Form.Label>
-//                         Numero de siret
-//                     </Form.Label>
-//                     <Form.Control
-//                         className="profile-form-item-input"
-//                         type=""
-//                         placeholder="Numero de siret"
-//                         defaultValue={
-//                             companySetting?.company
-//                                 ?.siret
-//                                 ? companySetting.company
-//                                       .siret
-//                                 : ""
-//                         }
-//                         onChange={(event) =>
-//                             setNewSiret(
-//                                 event.target.value
-//                             )
-//                         }
-//                     />
-//                 </Form.Group>
-//             </Row>
-
-//             {/* BOUTTON */}
-//             <Row className="item-button">
-//                 <Button
-//                     className="mofifier-button"
-//                     variant="mofifier-button"
-//                     type="submit"
-//                 >
-//                     Modifier
-//                 </Button>
-//             </Row>
-//         </Container>
-//     </Form>
-// </Row>
-// </Col> */}

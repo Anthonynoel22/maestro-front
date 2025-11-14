@@ -64,11 +64,10 @@ export async function updateMyProfile(newUserData) {
 // Désactiver un utilisateur
 // PATCH/api/admin/user/:idUser
 // userRoute.patch("/admin/user/:id", userController.disable);
-export async function disableUser(newUserAccountStatus, id) {
+export async function disableUser(id) {
     return api_axios
         .patch(`/admin/user/${id}`)
-        .then.then(function (res) {
-            console.log("api console :", newUserAccountStatus);
+        .then(function (res) {
             return res.data;
         })
         .catch(function (error) {
