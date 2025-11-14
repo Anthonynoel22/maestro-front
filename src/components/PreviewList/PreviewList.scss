@@ -4,7 +4,7 @@
 .preview__list__title {
     text-align: center;
     font-family: var.$font-main;
-    margin: 1rem;
+    margin: 3rem;
 }
 
 .preview__list {
@@ -22,6 +22,10 @@
         flex-direction: row;
     }
 
+}
+
+.preview__list__form__container {
+    margin: 3rem;
 }
 
 /* 2 colonnes pour tablettes / desktop */
