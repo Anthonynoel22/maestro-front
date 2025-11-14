@@ -27,9 +27,21 @@ export async function loginUser(userData) {
         });
 }
 
+
 // Rafraichir le token
 // POST/api/user/refresh
 // userRoute.post("/user/refresh", userController.refresh);
+export async function refreshToken() {
+    return api_axios
+        .post(`/user/refresh`)
+        .then(function (res) {
+            // console.log(res.data);
+            return res.data;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
 
 // Se déconnecter
 // POST/api/user/logout

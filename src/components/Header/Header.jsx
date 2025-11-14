@@ -1,5 +1,5 @@
 // Header.jsx
-import React, { useContext } from "react";
+import React, { useContext , useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import clientIcon from "../../assets/images/user-client.svg";
@@ -7,14 +7,45 @@ import adminIcon from "../../assets/images/user-admin.svg";
 import UserContext from "../../UserContext.jsx";
 import "./Header.scss";
 import { logoutUser } from "../../api/apiUser.js";
+import { useAxiosInterceptor } from "../../api/axiosConfig.js";
+import { getMyProfile } from "../../api/apiUser.js";
 
 /*useContext(UserContext) récupère les données partagées dans le contexte utilisateur.
 userIs : indique le rôle actuel (admin, client, visitor).
 logoutProvider : fonction pour déconnecter l’utilisateur.
 useNavigate() retourne une fonction navigate pour effectuer une redirection.*/
 function Header() {
-    const { userIs, logoutProvider } = useContext(UserContext);
+    const { userIs, logoutProvider, loginProvider } = useContext(UserContext);
     const navigate = useNavigate();
+    
+    // active l'interceptor du axios config
+    useAxiosInterceptor();
+
+    // Cette fonction peut être utilisée pour rafraîchir
+    //  le contexte utilisateur si nécessaire
+    async function refreshContext() {
+
+        // si getMyProfile réussit, on met à jour le contexte
+        const profile = await getMyProfile();
+
+        if (profile) {
+            loginProvider(profile.user.role);
+        }
+    }
+
+    //ajout pour gestion de la perte de contexte utilisateur
+    useEffect(() => {
+        console.log("userIs changed:", userIs);
+
+        // Si le rôle devient "visitor", 
+        // on tente de rafraîchir le contexte
+        if (userIs === "visitor") {
+          console.log("userIs lost:", userIs);
+          refreshContext();
+        }
+        // autre action à chaque changement de rôle...
+    }, [userIs]);
+
 
     const commonLinks = [
         { label: "Accueil", to: "/" },
