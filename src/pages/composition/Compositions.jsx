@@ -16,7 +16,6 @@ function Composition() {
 
     return (
         <>
-        <h1>Composition</h1>
         <PreviewList location={locationComposition}/>
         </>
     )

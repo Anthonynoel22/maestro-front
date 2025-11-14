@@ -43,6 +43,7 @@ function PreviewList({location}) {
             const allStarPreviews = await getAllStarPreviews();
             setPreviewList(allStarPreviews);
             setComponentTitle('Quelques extraits')
+            getGenreList();
         }
     }
 
