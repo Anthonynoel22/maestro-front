@@ -27,7 +27,7 @@ function Admin() {
             <Container className="admin-container">
                 <Row className="list-item project-list-item">
                     <h2 className="admin-item-title">Les projets en cours</h2>
-                    {/* <ProjectList /> */}
+                    <ProjectList />
                 </Row>
 
                 <Row>

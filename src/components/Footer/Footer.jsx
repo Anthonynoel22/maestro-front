@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import UserContext from "../../UserContext.jsx";
 import "./Footer.scss";
+import { logoutUser } from "../../api/apiUser.js";
 
 const links = [
     { label: "Nous contacter", to: "/contact" },
@@ -22,9 +23,14 @@ function Footer() {
     const { userIs, logoutProvider } = useContext(UserContext);
     const navigate = useNavigate();
 
-    const handleLogout = () => {
-        logoutProvider();
-        navigate("/");
+    async function handleLogout () {
+        try {
+            await logoutUser(); // deconnexion de user
+            logoutProvider(); // retourne à l'état de visiteur
+            navigate("/"); // redirection vers la page d'accueil
+        } catch (error) {
+            console.log("erreur logout :", error);
+        }
     };
 
     return (
