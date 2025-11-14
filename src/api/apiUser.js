@@ -34,6 +34,18 @@ export async function loginUser(userData) {
 // Se déconnecter
 // POST/api/user/logout
 // userRoute.post("/user/logout", userController.logout);
+export async function logoutUser() {
+    return api_axios
+        .post(`/user/logout`)
+        .then(function (res) {
+            console.log("res.data du logout : ", res.data);
+            return res.data;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+
 
 // Voir ses informations personnelles
 export async function getMyProfile() {

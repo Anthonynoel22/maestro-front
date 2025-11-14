@@ -6,6 +6,7 @@ import clientIcon from "../../assets/images/user-client.svg";
 import adminIcon from "../../assets/images/user-admin.svg";
 import UserContext from "../../UserContext.jsx";
 import "./Header.scss";
+import { logoutUser } from "../../api/apiUser.js";
 
 /*useContext(UserContext) récupère les données partagées dans le contexte utilisateur.
 userIs : indique le rôle actuel (admin, client, visitor).
@@ -23,9 +24,18 @@ function Header() {
 /* Lorsqu’on clique sur « Se déconnecter », cette fonction :
 Appelle logoutProvider() pour ce déconnecté à la session utilisateur.
 Redirige vers la page d’accueil.*/
-    const handleLogout = () => {
-        logoutProvider();
-        navigate("/"); 
+    // const handleLogout = () => {
+    //     logoutProvider();
+    //     navigate("/"); 
+    // };
+    async function handleLogout () {
+        try {
+            await logoutUser(); // deconnexion de user
+            logoutProvider(); // retourne à l'état de visiteur
+            navigate("/"); // redirection vers la page d'accueil
+        } catch (error) {
+            console.log("erreur logout :", error);
+        }
     };
 
 /* Si l’utilisateur est admin affiche adminIcon.
