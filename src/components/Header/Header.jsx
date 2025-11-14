@@ -53,12 +53,8 @@ function Header() {
     ];
 
 /* Lorsqu’on clique sur « Se déconnecter », cette fonction :
-Appelle logoutProvider() pour ce déconnecté à la session utilisateur.
+Appelle logoutProvider() pour se déconnecter à la session utilisateur.
 Redirige vers la page d’accueil.*/
-    // const handleLogout = () => {
-    //     logoutProvider();
-    //     navigate("/"); 
-    // };
     async function handleLogout () {
         try {
             await logoutUser(); // deconnexion de user

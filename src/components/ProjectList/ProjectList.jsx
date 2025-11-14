@@ -44,22 +44,12 @@ function ProjectList() {
         if (userIs === 'client'){ 
             // l'api me renvoie la liste des projets (si USER)
             const result = await getAllProjectList();
-
-            console.log("user", result);
-            console.log("Liststatus :", result.Liststatus);
-            console.log("projects :", result.projects);
-    
             setStatusList (result.Liststatus);
                 // les projets se mettent dans le usestate pour les afficher
             setProjectList(result.projects);
         } else { 
             // sinon l'api me renvoie la liste des projets ADMIN
             const result = await getAllAdminProjects();
-
-            console.log("admin", result);
-            console.log("Liststatus :", result.Liststatus);
-            console.log("projects :", result.projects);
-
             setStatusList (result.Liststatus);
                 // les projets se mettent dans le usestate pour les afficher
             setProjectList(result.projects);
@@ -98,7 +88,7 @@ function ProjectList() {
             // si le user selectionne tous les projet donc la valeur vide ""
             // on affiche toute la liste des projets
         } else {
-            console.log("else handlechange :");
+            // console.log("else handlechange :");
             
             getStatusProject(status);
             // sinon on filtre suivant le status qu'aura choisi le user (en cours, terminé, etc)
@@ -142,7 +132,7 @@ function ProjectList() {
 
 return (
     <section className="title__container">
-        <h3 className="title">Projets en cours</h3>
+
 
         {/* TRIER LES PROJETS PAR STATUS */}
         <Form.Select size="lg"onChange={handleChange} aria-label="Sort by genre" className="mb-4">
@@ -210,7 +200,7 @@ return (
                                     </Badge>
                                     
                                     {/* DESCRIPTION/RESUME PROJET */}
-                                    <p class="border rounded">
+                                    <p className="border rounded">
                                         {project.resume}
                                     </p>
 

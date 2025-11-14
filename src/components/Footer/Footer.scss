@@ -107,6 +107,11 @@ footer {
     // À partir du breakpoint medium 768 px pour le desktop
     @include mixin.desktop {
         padding: 20px 40px;
+        position: static; 
+        left: auto;
+        bottom: auto;
+
+
 
         .footer-links {
             display: flex;

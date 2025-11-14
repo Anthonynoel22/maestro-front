@@ -25,10 +25,10 @@ function Admin() {
             <h1 className="admin-page-title">Mon espace administrateur</h1>
 
             <Container className="admin-container">
-                <Row className="list-item project-list-item">
+                {/*A PROPOSER EN VERSION 2 */}
+                {/* <Row className="list-item project-list-item">
                     <h2 className="admin-item-title">Les projets en cours</h2>
-                    <ProjectList />
-                </Row>
+                </Row> */}
 
                 <Row>
                     <Col sm className="list-item contact-request-list-item">
@@ -40,9 +40,9 @@ function Admin() {
 
                     <Col sm className="list-item waiting-project-list-item">
                         <h2 className="admin-item-title">
-                            Les demandes de projets
+                            Les projets
                         </h2>
-                        {/* <ProjectList /> */}
+                        <ProjectList />
                     </Col>
                 </Row>
 
