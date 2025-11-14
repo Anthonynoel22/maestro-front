@@ -18,7 +18,6 @@ function Header() {
     const commonLinks = [
         { label: "Accueil", to: "/" },
         { label: "Compositions", to: "/compositions" },
-        { label: "user", to: "/user"},
     ];
 
 /* Lorsqu’on clique sur « Se déconnecter », cette fonction :
