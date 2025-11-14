@@ -34,11 +34,6 @@ function FullClientCard() {
         }
     }
 
-    // function handleDisable(event) {
-    //     event.preventDefault();
-    //     console.log("boutton de désactivation cliqué");
-    // }
-
     useEffect(() => {
         getClients();
     }, []);
@@ -77,14 +72,6 @@ function FullClientCard() {
                                         <CompanyCard company={client.company} />
                                     </Col>
                                 )}
-                                <Col sm={1}>
-                                    <button
-                                        className="disable-button"
-                                        // onSubmit={handleDisable}
-                                    >
-                                        D
-                                    </button>
-                                </Col>
                             </Row>
                         ))}
                 </Container>

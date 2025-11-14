@@ -18,8 +18,10 @@ function LoginForm({ setUserHasAccount }) {
         event.preventDefault();
         const loginData = { email: email, password: password };
         const userInfo = await loginUser(loginData);
-        console.log("userInfo ", userInfo);
-        loginProvider(userInfo.user.role);
+        if (userInfo) {
+            console.log("userInfo ", userInfo);
+            loginProvider(userInfo.user.role);
+        }
         navigate("/"); // redirection vers la page d'accueil après connexion
     }
 
@@ -62,7 +64,9 @@ function LoginForm({ setUserHasAccount }) {
                             type={showPassword ? "text" : "password"}
                             placeholder="Entrez votre mot de passe"
                             value={password}
-                            onChange={(event) => setPassword(event.target.value)}
+                            onChange={(event) =>
+                                setPassword(event.target.value)
+                            }
                         />
                         <Button
                             variant="outline-secondary"

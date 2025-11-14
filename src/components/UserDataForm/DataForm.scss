@@ -1,9 +1,9 @@
 @use "../var";
 @use "../mixin";
 
-.dataForm-container {
-    max-width: 50%;
-}
+// .dataForm-container {
+//     max-width: 50%;
+// }
 
 .profil-item {
     border: solid 1px var.$color-client;
@@ -38,6 +38,10 @@
 
 .profile-form-item-input {
     font-size: 0.8rem;
+}
+
+.profile-form-item-toggle {
+    margin-top: 0.4rem;
 }
 
 .item-button {

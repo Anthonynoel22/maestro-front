@@ -4,9 +4,10 @@ import Form from 'react-bootstrap/Form';
 import { addPreview } from '../../api/apiPreview.js';
 import './PreviewForm.scss'
 
-function PreviewForm({genreList}) {
+function PreviewForm({genreList, onSave = () => {}, close = () => {}}) {
 
     const [form, setForm] = useState();
+    const [saving, setSaving] = useState(false);
 
     function initForm() {
         setForm(document.getElementById('addPreview'));
@@ -14,25 +15,35 @@ function PreviewForm({genreList}) {
 
     async function handleSubmit(event) {
         event.preventDefault();
+        setSaving(true);
         const formCheckbox = event.target;
         const checkedBoxes = formCheckbox.querySelectorAll('.checkBox input[type="checkbox"]:checked');
-        console.log('checkboxes', checkedBoxes);
-        console.log('dans handleSubmit début');
+        // console.log('checkboxes', checkedBoxes);
+        // console.log('dans handleSubmit début');
         const starChecked = document.getElementById('star-switch');
-        console.log('starChecked : ', starChecked); // input ok
+        // console.log('starChecked : ', starChecked); // input ok
         
-        console.log(form);
+        // console.log(form);
         const formData = new FormData(form);
         const genres = [];
         checkedBoxes.forEach((checkbox) => {
             genres.push(parseInt(checkbox.id));
         });
         formData.append("genres", genres);
-        console.log(genres);
+        // console.log(genres);
         
-        console.log('formData', formData);
-        const previewInfo = await addPreview(formData);
-        console.log('previewInfo : ', previewInfo);
+        // console.log('formData', formData);
+        try {
+            await addPreview(formData);
+            onSave();
+        } catch (error) {
+            console.error("Erreur lors de l'ajout de l'extrait : ", error);
+        } finally {
+            setSaving(false);
+            close();
+        }
+        // const previewInfo = await addPreview(formData); // try catch
+        // console.log('previewInfo : ', previewInfo);
         
     }
 
@@ -84,7 +95,7 @@ function PreviewForm({genreList}) {
                 </Form.Group>
             </div>
             {/* ajout star ou pas */}
-            <div className='form__button__container'><Button className='preview__form__button' type="submit">Ajouter</Button> </div>
+            <div className='form__button__container'><Button className='preview__form__button' type="submit">{saving ? "Ajout..." : "Ajouter"}</Button> </div>
         </Form>
     )
 

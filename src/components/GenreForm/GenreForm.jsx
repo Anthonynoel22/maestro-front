@@ -53,7 +53,7 @@ function GenreForm() {
     }
 
     function showUpdate(genre) {
-        setUpdateGenre(<UpdateGenreForm unshow={unshowUpdate} onSaved={handleOnSaved} genre={genre}/>);
+        setUpdateGenre(<UpdateGenreForm key={genre.label} unshow={unshowUpdate} onSaved={handleOnSaved} genre={genre}/>);
     }
 
     async function handleDelete(id) {

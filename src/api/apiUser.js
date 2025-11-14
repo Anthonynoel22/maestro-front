@@ -27,13 +27,37 @@ export async function loginUser(userData) {
         });
 }
 
+
 // Rafraichir le token
 // POST/api/user/refresh
 // userRoute.post("/user/refresh", userController.refresh);
+export async function refreshToken() {
+    return api_axios
+        .post(`/user/refresh`)
+        .then(function (res) {
+            // console.log(res.data);
+            return res.data;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
 
 // Se déconnecter
 // POST/api/user/logout
 // userRoute.post("/user/logout", userController.logout);
+export async function logoutUser() {
+    return api_axios
+        .post(`/user/logout`)
+        .then(function (res) {
+            console.log("res.data du logout : ", res.data);
+            return res.data;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+
 
 // Voir ses informations personnelles
 export async function getMyProfile() {
@@ -64,11 +88,10 @@ export async function updateMyProfile(newUserData) {
 // Désactiver un utilisateur
 // PATCH/api/admin/user/:idUser
 // userRoute.patch("/admin/user/:id", userController.disable);
-export async function disableUser(newUserAccountStatus, id) {
+export async function disableUser(id) {
     return api_axios
         .patch(`/admin/user/${id}`)
-        .then.then(function (res) {
-            console.log("api console :", newUserAccountStatus);
+        .then(function (res) {
             return res.data;
         })
         .catch(function (error) {

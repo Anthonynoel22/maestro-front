@@ -10,11 +10,11 @@
 
 .professionnel-div {
     margin-bottom: 2rem;
-    padding-left: 22rem;
+    padding-left: 2rem;
 }
 
-@media (max-width: 576px) {
+@media (min-width: var.$breakpoint-desktop) {
     .professionnel-div {
-        padding-left: 12px;
+        padding-left: 8.5rem;
     }
 }
