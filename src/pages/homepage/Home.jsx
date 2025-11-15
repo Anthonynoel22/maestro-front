@@ -32,7 +32,8 @@ function Home() {
         <>
             {/* Présentation du compositeur */}
             {presentationCompositeur.map((description) => (
-                <DescriptionItem description={description} />
+                <DescriptionItem description={description}
+                 onAction={refreshDescriptions} />
             ))}
 
             {/* Compositions stars */}
@@ -40,7 +41,7 @@ function Home() {
 
             {/* Prestation */}
             {prestation.map((description) => (
-                <DescriptionItem  description={description} />
+                <DescriptionItem  description={description} onAction={refreshDescriptions}  />
             ))}
 
             {/* Formulaire d'administration */}
