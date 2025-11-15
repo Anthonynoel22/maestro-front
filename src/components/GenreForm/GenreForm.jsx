@@ -79,7 +79,7 @@ function GenreForm() {
     return (
         <>
             <section className='genre__container'>
-                <h2 className='genre__title'>Les Genres</h2>
+                {/* <h2 className='genre__title'>Les Genres</h2> */}
                 <Accordion >
                     <Accordion.Item className='genre__accordion__item' eventKey="0">
                         <Accordion.Header className='genre__accordion__title'>Liste des genres</Accordion.Header>
