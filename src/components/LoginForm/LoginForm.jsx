@@ -1,10 +1,11 @@
-import "./LoginForm.scss";
 import { loginUser } from "../../api/apiUser.js";
 import { useState, useContext } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import UserContext from "../../UserContext.jsx";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import "./LoginForm.scss";
 
 function LoginForm({ setUserHasAccount }) {
     const [email, setEmail] = useState("");
@@ -31,6 +32,8 @@ function LoginForm({ setUserHasAccount }) {
     }
 
     return (
+        <>
+            <h2>Connexion</h2>
         <div className="login-form-container">
             <Form
                 className="login-form"
@@ -76,9 +79,16 @@ function LoginForm({ setUserHasAccount }) {
 
             <p>
                 Pas encore de compte ?{" "}
-                <Button onClick={handleRegister}>Inscrivez-vous</Button>
+                <Link
+                    className="login-link"
+                    to="/register"
+                    onClick={handleRegister}
+                >
+                    Inscrivez-vous
+                </Link>
             </p>
         </div>
+        </>
     );
 }
 

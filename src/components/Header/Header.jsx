@@ -40,8 +40,8 @@ function Header() {
         // Si le rôle devient "visitor", 
         // on tente de rafraîchir le contexte
         if (userIs === "visitor") {
-          console.log("userIs lost:", userIs);
-          refreshContext();
+        console.log("userIs lost:", userIs);
+        refreshContext();
         }
         // autre action à chaque changement de rôle...
     }, [userIs]);
@@ -124,7 +124,7 @@ Si visiteur  pas d’icône.
                                             Mon espace
                                         </Dropdown.Item>
                                     )}
-                                    <Dropdown.Divider/>
+                                    
                                     {userIs === "client" && (
                                         <Dropdown.Item as={Link} to="/user">
                                             Mon espace
