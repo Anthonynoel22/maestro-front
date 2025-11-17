@@ -1,13 +1,82 @@
-@use "../var.scss";
-@use "../mixin.scss";
+@use "../style/var.scss";
+@use "../style/mixin.scss";
 
+#addDescription {
+    margin: 3rem;
+    padding: 1rem;
+    border: solid 1px var.$color-admin;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+        rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
+.form__title {
+    text-align: center;
+    font-size: var.$font-size-h2;
+    font-family: var.$font-main;
+}
 
-.icon-container {
+.form__group__container {
+    @include mixin.desktop {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.form__group {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    border: solid 1px var.$color-admin;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.form__label {
+    background-color: var.$color-admin;
+    color: white;
+    padding: 0.5rem;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 100%;
+}
+
+.form__input {
+    margin-top: 0.5rem;
+}
+
+.form__button__container {
+    display: flex;
+    justify-content: center;
+}
+
+.description__form__button {
+    background-color: var.$color-admin;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    margin: 1rem;
+    padding: 0.7rem 2rem;
+    max-width: 10rem;
+}
+
+.description__form__button:hover {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+        rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    background-color: #ce4b27;
+}
+
+.description__icon__container {
     display: flex;
     justify-content: center;
     cursor: pointer;
 }
+
 
 
 

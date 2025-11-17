@@ -36,6 +36,7 @@
     color: #000000;
     font-family: var.$font-main;
     font-size: 0.7rem;
+    text-align: left;
 
     @include mixin.desktop {
         grid-column: 2;
