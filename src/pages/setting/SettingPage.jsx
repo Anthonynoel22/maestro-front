@@ -36,32 +36,34 @@ function SettingPage() {
 
     return (
         <>
-            {isLoading ? (
-                <p>Chargement en cours...</p>
-            ) : (
-                <div>
-                    {/* <h1>Setting</h1> */}
-                    <UserDataForm />
-
-                    {setting.user.company_id != null ? (
-                        // Update
-                        <CompanyDataForm onUpdate={true} />
-                    ) : !addCompany ? (
-                        <div className="professionnel-div">
-                            <p>Je suis un professionnel ?</p>
-                            <button
-                                className="addCompany-button"
-                                variant="displayCompanyDataForm-button"
-                                onClick={companySettingsHandleClick}
-                            >
-                                Enregistrer les informations de mon entreprise
-                            </button>
-                        </div>
-                    ) : (
-                        <CompanyDataForm onUpdate={false} />
-                    )}
-                </div>
-            )}
+            <div className="settigs-item">
+                {isLoading ? (
+                    <p>Chargement en cours...</p>
+                ) : (
+                    <div>
+                        {/* <h1>Setting</h1> */}
+                        <UserDataForm />
+                        {setting.user.company_id != null ? (
+                            // Update
+                            <CompanyDataForm onUpdate={true} />
+                        ) : !addCompany ? (
+                            <div className="professionnel-div">
+                                <p>Je suis un professionnel ?</p>
+                                <button
+                                    className="addCompany-button"
+                                    variant="displayCompanyDataForm-button"
+                                    onClick={companySettingsHandleClick}
+                                >
+                                    Enregistrer les informations de mon
+                                    entreprise
+                                </button>
+                            </div>
+                        ) : (
+                            <CompanyDataForm onUpdate={false} />
+                        )}
+                    </div>
+                )}
+            </div>
         </>
     );
 }

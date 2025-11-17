@@ -33,61 +33,64 @@ function LoginForm({ setUserHasAccount }) {
 
     return (
         <>
-            <h2>Connexion</h2>
-        <div className="login-form-container">
-            <Form
-                className="login-form"
-                method="post"
-                onSubmit={(event) => handelSubmit(event)}
-            >
-                {/* EMAIL */}
-                <Form.Group className="login-form-item" controlId="email">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
-                        type="email"
-                        placeholder="Entrez votre adresse mail"
-                        value={email}
-                        onChange={(event) => setEmail(event.target.value)}
-                    />
-                </Form.Group>
-
-                {/* MOT DE PASSE */}
-                <Form.Group className="login-form-item" controlId="password">
-                    <Form.Label>Mot de passe</Form.Label>
-                    <InputGroup>
-                        <Form.Control
-                            type={showPassword ? "text" : "password"}
-                            placeholder="Entrez votre mot de passe"
-                            value={password}
-                            onChange={(event) =>
-                                setPassword(event.target.value)
-                            }
-                        />
-                        <Button
-                            variant="outline-secondary"
-                            onClick={() => setShowPassword(!showPassword)}
-                        >
-                            {showPassword ? <EyeSlash /> : <Eye />}
-                        </Button>
-                    </InputGroup>
-                </Form.Group>
-
-                <Button className="login-form-button" type="submit">
-                    Se connecter
-                </Button>
-            </Form>
-
-            <p>
-                Pas encore de compte ?{" "}
-                <Link
-                    className="login-link"
-                    to="/register"
-                    onClick={handleRegister}
+            <div className="login-item">
+                <Form
+                    className="login-form"
+                    method="post"
+                    onSubmit={(event) => handelSubmit(event)}
                 >
-                    Inscrivez-vous
-                </Link>
-            </p>
-        </div>
+                    {/* EMAIL */}
+                    <Form.Group
+                        className="login-form-item login-form-item-email"
+                        controlId="email"
+                    >
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control
+                            className="login-form-email-input"
+                            type="email"
+                            placeholder="Entrez votre adresse mail"
+                            value={email}
+                            onChange={(event) => setEmail(event.target.value)}
+                        />
+                    </Form.Group>
+                    {/* MOT DE PASSE */}
+                    <Form.Group
+                        className="login-form-item login-form-item-password"
+                        controlId="password"
+                    >
+                        <Form.Label>Mot de passe</Form.Label>
+                        <InputGroup>
+                            <Form.Control
+                                className="login-form-password-input"
+                                type={showPassword ? "text" : "password"}
+                                placeholder="Entrez votre mot de passe"
+                                value={password}
+                                onChange={(event) =>
+                                    setPassword(event.target.value)
+                                }
+                            />
+                            <Button
+                                variant="outline-secondary"
+                                onClick={() => setShowPassword(!showPassword)}
+                                className="login-form-eye-button"
+                            >
+                                {showPassword ? <EyeSlash /> : <Eye />}
+                            </Button>
+                        </InputGroup>
+                    </Form.Group>
+                    <Button
+                        className="login-form-button"
+                        variant="login-form-button"
+                        type="submit"
+                    >
+                        Se connecter
+                    </Button>
+                </Form>
+                <p className="inscription-item">
+                    Pas encore de compte ? Veuillez vous{" "}
+                    <Button onClick={handleRegister}>Inscrire</Button>
+                </p>
+            </div>
         </>
     );
 }

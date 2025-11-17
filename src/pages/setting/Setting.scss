@@ -10,11 +10,12 @@
 
 .professionnel-div {
     margin-bottom: 2rem;
-    padding-left: 2rem;
+    padding-left: 1.5rem;
 }
 
 @media (min-width: var.$breakpoint-desktop) {
-    .professionnel-div {
-        padding-left: 8.5rem;
+    .settigs-item {
+        width: 50%;
+        justify-self: center;
     }
 }

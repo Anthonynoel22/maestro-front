@@ -1,22 +1,12 @@
 @use "../var.scss";
 @use "../mixin.scss";
 
-
-h2 {
-        text-align: center;
-        padding-top: 10rem;
-        font-family: var.$font-main;
-        font-size: var.$font-size-h2;
-}
-
-.login-form-container {
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding-top: 8rem;
-    width: 100%;
-    max-width: 400px;
+.login-form {
+    border: solid 1px var.$color-client;
+    font-family: var.$font-alt;
+    border-radius: 10px;
+    box-shadow: 3px 3px 15px 1px rgba(133, 132, 132, 0.31);
+    margin: 1rem;
 
     .login-form-item {
         margin-bottom: 1.5rem;
@@ -46,31 +36,18 @@ h2 {
     }
 }
 
-.password-wrapper {
-    position: relative;
+.inscription-item {
+    margin-left: 2.5rem;
+}
 
-    .show-password-btn {
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        border: none;
-        background: transparent;
-        cursor: pointer;
-        padding: 0;
-        color: #6c757d;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        svg {
-            vertical-align: middle;
-            position: relative;
-            top: 8px;
-        }
+@media (min-width: var.$breakpoint-desktop) {
+    .login-item {
+        justify-items: center;
     }
-
-    input {
-        padding-right: 40px;
+    .login-form {
+        width: 30%;
+    }
+    .inscription-item {
+        margin-left: 2.5rem;
     }
 }

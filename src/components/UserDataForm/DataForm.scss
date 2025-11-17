@@ -1,10 +1,6 @@
 @use "../var";
 @use "../mixin";
 
-// .dataForm-container {
-//     max-width: 50%;
-// }
-
 .profil-item {
     border: solid 1px var.$color-client;
     border-radius: 10px;
@@ -56,3 +52,9 @@
     margin-top: 0.5rem;
     font-size: 0.8rem;
 }
+
+// @media (min-width: var.$breakpoint-desktop) {
+//     .dataForm-container {
+//         max-width: 50%;
+//     }
+// }
