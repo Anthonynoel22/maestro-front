@@ -10,7 +10,7 @@ const links = [
     { label: "Nous contacter", to: "/contact" },
     { label: "Informations légales", to: "/legales" },
     { label: "CGU", to: "/cgu" },
-    { label: "Accessibility", to: "/accessibility" },
+    { label: "Accessibilité", to: "/accessibility" },
 ];
 
 /* Tableau des liens pour mobile.
