@@ -1,24 +1,76 @@
 @use "../var.scss";
 @use "../mixin.scss";
 
-.login-form {
-    border: solid 1px var.$color-client;
-    width: 30%;
-    font-family: var.$font-alt;
-    border-radius: 10px;
-    box-shadow: 3px 3px 15px 1px rgba(133, 132, 132, 0.31);
-    margin: 1rem;
+
+h2 {
+        text-align: center;
+        padding-top: 10rem;
+        font-family: var.$font-main;
+        font-size: var.$font-size-h2;
+}
+
+.login-form-container {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-top: 8rem;
+    width: 100%;
+    max-width: 400px;
 
     .login-form-item {
-        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .login-form-button {
+        display: block;
+        margin: 0 auto;
+        border-radius: 50px;
+        padding: 1rem 3rem;
+        background-color: var.$color-admin;
+        color: #000000;
+        border: none;
+    }
+
+    p {
+        text-align: center;
+        padding-top: 1.5rem;
+        .login-link {
+            margin-left: 1rem;
+            background: none;
+            border: none;
+            color: var.$color-admin;
+            text-decoration: underline;
+            cursor: pointer;
+        }
     }
 }
 
-.login-form-button {
-    margin: 1rem;
-    border: solid 1px var.$color-client;
-    background-color: var.$color-client;
+.password-wrapper {
+    position: relative;
+
+    .show-password-btn {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        padding: 0;
+        color: #6c757d;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+            vertical-align: middle;
+            position: relative;
+            top: 8px;
+        }
+    }
+
+    input {
+        padding-right: 40px;
+    }
 }
-
-
-

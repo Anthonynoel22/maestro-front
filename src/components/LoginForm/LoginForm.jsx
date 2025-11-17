@@ -1,10 +1,11 @@
-import "./LoginForm.scss";
 import { loginUser } from "../../api/apiUser.js";
 import { useState, useContext } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import UserContext from "../../UserContext.jsx";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import "./LoginForm.scss";
 
 function LoginForm({ setUserHasAccount }) {
     const [email, setEmail] = useState("");
@@ -32,19 +33,17 @@ function LoginForm({ setUserHasAccount }) {
 
     return (
         <>
+            <h2>Connexion</h2>
+        <div className="login-form-container">
             <Form
                 className="login-form"
                 method="post"
                 onSubmit={(event) => handelSubmit(event)}
             >
                 {/* EMAIL */}
-                <Form.Group
-                    className="login-form-item login-form-item-email"
-                    controlId="email"
-                >
+                <Form.Group className="login-form-item" controlId="email">
                     <Form.Label>Email</Form.Label>
                     <Form.Control
-                        className="login-form-email-input"
                         type="email"
                         placeholder="Entrez votre adresse mail"
                         value={email}
@@ -53,14 +52,10 @@ function LoginForm({ setUserHasAccount }) {
                 </Form.Group>
 
                 {/* MOT DE PASSE */}
-                <Form.Group
-                    className="login-form-item login-form-item-password"
-                    controlId="password"
-                >
+                <Form.Group className="login-form-item" controlId="password">
                     <Form.Label>Mot de passe</Form.Label>
                     <InputGroup>
                         <Form.Control
-                            className="login-form-password-input"
                             type={showPassword ? "text" : "password"}
                             placeholder="Entrez votre mot de passe"
                             value={password}
@@ -71,26 +66,28 @@ function LoginForm({ setUserHasAccount }) {
                         <Button
                             variant="outline-secondary"
                             onClick={() => setShowPassword(!showPassword)}
-                            className="login-form-eye-button"
                         >
                             {showPassword ? <EyeSlash /> : <Eye />}
                         </Button>
                     </InputGroup>
                 </Form.Group>
 
-                <Button
-                    className="login-form-button"
-                    variant="login-form-button"
-                    type="submit"
-                >
+                <Button className="login-form-button" type="submit">
                     Se connecter
                 </Button>
             </Form>
 
             <p>
-                Pas encore de compte ? Veuillez vous{" "}
-                <Button onClick={handleRegister}>Inscrire</Button>
+                Pas encore de compte ?{" "}
+                <Link
+                    className="login-link"
+                    to="/register"
+                    onClick={handleRegister}
+                >
+                    Inscrivez-vous
+                </Link>
             </p>
+        </div>
         </>
     );
 }

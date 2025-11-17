@@ -1,3 +1,7 @@
+@use "../style/var.scss";
+@use "../style/mixin.scss";
+
+
 .header-register {
     text-align: center;
     padding-top: 5rem;
@@ -25,5 +29,8 @@
             .rounded-btn {
                 border-radius: 50px;
                 padding: 1rem 4rem;
+                background-color: var.$color-admin;
+                color: #000000;
+                border: none;
             }
         }

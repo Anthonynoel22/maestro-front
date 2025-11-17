@@ -1,12 +1,16 @@
-@use "../style/var";
+@use "./var";
+/* 
+// Mobile
+@mixin mobile {
+    @media (max-width: var.$breakpoint-mobile) {
+        @content;
+    }
+} */
 
-// Pour le pc
+// Desktop
 @mixin desktop {
     @media (min-width: var.$breakpoint-desktop) {
         @content;
     }
 }
-
-
-
 

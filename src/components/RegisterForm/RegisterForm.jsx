@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import { create } from "../../api/apiUser.js";
+import { useState } from "react";
+import { Button, Form, InputGroup } from "react-bootstrap";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
+import { Link, useNavigate } from "react-router-dom";
 import "./RegisterForm.scss";
-import { create } from "../../api/apiUser";
 
 function RegisterForm({ setUserHasAccount }) {
   const [email, setEmail] = useState("");
@@ -10,16 +11,24 @@ function RegisterForm({ setUserHasAccount }) {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const navigate = useNavigate();
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
+
     if (password !== confirmPassword) {
       alert("Les mots de passe ne correspondent pas");
       return;
     }
-    create({ email, password, confirmPassword })
-      .then((response) => console.log("Inscription réussie", response))
-      .catch((error) => console.error("Inscription échouée", error));
+
+    try {
+      const response = await create({ email, password });
+      console.log("Inscription réussie", response);
+      navigate("/login");
+    } catch (error) {
+      console.error("Erreur lors de l'inscription", error);
+      alert("Erreur lors de la création du compte. Veuillez réessayer.");
+    }
   }
 
   function handleLogin(event) {
@@ -28,84 +37,80 @@ function RegisterForm({ setUserHasAccount }) {
   }
 
   return (
-    <div className="register-wrapper">
-      <div className="header-register">
-        <h2>Créer un compte</h2>
-        <p>Les champs marqués d'un astérisque (*) sont obligatoires</p>
+    <>
+      <h2>Créer un compte</h2>
+      <p>Les champs marqués d'un (*) sont obligatoires </p>
+      <div className="register-form-container">
+        <Form
+          className="register-form"
+          method="post"
+          onSubmit={(event) => handleSubmit(event)}
+        >
+          {/* EMAIL */}
+          <Form.Group className="register-form-item" controlId="email">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Entrez votre adresse mail"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              required
+            />
+          </Form.Group>
+
+          {/* MOT DE PASSE */}
+          <Form.Group className="register-form-item" controlId="password">
+            <Form.Label>Mot de passe</Form.Label>
+            <InputGroup>
+              <Form.Control
+                type={showPassword ? "text" : "password"}
+                placeholder="Entrez votre mot de passe"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                required
+              />
+              <Button
+                variant="outline-secondary"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <EyeSlash /> : <Eye />}
+              </Button>
+            </InputGroup>
+          </Form.Group>
+
+          {/* CONFIRMATION MOT DE PASSE */}
+          <Form.Group className="register-form-item" controlId="confirmPassword">
+            <Form.Label>Confirmer le mot de passe</Form.Label>
+            <InputGroup>
+              <Form.Control
+                type={showConfirmPassword ? "text" : "password"}
+                placeholder="Confirmez votre mot de passe"
+                value={confirmPassword}
+                onChange={(event) => setConfirmPassword(event.target.value)}
+                required
+              />
+              <Button
+                variant="outline-secondary"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              >
+                {showConfirmPassword ? <EyeSlash /> : <Eye />}
+              </Button>
+            </InputGroup>
+          </Form.Group>
+
+          <Button className="register-form-button" type="submit">
+            S'inscrire
+          </Button>
+        </Form>
+
+        <p>
+          Déjà un compte ?{" "}
+          <Link className="register-link" to="/login" onClick={handleLogin}>
+            Connectez-vous
+          </Link>
+        </p>
       </div>
-
-      <Container className="register-container">
-        <Row className="justify-content-md-center">
-          <Col md={6}>
-            <Form method="post" onSubmit={handleSubmit}>
-              <Form.Group controlId="email" className="mb-3">
-                <Form.Label>Adresse-mail *</Form.Label>
-                <Form.Control
-                  type="email"
-                  placeholder="Entrez votre adresse-mail"
-                  name="email"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  required
-                />
-              </Form.Group>
-
-              <Form.Group controlId="password" className="mb-3 password-wrapper">
-                <Form.Label>Mot de passe *</Form.Label>
-                <Form.Control
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Entrez votre mot de passe"
-                  name="password"
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-                  required
-                />
-                <Button
-                  variant="link"
-                  type="button"
-                  className="show-password-btn"
-                  onClick={() => setShowPassword(!showPassword)}
-                  tabIndex={-1}
-                >
-                  {showPassword ? <EyeSlash size={20} /> : <Eye size={20} />}
-                </Button>
-              </Form.Group>
-
-              <Form.Group controlId="confirmPassword" className="mb-3 password-wrapper">
-                <Form.Label>Confirmer le mot de passe *</Form.Label>
-                <Form.Control
-                  type={showConfirmPassword ? "text" : "password"}
-                  placeholder="Confirmer votre mot de passe"
-                  name="confirmPassword"
-                  value={confirmPassword}
-                  onChange={e => setConfirmPassword(e.target.value)}
-                  required
-                />
-                <Button
-                  variant="link"
-                  type="button"
-                  className="show-password-btn"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  tabIndex={-1}
-                >
-                  {showConfirmPassword ? <EyeSlash size={20} /> : <Eye size={20} />}
-                </Button>
-              </Form.Group>
-
-              <div className="form-actions">
-                <Button type="submit" className="rounded-btn">
-                  S'inscrire
-                </Button>
-            <p >
-              Déjà un compte ? <Button onClick={handleLogin}>Connexion</Button>
-            </p>
-              </div>
-            </Form>
-
-          </Col>
-        </Row>
-      </Container>
-    </div>
+    </>
   );
 }
 

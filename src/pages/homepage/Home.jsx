@@ -1,26 +1,62 @@
-import Description from '../../components/Description/Description.jsx';
-import PreviewList from '../../components/PreviewList/PreviewList.jsx';
-//import { useEffect } from 'react';
+import React, { useEffect, useState, useContext } from "react";
+import Description from "../../components/Description/Description.jsx";
+import DescriptionItem from "../../components/Description/DescriptionItem/DescriptionItem.jsx";
+import DescriptionForm from "../../components/DescriptionForm/DescriptionForm.jsx";
+import PreviewList from "../../components/PreviewList/PreviewList.jsx";
+import { getAllDescription } from "../../api/apiDescription.js";
+import UserContext from "../../UserContext.jsx";
+
+const locationHome = "/";
 
 function Home() {
+    const [descriptions, setDescriptions] = useState([]);
+    const { userIs } = useContext(UserContext);
 
-    // LES COMPOSANTS QUI SERONT SUR LA PAGE:
+    useEffect(() => {
+        getAllDescription()
+            .then((data) => setDescriptions(data))
+            .catch((err) => console.error(err));
+    }, []);
 
-    // Présentation du compositeur (un titre avec son image et sa description)
-    // => Description (version présentation du compositeur)
-    // Les compositions star
-    // => PreviewList (version filtrée par isStar === true)
-    // Présentation des prestations (un titre avec son image et sa description)
-    // => Description (version présentation des prestations)
+    function refreshDescriptions() {
+        getAllDescription()
+            .then((data) => setDescriptions(data))
+            .catch((err) => console.error(err));
+    }
 
-    const locationHome = "/";
+    // Filtrage : séparation par "number"
+    const presentationCompositeur = descriptions.filter((d) => d.number === 1);
+    const prestation = descriptions.filter((d) => d.number === 2);
 
     return (
         <>
-            <Description />
-            <PreviewList location={locationHome}/>
+            {/* Présentation du compositeur */}
+            {presentationCompositeur.map((description) => (
+                <DescriptionItem
+                    description={description}
+                    onAction={refreshDescriptions}
+                />
+            ))}
+
+            {/* Compositions stars */}
+            <PreviewList location={locationHome} />
+
+            {/* Prestation */}
+            {prestation.map((description) => (
+                <DescriptionItem
+                    description={description}
+                    onAction={refreshDescriptions}
+                />
+            ))}
+
+            {/* Formulaire d'administration */}
+            {userIs === "admin" && (
+                <section>
+                    <DescriptionForm onAction={refreshDescriptions} />
+                </section>
+            )}
         </>
-    )
+    );
 }
 
 export default Home;

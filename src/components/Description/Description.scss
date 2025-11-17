@@ -1,66 +1,68 @@
 @use "../var.scss";
 @use "../mixin.scss";
 
-
-
-.description {
-    // par defaut style mobile-first
+.description__container {
     display: flex;
     flex-direction: column;
-    gap: var.$spacing-large;
     align-items: center;
 
-    .description__title__container {
-        margin-top: 10rem;
-        text-align: center;
-    }
-
-    // style desktop
     @include mixin.desktop {
         display: grid;
-        gap: var.$spacing-xlarge;
-        grid-template-areas:
-            "b a"
-            "b c";
+        grid-template-columns: 1fr 1fr;
         align-items: start;
-
-        // titre desktop
-        .description__title__container {
-            grid-area: a;
-        }
-
-        // image desktop
-        .description__image__container {
-            grid-area: b;
-            margin-top: 9rem;
-            .description__image {
-                width: 40vw;
-                object-fit: cover; // l'image recadrée & garde la bonne proportion
-            }
-        }
-
-        // texte desktop
-        .description__text__container {
-            grid-area: c;
-            .description__text {
-                width: 40vw;
-                line-height: 1.6;
-            }
-        }
     }
 }
 
-// image style par defaut mobile
-.description__image {
-    width: 80vw;
-    height: auto;
-    border-radius: 8px;
+.description__title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+
+    @include mixin.desktop {
+        grid-column: 2;
+        grid-row: 1;
+        align-items: flex-start;
+        padding-top: 0;
+        margin-left: 10px;
+    }
 }
 
-// texte couleur générale
 .description__text {
-    color: var.$color-title-text;
-    text-align: justify;
-    margin-left: var.$spacing-large;
-    margin-right: var.$spacing-large;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    color: #000000;
+    font-family: var.$font-main;
+    font-size: 0.7rem;
+
+    @include mixin.desktop {
+        grid-column: 2;
+        grid-row: 1;
+        align-items: flex-start;
+        padding: 0;
+        margin-top: 70px;
+        margin-left: 10px;
+        font-size: var.$font-size-base;
+    }
+}
+
+.description__image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    padding-top: 20px;
+    object-fit: cover;
+
+    @include mixin.desktop {
+        width: 400px;
+        height: 400px;
+        grid-column: 1;
+        grid-row: 1;
+        align-self: center;
+        padding-top: 0;
+        padding-bottom: 20px;
+        padding-top: 20px;
+    }
 }

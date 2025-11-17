@@ -1,6 +1,6 @@
 import ContactRequestList from "../../components/ContactRequestList/ContactRequestList.jsx";
 import GenreForm from "../../components/GenreForm/GenreForm.jsx";
-// import ClientList from "../../components/ClientList/ClientList.jsx"
+//import ClientList from "../../components/ClientList/ClientList.jsx"
 import ProjectList from "../../components/ProjectList/ProjectList.jsx";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
