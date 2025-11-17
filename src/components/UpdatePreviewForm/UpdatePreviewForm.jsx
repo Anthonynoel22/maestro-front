@@ -148,7 +148,7 @@ function UpdatePreviewForm({ id, genreList = [], preview, onSaved = () => {} }) 
                     <Modal.Header closeButton>
                     <Modal.Title>Supprimer l'extrait</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>Etes-vous sûr de vouloir supprimer l'extrait ?</Modal.Body>
+                    <Modal.Body>Etes-vous sûr de vouloir supprimer l'extrait "{preview.title}" ?</Modal.Body>
                     <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Annuler

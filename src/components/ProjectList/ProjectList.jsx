@@ -62,12 +62,12 @@ function ProjectList() {
         // l'api me renvoie les projets filtrés suivant le status choisis (si USER)
         if (userIs === 'client'){ 
             const result  = await getFilteredProjectList(status);
-            console.log(result.projects);
+            console.log("client:",result.projects);
             // je mets la liste filtrés dans le usestate pour les afficher
             setProjectList(result.projects);
         } else {
             const result  = await getFilteredAdminProjects(status);
-            console.log(result.projects);
+            console.log("admin:", result);
             // je mets la liste filtrés dans le usestate pour les afficher
             setProjectList(result.projects);
         }
@@ -81,13 +81,15 @@ function ProjectList() {
         const status = e.target.value;
         console.log("status : ", status);
         setProjectFilter(status); // Met à jour le status sélectionné
-        console.log("projectFilter : ", projectFilter);
+        // console.log("projectFilter : ", projectFilter);
 
         if (status === "") {
             getProjects();
             // si le user selectionne tous les projet donc la valeur vide ""
             // on affiche toute la liste des projets
         } else {
+            // console.log("else handlechange :");
+            
             getStatusProject(status);
             // sinon on filtre suivant le status qu'aura choisi le user (en cours, terminé, etc)
         }
@@ -130,14 +132,14 @@ function ProjectList() {
 
 return (
     <section className="title__container">
-        <h3 className="title">Projets en cours</h3>
+
 
         {/* TRIER LES PROJETS PAR STATUS */}
         <Form.Select size="lg"onChange={handleChange} aria-label="Sort by genre" className="mb-4">
                     
             <option value=''>Trier par statut</option>
             {/* Si la liste de projets et de statuts n'est pas vide, on affiche la liste des status, sinon on affiche "Pas de statut"*/}
-            {(projectList.length > 0 && statusList.length != 0) ? statusList.map((status) => (
+            {(projectList?.length > 0 && statusList.length != 0) ? statusList.map((status) => (
                 <option value={status} key={status}>{status}</option>
             ))
             :
@@ -198,7 +200,7 @@ return (
                                     </Badge>
                                     
                                     {/* DESCRIPTION/RESUME PROJET */}
-                                    <p class="border rounded">
+                                    <p className="border rounded">
                                         {project.resume}
                                     </p>
 
