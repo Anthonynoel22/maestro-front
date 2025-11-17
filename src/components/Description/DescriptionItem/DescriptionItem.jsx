@@ -1,7 +1,10 @@
 import React, { useState, useContext } from "react";
 import { Button, Form } from "react-bootstrap";
 import { PencilSquare, DashSquareFill } from "react-bootstrap-icons";
-import {handleUpdateDescription,handleDeleteDescription,} from "../../DescriptionAction/DescriptionAction.jsx";
+import {
+    handleUpdateDescription,
+    handleDeleteDescription,
+} from "../../DescriptionAction/DescriptionAction.jsx";
 import UserContext from "../../../UserContext.jsx";
 
 function DescriptionItem({ description, onAction }) {
@@ -14,8 +17,9 @@ function DescriptionItem({ description, onAction }) {
     const { userIs } = useContext(UserContext);
 
     // Construction de l’URL de l’image à partir de image_link
+    const URL_IMAGES = import.meta.env.VITE_IMAGES_URL;
     const imageSrc = description.image_link
-        ? `http://localhost:3000/imagesUploads/${description.image_link.split("/").pop()}`
+        ? `${URL_IMAGES}${description.image_link.split("/").pop()}`
         : null;
 
     function handleUpdate() {

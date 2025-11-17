@@ -1,18 +1,12 @@
-import { Container } from "react-bootstrap";
 import "./ClientCard.scss";
-// import { useState } from "react";
-// import { useEffect } from "react";
-// import { getOneUSer } from "../../../api/apiUser.js";
 
 function ClientCard({ client }) {
-    // console.log("Dans ClientCard", client);
-
     return (
-        <section className="client-card">
+        <section className="client-card" aria-labelledby="information-client">
             <div className="client-card-header">
-                <p className="client-card-header-title">
+                <h3 className="client-card-header-title">
                     Information du client
-                </p>
+                </h3>
             </div>
             <div className="client-card_div">
                 <p className="client-card_item">Nom prénom</p>
@@ -37,6 +31,3 @@ function ClientCard({ client }) {
 }
 
 export default ClientCard;
-
-{
-}

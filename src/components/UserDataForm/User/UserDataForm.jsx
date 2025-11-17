@@ -43,17 +43,24 @@ function UserDataForm() {
             <Container className="dataForm-container">
                 <Row>
                     {/* PARTICULIER */}
-                    {/* <Col sm={6}> */}
                     <Col>
                         <Form
                             className="profile-form"
                             method="post"
                             onSubmit={(event) => handelSubmit(event)}
+                            aria-labelledby="user-profil-title"
                         >
                             <Container className="profil-item">
                                 {/* EN-TETE */}
                                 <Row className="profil-item-header">
-                                    <Col>Mon Profil</Col>
+                                    <Col>
+                                        <h1
+                                            id="user-profil-title"
+                                            className="profil-item-header-title"
+                                        >
+                                            Mon Profil
+                                        </h1>
+                                    </Col>
                                 </Row>
 
                                 {/* NOM */}
@@ -65,7 +72,7 @@ function UserDataForm() {
                                         <Form.Label>Nom</Form.Label>
                                         <Form.Control
                                             className="profile-form-item-input"
-                                            type="lastname"
+                                            type="text"
                                             placeholder="Votre nom"
                                             defaultValue={
                                                 setting?.lastname
@@ -92,7 +99,7 @@ function UserDataForm() {
                                         <Form.Label>Prénom</Form.Label>
                                         <Form.Control
                                             className="profile-form-item-input"
-                                            type="firstname"
+                                            type="text"
                                             placeholder="Votre prénom"
                                             defaultValue={
                                                 setting?.firstname
@@ -118,6 +125,7 @@ function UserDataForm() {
                                     >
                                         <Form.Label>Email</Form.Label>
                                         <Form.Control
+                                            required
                                             className="profile-form-item-input"
                                             type="email"
                                             placeholder="Votre email"
@@ -145,7 +153,7 @@ function UserDataForm() {
                                         <Form.Label>Adresse</Form.Label>
                                         <Form.Control
                                             className="profile-form-item-input"
-                                            type="localisation"
+                                            type="text"
                                             placeholder="Votre adresse"
                                             defaultValue={
                                                 setting?.localisation
@@ -174,7 +182,7 @@ function UserDataForm() {
                                         </Form.Label>
                                         <Form.Control
                                             className="profile-form-item-input"
-                                            type="phonenumber"
+                                            type="tel"
                                             placeholder="Votre numero de téléphone"
                                             defaultValue={
                                                 setting?.phonenumber
@@ -192,6 +200,7 @@ function UserDataForm() {
                                     </Form.Group>
                                 </Row>
 
+                                {/* DESACTIVER SON COMPTE */}
                                 <Row className="item profile-item">
                                     <Form.Group className="profile-form-item profile-form-item-toggle">
                                         <Form.Check
@@ -200,6 +209,7 @@ function UserDataForm() {
                                             type="switch"
                                             id="disable-user"
                                             label="Compte activé"
+                                            aria-describedby="disable-user-help"
                                             defaultChecked={
                                                 setting?.isActive
                                                     ? setting.isActive
@@ -207,6 +217,14 @@ function UserDataForm() {
                                             }
                                             onChange={handleSwitch}
                                         />
+                                        <p
+                                            id="disable-user-help"
+                                            className="disable-help-text"
+                                        >
+                                            Attention ! En désactivant votre
+                                            compte, vous ne pourrez plus vous
+                                            connecter
+                                        </p>
                                     </Form.Group>
                                 </Row>
 

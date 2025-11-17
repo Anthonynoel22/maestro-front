@@ -45,10 +45,9 @@ function FullClientCard() {
                     aria-label="client-sort-form-select"
                     onChange={handleChange}
                 >
-                    <option value="">Trier par</option>
-
-                    <option value="lastnameSelected">Trier par nom</option>
-                    <option value="firstnameSelected">Trier par prénom</option>
+                    <option value="">Trier la liste des clients</option>
+                    <option value="lastnameSelected">Par nom</option>
+                    <option value="firstnameSelected">Par prénom</option>
                 </Form.Select>
             </div>
 

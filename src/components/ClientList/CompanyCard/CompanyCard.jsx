@@ -4,11 +4,14 @@ function CompanyCard({ company }) {
     // console.log("Dans CompanyCard", company);
 
     return (
-        <section className="company-card">
+        <section
+            className="company-card"
+            aria-labelledby="information-entreprise"
+        >
             <div className="company-card-header">
-                <p className="company-card-header-title">
+                <h3 className="company-card-header-title">
                     Information d'entreprise
-                </p>
+                </h3>
             </div>
             <div className="company-card_div company-card_email_div">
                 <p className="company-card_item ">Nom</p>

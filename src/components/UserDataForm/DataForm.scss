@@ -23,6 +23,16 @@
     padding-bottom: 1rem;
 }
 
+.profil-item-header-title {
+    font-size: 1.2rem;
+    margin-bottom: 0;
+}
+
+.company-profil-item-header-title {
+    padding-top: 0;
+    text-align: start;
+}
+
 .item {
     border: solid 1px var.$color-client;
     font-family: var.$font-alt;
@@ -51,6 +61,11 @@
     width: max-content;
     margin-top: 0.5rem;
     font-size: 0.8rem;
+}
+
+.disable-help-text {
+    font-size: 0.8rem;
+    color: var.$color-admin;
 }
 
 // @media (min-width: var.$breakpoint-desktop) {

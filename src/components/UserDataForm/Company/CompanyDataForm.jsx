@@ -45,11 +45,19 @@ function CompanyDataForm({ onUpdate }) {
                                 className="profile-form"
                                 method="post"
                                 onSubmit={(event) => companyHandelSubmit(event)}
+                                aria-labelledby="company-profil-title"
                             >
                                 <Container className="profil-item">
                                     {/* EN-TETE */}
                                     <Row className="profil-item-header">
-                                        <Col>Mon Entreprise</Col>
+                                        <Col>
+                                            <h2
+                                                id="company-profil-title"
+                                                className="profil-item-header-title company-profil-item-header-title"
+                                            >
+                                                Mon Entreprise
+                                            </h2>
+                                        </Col>
                                     </Row>
 
                                     {/* NOM DE L'ENTREPRISE */}
@@ -61,7 +69,7 @@ function CompanyDataForm({ onUpdate }) {
                                             <Form.Label>Nom</Form.Label>
                                             <Form.Control
                                                 className="profile-form-item-input"
-                                                type="name"
+                                                type="text"
                                                 placeholder="Nom de l'entreprise"
                                                 defaultValue={
                                                     companySetting?.name
@@ -92,7 +100,7 @@ function CompanyDataForm({ onUpdate }) {
                                             <Form.Label>Adresse</Form.Label>
                                             <Form.Control
                                                 className="profile-form-item-input"
-                                                type="localisation"
+                                                type="text"
                                                 placeholder="Adresse de l'entreprise"
                                                 defaultValue={
                                                     companySetting?.localisation
@@ -126,7 +134,7 @@ function CompanyDataForm({ onUpdate }) {
                                             </Form.Label>
                                             <Form.Control
                                                 className="profile-form-item-input"
-                                                type="siret"
+                                                type="text"
                                                 placeholder="Numero de siret"
                                                 defaultValue={
                                                     companySetting?.siret
@@ -155,7 +163,7 @@ function CompanyDataForm({ onUpdate }) {
                                             variant="mofifier-button"
                                             type="submit"
                                         >
-                                            Modifier
+                                            {onUpdate ? "Modifier" : "Créer"}
                                         </Button>
                                     </Row>
                                 </Container>
