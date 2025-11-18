@@ -8,22 +8,24 @@
 
     @include mixin.desktop {
         display: grid;
-        grid-template-columns: 1fr 1fr;
         align-items: start;
     }
 }
 
 .description__title {
+    font-family: var.$font-main;
+    font-size: 1.5rem;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 20px;
+    flex-direction: row;
+    justify-content: center;
 
     @include mixin.desktop {
+        
         grid-column: 2;
         grid-row: 1;
         align-items: flex-start;
         padding-top: 0;
+        margin-top: 20px;
         margin-left: 10px;
     }
 }
@@ -34,16 +36,16 @@
     align-items: center;
     margin-top: 50px;
     color: #000000;
-    font-family: var.$font-main;
+    font-family: var.$font-alt;
     font-size: 0.7rem;
-    text-align: left;
+    text-align: center;
 
     @include mixin.desktop {
         grid-column: 2;
         grid-row: 1;
         align-items: flex-start;
         padding: 0;
-        margin-top: 70px;
+        margin-top: 100px;
         margin-left: 10px;
         font-size: var.$font-size-base;
     }
