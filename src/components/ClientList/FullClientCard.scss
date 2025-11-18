@@ -1,0 +1,30 @@
+@use "../mixin";
+@use "../var";
+
+.full-client-card-container {
+    padding: 0rem;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.client-card-row {
+    // border: solid 1px #e07a5f;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px 2px rgba(133, 132, 132, 0.31);
+    margin-bottom: 0.5rem;
+}
+
+.client-card-column {
+    margin: 0;
+}
+
+.client-sort-form-select {
+    padding-bottom: 0.5rem;
+}
+
+.disable-button {
+    border: solid 1px black;
+    background-color: white;
+    border-radius: 5px;
+    margin-top: 3.5rem;
+}

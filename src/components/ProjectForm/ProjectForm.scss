@@ -1,0 +1,57 @@
+@use "../var.scss";
+@use "../mixin.scss";
+
+
+
+.project-frm {
+    margin-left:var.$spacing-xlarge;
+    margin-right: var.$spacing-xlarge;
+}
+
+.form__title{
+    font-size: 1rem;
+    text-align: left;
+    font-family: var.$font-alt;
+}
+
+.form__Description{
+    font-family: var.$font-alt;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    margin-top: var.$spacing-xlarge;
+    margin-bottom: var.$spacing-xlarge;
+
+}
+
+.form__titleInput {
+    background-color: var.$color-bg;
+    display: flex;
+    margin: var.$spacing-small auto 0;
+    margin-bottom: var.$spacing-xlarge;
+}
+
+.form__descriptionInput {
+    background-color: var.$color-bg;
+    display: flex;
+    margin: var.$spacing-small auto 0;
+}
+
+
+.form__button {
+    background-color: var.$color-client;
+    color: var.$color-title-text;
+    border: var.$color-title-text;
+    display: flex;
+    margin: 4rem auto 0;
+}
+
+.form__champsObligatoire {
+    margin-top: var.$spacing-xlarge;;
+    font-weight: bolder;
+}
+
+
+

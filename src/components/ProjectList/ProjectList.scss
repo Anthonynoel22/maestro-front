@@ -1,0 +1,38 @@
+@use "../style/var.scss";
+@use "../style/mixin.scss";
+
+
+.projects__container {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.deadline__badge {
+    margin-top: 12px;
+}
+
+.bg-color-client {
+    background-color: var.$color-client;
+}
+.bg-color-admin {
+    background-color: var.$color-admin;
+}
+
+.project__resume {
+    border-radius: 8px;
+    text-align: left;
+    padding-left: 1rem;
+    padding-right: 2rem;
+}
+
+.outline__resume {
+    border-color: var.$color-admin;
+}
+
+
+
+@media (min-width: var.$breakpoint-desktop) {
+    .align-items-center{
+        max-width: 700px;
+}
+}

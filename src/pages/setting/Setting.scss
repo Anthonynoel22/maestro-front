@@ -1,0 +1,21 @@
+@use "../../components/var.scss";
+@use "../../components/mixin";
+
+.addCompany-button {
+    background-color: var.$color-client;
+    border: solid 1px var.$color-client;
+    border-radius: 5px;
+    width: max-content;
+}
+
+.professionnel-div {
+    margin-bottom: 2rem;
+    padding-left: 1.5rem;
+}
+
+@media (min-width: var.$breakpoint-desktop) {
+    .settigs-item {
+        width: 50%;
+        justify-self: center;
+    }
+}

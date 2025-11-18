@@ -1,0 +1,68 @@
+@use "../style/var.scss";
+@use "../style/mixin.scss";
+
+.contact-page {
+    width: 100%;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-contact {
+    text-align: center;
+    padding-top: 4rem;
+
+    h2 {
+        margin-bottom: 1rem;
+        font-family: var.$font-main;
+        font-size: var.$font-size-h2;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+}
+
+.contact-container {
+    width: 90vw;
+    max-width: 500px;
+    margin: 3rem auto;
+    padding: 2rem;
+
+    .contact-form-item {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-control {
+        font-size: 1rem;
+        padding: 0.8rem;
+    }
+
+.form-actions {
+    text-align: center;
+
+    .btn.btn-primary {
+        border-radius: 50px;
+        padding: 1rem 3rem;
+        background-color: var.$color-admin;
+        color: #000;
+        border: none;
+    }
+}
+}
+
+@include mixin.desktop {
+    .header-contact {
+        padding-top: 6rem;
+
+        h2 {
+            font-size: var.$font-size-h2;
+        }
+    }
+
+    .contact-container {
+        max-width: 600px;
+        padding: 3rem;
+    }
+}

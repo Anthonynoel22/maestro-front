@@ -1,0 +1,149 @@
+@use "../style/var.scss";
+@use "../style/mixin.scss";
+
+footer {
+    position: sticky;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1px 20px;
+    background-color: var.$color-bg;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+    .person-icon.admin i {
+        color: var.$color-admin;
+    }
+
+    .person-icon.client i {
+        color: var.$color-client;
+    }
+
+    nav {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    // pas de liens sur mobile
+    .footer-links {
+        display: none;
+    }
+    // icones sur mobiles
+    .footer-icons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        list-style: none;
+        width: 100%;
+        padding: 10px 0;
+        margin: 0;
+
+        li {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            a {
+                color: var.$color-title-and-text;
+                font-size: 1.5rem;
+                text-decoration: none;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                i {
+                    display: block;
+                }
+
+                span {
+                    font-size: 0.5rem;
+                    color: var.$color-title-and-text;
+                    font-family: var.$font-main;
+                }
+
+                &:hover span {
+                    color: var.$color-admin;
+                }
+            }
+        }
+        //enleve la la fleche du menu icone
+        .dropdown-toggle::after {
+            display: none;
+        }
+        //menu deroulant pour afficher les liens
+        .dropdown-menu {
+            bottom: 100%; // par rapport au viewport
+            left: 0;
+            right: 0;
+            width: 100vw;
+            background-color: #fff;
+            border: 1px solid var.$color-admin;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.15);
+
+            a.dropdown-item {
+                font-family: var.$font-main;
+                font-weight: lighter;
+                font-size: var.$font-size-base;
+                color: var.$color-title-and-text;
+                padding: 10px 16px;
+                text-align: center;
+            }
+        }
+
+        .mobile-only-link {
+            display: block;
+        }
+    }
+
+    // Masquer certains liens sur mobile
+    .desktop-only-link {
+        display: none;
+    }
+
+    // À partir du breakpoint medium 768 px pour le desktop
+    @include mixin.desktop {
+        padding: 20px 40px;
+        position: static; 
+        left: auto;
+        bottom: auto;
+
+
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 800px;
+            list-style: none;
+            gap: 60px;
+            margin: 0;
+            padding: 0;
+
+            li a {
+                text-decoration: none;
+                color: var.$color-title-and-text;
+                font-family: var.$font-main;
+                font-weight: 500;
+                font-size: var.$font-size-base;
+                transition: color 0.3s ease;
+
+                &:hover {
+                    color: var.$color-admin;
+                }
+            }
+        }
+        //pas d'icones sur desktop
+        .footer-icons {
+            display: none;
+        }
+        //liens visible sur desktop
+        .desktop-only-link {
+            display: block;
+        }
+    }
+}

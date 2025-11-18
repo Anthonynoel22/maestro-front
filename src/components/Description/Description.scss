@@ -1,0 +1,69 @@
+@use "../var.scss";
+@use "../mixin.scss";
+
+.description__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include mixin.desktop {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+    }
+}
+
+.description__title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+
+    @include mixin.desktop {
+        grid-column: 2;
+        grid-row: 1;
+        align-items: flex-start;
+        padding-top: 0;
+        margin-left: 10px;
+    }
+}
+
+.description__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    color: #000000;
+    font-family: var.$font-main;
+    font-size: 0.7rem;
+    text-align: left;
+
+    @include mixin.desktop {
+        grid-column: 2;
+        grid-row: 1;
+        align-items: flex-start;
+        padding: 0;
+        margin-top: 70px;
+        margin-left: 10px;
+        font-size: var.$font-size-base;
+    }
+}
+
+.description__image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    padding-top: 20px;
+    object-fit: cover;
+
+    @include mixin.desktop {
+        width: 400px;
+        height: 400px;
+        grid-column: 1;
+        grid-row: 1;
+        align-self: center;
+        padding-top: 0;
+        padding-bottom: 20px;
+        padding-top: 20px;
+    }
+}

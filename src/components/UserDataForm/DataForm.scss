@@ -1,0 +1,75 @@
+@use "../var";
+@use "../mixin";
+
+.profil-item {
+    border: solid 1px var.$color-client;
+    border-radius: 10px;
+    box-shadow: 3px 3px 15px 1px rgba(133, 132, 132, 0.31);
+    font-family: var.$font-alt;
+    padding: 0.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.profil-item-header {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: var.$color-client;
+    padding: 0.5rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.profil-item-header-title {
+    font-size: 1.2rem;
+    margin-bottom: 0;
+}
+
+.company-profil-item-header-title {
+    padding-top: 0;
+    text-align: start;
+}
+
+.item {
+    border: solid 1px var.$color-client;
+    font-family: var.$font-alt;
+    padding: 0.3rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.profile-form-item-input {
+    font-size: 0.8rem;
+}
+
+.profile-form-item-toggle {
+    margin-top: 0.4rem;
+}
+
+.item-button {
+    justify-content: flex-end;
+    margin-right: 0.5rem;
+}
+
+.mofifier-button {
+    background-color: var.$color-client;
+    border: solid 1px var.$color-client;
+    width: max-content;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.disable-help-text {
+    font-size: 0.8rem;
+    color: var.$color-admin;
+}
+
+// @media (min-width: var.$breakpoint-desktop) {
+//     .dataForm-container {
+//         max-width: 50%;
+//     }
+// }
