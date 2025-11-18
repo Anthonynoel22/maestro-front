@@ -9,6 +9,7 @@ function ProjectForm() {
     // useState permet de stocker et mettre à jour les valeurs du formulaire.
     const [name, setName] = useState("");
     const [resume, setResume] = useState("");
+    const [message, setMessage] = useState('');
 
     const {needRefreshProjectList} = useContext(UserContext)
 
@@ -21,6 +22,7 @@ function ProjectForm() {
         // envoie les données
         await createProject(projectData);
         needRefreshProjectList()
+        setMessage("Demande envoyée");
     };
 
     return (
@@ -60,8 +62,12 @@ function ProjectForm() {
             <Button className="form__button" variant="primary" type="submit">
                 Envoyer ma demande
             </Button>
+            {/* {message && <div>{message}</div>} */}
+            
+            
             <p className="form__champsObligatoire">*champs obligatoires</p>
         </Form>
+        
     );
 }
 
