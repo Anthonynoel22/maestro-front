@@ -69,9 +69,9 @@ function ProjectForm() {
             </Button>
 
             {/* message alerte : demande envoyée */}
-            {message ? 
-            <Alert variant="success" className="d-lg-block" onClose={() => setShow(false)} dismissible> {message}</Alert>
-                // on close & setShow = supprimer message d'alerte
+            {message.length != 0 && show === true ? 
+            <Alert variant="success" className="d-lg-block" onClose={() => { setShow(false); setMessage('')}} dismissible> {message}</Alert>
+                // on close & setShow = message d'alerte vidé et supprimé
             : null}
 
             <p className="form__champsObligatoire">*champs obligatoires</p>
