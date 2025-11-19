@@ -1,27 +1,57 @@
 // Footer.jsx
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import UserContext from "../../UserContext.jsx";
 import "./Footer.scss";
 import { logoutUser } from "../../api/apiUser.js";
+import { getMyProfile } from "../../api/apiUser.js";
+import { useAxiosInterceptor } from "../../api/axiosConfig.js";
 
-const links = [
-    { label: "Nous contacter", to: "/contact" },
-    { label: "Informations légales", to: "/legales" },
-    { label: "CGU", to: "/cgu" },
-    { label: "Accessibilité", to: "/accessibility" },
-];
-
-/* Tableau des liens pour mobile.
-Il commence par un lien supplémentaire "Compositions", 
-puis inclut tous les liens précédents grâce à l’opérateur spread (...). */
-
-const mobileLinks = [{ label: "Compositions", to: "/compositions" }, ...links];
 
 function Footer() {
-    const { userIs, logoutProvider } = useContext(UserContext);
+    const { userIs, logoutProvider, loginProvider } = useContext(UserContext);
     const navigate = useNavigate();
+
+     useAxiosInterceptor();
+    
+        // Cette fonction peut être utilisée pour rafraîchir
+        //  le contexte utilisateur si nécessaire
+        async function refreshContext() {
+    
+            // si getMyProfile réussit, on met à jour le contexte
+            const profile = await getMyProfile();
+    
+            if (profile) {
+                loginProvider(profile.user.role);
+            }
+        }
+    
+        //ajout pour gestion de la perte de contexte utilisateur
+        useEffect(() => {
+            console.log("userIs changed:", userIs);
+    
+            // Si le rôle devient "visitor", 
+            // on tente de rafraîchir le contexte
+            if (userIs === "visitor") {
+            console.log("userIs lost:", userIs);
+            refreshContext();
+            }
+            // autre action à chaque changement de rôle...
+        }, [userIs]);
+        
+    const links = [
+        { label: "Nous contacter", to: "/contact" },
+        { label: "Informations légales", to: "/legales" },
+        { label: "CGU", to: "/cgu" },
+        { label: "Accessibilité", to: "/accessibility" },
+    ];
+    
+    /* Tableau des liens pour mobile.
+    Il commence par un lien supplémentaire "Compositions", 
+    puis inclut tous les liens précédents grâce à l’opérateur spread (...). */
+    
+    const mobileLinks = [{ label: "Compositions", to: "/compositions" }, ...links];
 
     async function handleLogout () {
         try {
