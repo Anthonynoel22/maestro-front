@@ -8,6 +8,7 @@ import { useState } from "react";
 import { getMyProfile } from "../../../api/apiUser.js";
 import { updateMyProfile } from "../../../api/apiUser.js";
 import { useEffect } from "react";
+import { notify } from "../../Toast/Toast.jsx";
 
 function UserDataForm() {
     // Voir mes informations
@@ -27,6 +28,7 @@ function UserDataForm() {
         event.preventDefault();
         updateMyProfile(setting);
         getMySetting();
+        notify("Vos informations on bien été misent à jour");
     }
 
     function handleSwitch(event) {

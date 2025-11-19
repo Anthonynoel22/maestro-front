@@ -9,6 +9,7 @@ import { getMyCompany } from "../../../api/apiCompany.js";
 import { updateCompany } from "../../../api/apiCompany.js";
 import { createCompany } from "../../../api/apiCompany.js";
 import { useEffect } from "react";
+import { notify } from "../../Toast/Toast.jsx";
 
 function CompanyDataForm({ onUpdate }) {
     // Voir mes informations d'entreprise
@@ -17,7 +18,7 @@ function CompanyDataForm({ onUpdate }) {
     async function getMyCompanySetting() {
         const myCompany = await getMyCompany();
         setCompanySetting(myCompany.company);
-        console.log("setting log :", myCompany.company);
+        // console.log("setting log :", myCompany.company);
     }
 
     useEffect(() => {
@@ -25,12 +26,16 @@ function CompanyDataForm({ onUpdate }) {
     }, []);
 
     function companyHandelSubmit(event) {
-        console.log("companyHandelSubmit", companySetting);
+        // console.log("companyHandelSubmit", companySetting);
         event.preventDefault();
 
         onUpdate
-            ? updateCompany(companySetting)
-            : createCompany(companySetting);
+            ? updateCompany(companySetting) &&
+              notify(
+                  "Les informations de votre entreprise on bien été misent à jour"
+              )
+            : createCompany(companySetting) &&
+              notify("Entreprise crée avec succès");
     }
 
     return (
