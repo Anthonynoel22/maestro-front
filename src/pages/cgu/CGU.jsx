@@ -1,53 +1,52 @@
+import "./CGU.scss"
+
 function CGU() {
 
 return (
-<>
-<h2>CGU</h2>
+            <div className='container-header'>
+                <h2>CGU</h2>
+                    <p>En vigueur au 00/00/00</p>
+                        <p>Bienvenue sur notre site Maestro. Veuillez lire attentivement nos conditions générales d’utilisation avant d’utiliser notre site.</p>
 
-<p>En vigueur au 00/00/00</p>
-
-<p>Bienvenue sur notre site Maestro. Veuillez lire attentivement nos conditions générales d’utilisation avant d’utiliser notre site.</p>
-
-<h3>1.Édition du site</h3>
-
-<p>Quae tibi placent quicunq prosunt aut diligebat multum, quod memor sis ad communia sunt ab initio minima. Quod si, exempli</p>Quae tibi placent quicunq prosunt aut diligebat multum, quod memor sis ad communia sunt ab initio minima. Quod si, exempli
-
-<h3>2.Hébergement</h3>2.Hébergement
-
-<p>Quae tibi placent quicunq prosunt aut diligebat multum, quod memor sis ad communia sunt ab initio minima. Quod si, exempli</p>Quae tibi placent quicunq prosunt aut diligebat multum, quod memor sis ad communia sunt ab initio minima. Quod si, exempli
-
-<h3>3.Accès Au Site</h3>3.Accès Au Site
-
-<p>Quae tibi placent quicunq prosunt aut diligebat multum, quod memor sis ad communia sunt ab initio minima. Quod si, exempli</p>Quae tibi placent quicunq prosunt aut diligebat multum, quod memor sis ad communia sunt ab initio minima. Quod si, exempli
-
-<h3>4.Propriété Intellectuelle</h3>4.Propriété Intellectuelle
-
-<p>Quod Enchiridion Epictetus stoici scripsit. Rodrigo Abela et Technologiae apud Massachusetts instituta Opera collectio.</p>Quod Enchiridion Epictetus stoici scripsit. Rodrigo Abela et Technologiae apud Massachusetts instituta Opera collectio.
-
-<h3></h3>5.Responsabilité
-
-Si ergo illa tantum fastidium compesce contra naturalem usum habili, quem habetis vestra potestate, non aliud quam
+                <div className='container'>
+                    <h3>1.Édition du site</h3>
+                    <p>Quae tibi placent quicunq prosunt aut diligebat multum, quod memor sis ad communia sunt ab initio minima. Quod si, exempli</p>
 
 
-6.Droit Application et Juridiction
+                    <h3>2.Hébergement</h3>
+                    <p>Quae tibi placent quicunq prosunt aut diligebat multum, quod memor sis ad communia sunt ab initio minima. Quod si, exempli</p>
 
-Si ergo illa tantum fastidium compesce contra naturalem usum habili, quem habetis vestra potestate, non aliud quam
+
+                    <h3>3.Accès Au Site</h3>
+                    <p>Quae tibi placent quicunq prosunt aut diligebat multum, quod memor sis ad communia sunt ab initio minima. Quod si, exempli</p>
 
 
-7.Droit Application et Juridiction Compétente
+                    <h3>4.Propriété Intellectuelle</h3>
+                    <p>Quod Enchiridion Epictetus stoici scripsit. Rodrigo Abela et Technologiae apud Massachusetts instituta Opera collectio.</p>
 
-Si ergo illa tantum fastidium compesce contra naturalem usum habili, quem habetis vestra potestate, non aliud quam
 
-Contact
+                    <h3>5.Responsabilité</h3>
+                    <p>Si ergo illa tantum fastidium compesce contra naturalem usum habili, quem habetis vestra potestate, non aliud quam</p>
 
-Pour toute question relative aux présentes CGU, l’utilisateur peut nous contacter via la page  Contact
 
-</>
+                    <h3>6.Droit Application et Juridiction</h3>
+                    <p>Si ergo illa tantum fastidium compesce contra naturalem usum habili, quem habetis vestra potestate, non aliud quam</p>
 
+
+                    <h3>7.Droit Application et Juridiction Compétente</h3>
+                    <p>Si ergo illa tantum fastidium compesce contra naturalem usum habili, quem habetis vestra potestate, non aliud quam</p>
+
+
+                    <h3>Contact</h3>
+                    <p>Pour toute question relative aux présentes CGU, l’utilisateur peut nous contacter via la page Contact</p>
+                </div>
+        </div>
     );
 }
 
+
 export default CGU ;
+
 
 
 
