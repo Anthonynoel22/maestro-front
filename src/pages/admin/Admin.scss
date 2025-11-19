@@ -1,5 +1,5 @@
-@use "../style/var";
-@use "../style/mixin";
+@use "/src/mixin";
+@use "/src/var";
 
 .admin-page-title {
     justify-self: center;
