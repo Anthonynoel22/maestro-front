@@ -20,8 +20,15 @@ function ProjectForm() {
     async function handleCreateProject (e) {
         e.preventDefault(); // empêche la page de se recharger
 
+        let projectData;
+        // si deadline est une date alors on l'envoi, si on l'envoi pas 
+        if (deadline !='' ){ 
+            projectData = { name: name, resume: resume, deadline: deadline };
+        } else {
+            projectData = { name: name, resume: resume};
+        }
+
         // crée un objet avec les données saisies par l'utilisateur 
-        const projectData = { name: name, resume: resume, deadline: deadline };
         // envoie les données
         await createProject(projectData);
         needRefreshProjectList()
@@ -61,7 +68,7 @@ function ProjectForm() {
 
             {/* Date limite */}
             <Form.Group className="form__deadline" controlId="FormDeadline">
-                <Form.Label>Date limite*</Form.Label>
+                <Form.Label>Date limite</Form.Label>
                 <Form.Control
                     className="form__deadlineInput"
                     type="date"

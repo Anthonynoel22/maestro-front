@@ -135,7 +135,7 @@ return (
 
 
         {/* TRIER LES PROJETS PAR STATUS */}
-        <Form.Select size="lg"onChange={handleChange} aria-label="Sort by genre" className="mb-4">
+        <Form.Select size="lg"onChange={handleChange} aria-label="Sort by genre" className="mb-4 select-margin">
                     
             <option value=''>Trier par statut</option>
             {/* Si la liste de projets et de statuts n'est pas vide, on affiche la liste des status, sinon on affiche "Pas de statut"*/}
@@ -204,12 +204,26 @@ return (
                                         {project.name}
                                     </Badge>
                                     
-                                    {/* DESCRIPTION/RESUME PROJET */}
+                                    {/* DESCRIPTION */}
                                     <p className="border rounded">
                                         {project.resume}
                                     </p>
 
                                     {/* STATUS*/}
+                                    {userIs === 'client' &&
+                                        <Badge
+                                            pill 
+                                            style={{
+                                                color: "black",
+                                                fontSize: "0.9rem",
+                                            }}
+                                            className="deadline__badge d-block"
+                                            bg={userIs === "admin" ? 'color-admin' : 'color-client'}
+                                        >
+                                            {project.status}
+                                        </Badge>
+                                    }
+
                                     {userIs === 'admin' &&
                                     <div>
                                         <section className="update__status">
@@ -228,19 +242,21 @@ return (
                                         </section>
                                     </div>
                                     }       
-
+                                    
                                     {/* DEADLINE*/}
-                                    <Badge
-                                        pill 
-                                        style={{
-                                            color: "black",
-                                            fontSize: "0.9rem",
-                                        }}
-                                        className="deadline__badge d-block"
-                                        bg={userIs === "admin" ? 'color-admin' : 'color-client'}
-                                    >
-                                        {project.deadline}
-                                    </Badge>
+                                    {project.deadline !=null &&
+                                        <Badge
+                                            pill 
+                                            style={{
+                                                color: "black",
+                                                fontSize: "0.9rem",
+                                            }}
+                                            className="deadline__badge d-block"
+                                            bg={userIs === "admin" ? 'color-admin' : 'color-client'}
+                                        >
+                                            {project.deadline}
+                                        </Badge>
+                                    }
                                 </Col>
                             </Row>
                         </Card.Body>
