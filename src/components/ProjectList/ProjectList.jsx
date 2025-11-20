@@ -209,14 +209,14 @@ return (
                                     <div>
                                         <section className="update__status">
                                             <Form.Group>
-                                                <Form.Label htmlFor="status-select">Selectionner le status</Form.Label>
+                                                <Form.Label htmlFor="status-select">Selectionner le statut</Form.Label>
 
                                                 <Form.Select defaultValue={project.status} onChange={handleChangeStatus} name="status" id="status-select">
                                                     {statusList.length > 0 ?
                                                     statusList.map((status, index) => (
                                                         <option value={status} id={project.id} key={index}>{status}</option>
                                                     )):
-                                                    <option value="noStatus">pas de status</option>
+                                                    <option value="noStatus">pas de statut</option>
                                                     }
                                                 </Form.Select>
                                             </Form.Group>

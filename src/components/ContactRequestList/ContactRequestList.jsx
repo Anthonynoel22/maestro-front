@@ -75,7 +75,7 @@ function ContactRequestList() {
                             Si une valeur est connue on
                             affiche cette valeur sinom on affiche "non lu" par
                             défaults */}
-                            Status :{" "}
+                            Statut :{" "}
                             {request.status ? request.status : "non lu"}
                         </p>
 
