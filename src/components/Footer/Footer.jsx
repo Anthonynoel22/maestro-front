@@ -5,6 +5,7 @@ import { Dropdown } from "react-bootstrap";
 import UserContext from "../../UserContext.jsx";
 import "./Footer.scss";
 import { logoutUser } from "../../api/apiUser.js";
+import { notify } from "../Toast/Toast.jsx";
 
 const links = [
     { label: "Nous contacter", to: "/contact" },
@@ -23,15 +24,16 @@ function Footer() {
     const { userIs, logoutProvider } = useContext(UserContext);
     const navigate = useNavigate();
 
-    async function handleLogout () {
+    async function handleLogout() {
         try {
             await logoutUser(); // deconnexion de user
             logoutProvider(); // retourne à l'état de visiteur
+            notify("Vous êtes déconnecté.");
             navigate("/"); // redirection vers la page d'accueil
         } catch (error) {
             console.log("erreur logout :", error);
         }
-    };
+    }
 
     return (
         <footer className={`footer ${userIs}`}>
@@ -83,18 +85,18 @@ function Footer() {
                                         Mon espace
                                     </Dropdown.Item>
                                 )}
-                                <Dropdown.Divider/>
+                                <Dropdown.Divider />
                                 {userIs === "client" && (
                                     <Dropdown.Item as={Link} to="/user">
                                         Mon espace
                                     </Dropdown.Item>
                                 )}
-                                <Dropdown.Divider/>
+                                <Dropdown.Divider />
                                 <Dropdown.Item as={Link} to="/user/settings">
                                     Paramètre de compte
                                 </Dropdown.Item>
 
-                                <Dropdown.Divider/>
+                                <Dropdown.Divider />
 
                                 <Dropdown.Item onClick={handleLogout}>
                                     Se déconnecter

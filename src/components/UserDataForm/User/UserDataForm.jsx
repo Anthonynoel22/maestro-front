@@ -213,7 +213,7 @@ function UserDataForm() {
                                                 name="disable"
                                                 type="switch"
                                                 id="disable-user"
-                                                label="Compte activé"
+                                                label="Désactiver mon compte"
                                                 aria-describedby="disable-user-help"
                                                 defaultChecked={
                                                     setting?.isActive
@@ -226,9 +226,9 @@ function UserDataForm() {
                                                 id="disable-user-help"
                                                 className="disable-help-text"
                                             >
-                                                Attention ! En désactivant votre
-                                                compte, vous ne pourrez plus
-                                                vous connecter
+                                                Attention ! En cliquant sur
+                                                "désactiver mon compte", je ne
+                                                pourrai plus me connecter
                                             </p>
                                         </Form.Group>
                                     </Row>
