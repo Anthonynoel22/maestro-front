@@ -10,6 +10,8 @@ function ProjectForm() {
     // useState permet de stocker et mettre à jour les valeurs du formulaire.
     const [name, setName] = useState("");
     const [resume, setResume] = useState("");
+    const [deadline, setDeadline] = useState ("");
+
 
 
     const {needRefreshProjectList} = useContext(UserContext)
@@ -19,7 +21,7 @@ function ProjectForm() {
         e.preventDefault(); // empêche la page de se recharger
 
         // crée un objet avec les données saisies par l'utilisateur 
-        const projectData = { name: name, resume: resume };
+        const projectData = { name: name, resume: resume, deadline: deadline };
         // envoie les données
         await createProject(projectData);
         needRefreshProjectList()
@@ -56,6 +58,19 @@ function ProjectForm() {
                     rows={4}
                     value={resume}
                     onChange={(e) => setResume(e.target.value)} // onChange = met à jour la valeur de l’état "resume" à chaque saisie dans le champ de formulaire.
+                />
+            </Form.Group>
+
+            {/* Date limite */}
+            <Form.Group>
+                <Form.Label className="form__deadline" >
+                    Date limite*
+                </Form.Label>
+                <Form.Control
+                    className="form__deadlineInput"
+                    type="date"
+                    value={deadline}
+                    onChange={(e) => setDeadline(e.target.value)} // onChange = met à jour la valeur de l’état "deadline" à chaque saisie dans le champ de formulaire.
                 />
             </Form.Group>
 
