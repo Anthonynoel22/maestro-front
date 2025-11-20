@@ -41,7 +41,7 @@ function ProjectList() {
         if (userIs === 'visitor') {
             navigate("/");   
         }
-        // si USER
+        // si CLIENT
         if (userIs === 'client'){ 
             const result = await getAllProjectList();
             setStatusList (result.Liststatus);
@@ -57,7 +57,7 @@ function ProjectList() {
 
     // charge les projets filtrés par statut
     async function getStatusProject(status) {
-        // si USER
+        // si CLIENT
         if (userIs === 'client'){ 
             const result  = await getFilteredProjectList(status);
             console.log("client:",result.projects);
@@ -194,7 +194,7 @@ return (
                                         {project.resume}
                                     </p>
 
-                                    {/* STATUS du projet USER*/}                                    
+                                    {/* STATUS du projet CLIENT*/}                                    
                                     {userIs === 'client' &&
                                         <Badge
                                             pill 
