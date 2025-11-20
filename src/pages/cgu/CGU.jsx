@@ -100,8 +100,7 @@ function CGU() {
             <section>
                 <h2>7. Données personnelles et cookies</h2>
                 <p>
-                    La politique de confidentialité et l’utilisation des cookies
-                    sont détaillées dans une section spécifique. En utilisant le
+                    En utilisant le
                     site, vous acceptez la collecte et le traitement de vos
                     données conformément à cette politique.
                 </p>
