@@ -66,10 +66,9 @@ function DescriptionItem({ description, onAction }) {
             {/* Le formulaire d’action n’est affiché que pour l’admin */}
             {userIs === "admin" && showActions && (
                 <Form
-                    className="mt-3 border-top pt-3 updatePreview"
-                    id="updatePreview"
+                    className="mt-3 pt-3 update__description"
                 >
-                    <h2 className="form__title">Modifier la description</h2>
+                    <h2 className="description__form__title">Modifier la description</h2>
                     <Form.Group className="mb-3 form__group">
                         <Form.Label className="form__label" htmlFor="newTitle">
                             Nouveau titre
@@ -90,7 +89,7 @@ function DescriptionItem({ description, onAction }) {
                         <Form.Control
                             className="form__input"
                             as="textarea"
-                            rows={2}
+                            rows={4}
                             id="newText"
                             value={text}
                             onChange={(e) => setText(e.target.value)}

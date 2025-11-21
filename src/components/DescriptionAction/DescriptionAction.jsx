@@ -1,4 +1,5 @@
 import { update, deleteDescription } from "../../api/apiDescription.js";
+import { notify } from "../Toast/Toast.jsx";
 
 // Fonction pour mettre à jour une description
 export async function handleUpdateDescription(description, title, text, imageFile, onAction) {
@@ -16,7 +17,10 @@ export async function handleUpdateDescription(description, title, text, imageFil
         console.log("Description mise à jour :", response);
         if (onAction) onAction();
     } catch (error) {
+        notify("Erreur lors de la modification de la description.");
         return console.error("Erreur :", error);
+    } finally {
+        notify("Description modifiée avec succès !");
     }
 }
 
@@ -28,6 +32,9 @@ export async function handleDeleteDescription(descriptionId, onAction) {
         console.log("Description supprimée :", response);
         if (onAction) onAction();
     } catch (error) {
+        notify("Erreur lors de la suppression de la description.");
         return console.error("Erreur :", error);
+    } finally {
+        notify("Description supprimée avec succès !");
     }
 }

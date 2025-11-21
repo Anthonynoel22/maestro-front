@@ -80,3 +80,25 @@
 .icon-container {
     padding: 1rem;
 }
+
+.update__description {
+    margin: 1rem;
+    padding: 1rem;
+    border: solid 1px var.$color-admin;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @include mixin.desktop {
+        margin: 3rem;
+        padding: 3rem;
+    }
+}
+
+.description__form__title {
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: var.$font-main;
+}
