@@ -2,7 +2,7 @@ import { update, deleteDescription } from "../../api/apiDescription.js";
 import { notify } from "../Toast/Toast.jsx";
 
 // Fonction pour mettre à jour une description
-export async function handleUpdateDescription(description, title, text, imageFile, onAction) {
+export async function handleUpdateDescription(description, title, text, imageFile, onAction, closeDescription) {
     const finalTitle = title || description.title;
     const finalText = text || description.text;
 
@@ -21,11 +21,12 @@ export async function handleUpdateDescription(description, title, text, imageFil
         return console.error("Erreur :", error);
     } finally {
         notify("Description modifiée avec succès !");
+        closeDescription();
     }
 }
 
 // Fonction pour supprimer une description
-export async function handleDeleteDescription(descriptionId, onAction) {
+export async function handleDeleteDescription(descriptionId, onAction, closeDescription) {
     console.log("id description", descriptionId);
     try {
         const response = await deleteDescription(descriptionId);
@@ -36,5 +37,6 @@ export async function handleDeleteDescription(descriptionId, onAction) {
         return console.error("Erreur :", error);
     } finally {
         notify("Description supprimée avec succès !");
+        closeDescription();
     }
 }

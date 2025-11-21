@@ -22,12 +22,16 @@ function DescriptionItem({ description, onAction }) {
         ? `${URL_IMAGES}${description.image_link.split("/").pop()}`
         : null;
 
+    function closeDescription() {
+        setShowActions(false);
+    }
+
     function handleUpdate() {
-        handleUpdateDescription(description, title, text, imageFile, onAction);
+        handleUpdateDescription(description, title, text, imageFile, onAction, closeDescription);
     }
 
     function handleDelete() {
-        handleDeleteDescription(description.id, onAction);
+        handleDeleteDescription(description.id, onAction, closeDescription);
     }
     return (
         <>
