@@ -23,6 +23,7 @@ function LoginForm({ setUserHasAccount }) {
             if (userInfo) {
                 console.log("userInfo", userInfo);
                 loginProvider(userInfo.user.role);
+                notify("Vous êtes bien connecté.");
                 navigate("/");
             }
         } catch (error) {
