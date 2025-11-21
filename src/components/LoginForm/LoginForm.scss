@@ -1,11 +1,7 @@
 @use "/src/mixin";
 @use "/src/var";
 
-<<<<<<< HEAD
-h1 {
-=======
 .h2 {
->>>>>>> 8dfce845ab773e527ee35b3ff68525aac2bc23da
     text-align: center;
     padding-top: 5rem;
     font-family: var.$font-main;
@@ -82,11 +78,7 @@ h1 {
 
 // Styles Desktop
 @include mixin.desktop {
-<<<<<<< HEAD
-    h1 {
-=======
     .h2 {
->>>>>>> 8dfce845ab773e527ee35b3ff68525aac2bc23da
         padding-top: 10rem;
         font-size: var.$font-size-h2;
     }

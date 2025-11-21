@@ -3,38 +3,41 @@ import { Form, Button, Container } from "react-bootstrap";
 import "./Contact.scss";
 import { create } from "../../api/apiMessageContact";
 import { notify } from "../../components/Toast/Toast.jsx";
+import DOMPurify from 'dompurify';
+
 
 function Contact() {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
 
-    function handleSubmit(event) {
-        event.preventDefault();
-        const formData = {
-            mail: email,
-            message: message,
-        };
-        create(formData)
-            .then((response) => {
-                console.log("Message envoyé", response);
-                notify("Message envoyé avec succès !");
-                setEmail("");
-                setMessage("");
-            })
-            .catch((error) => {
-                console.error("L'envoi du message a échoué", error);
-                notify("Echec lors de l'envoi du message");
-            });
-    }
+function handleSubmit(event) {
+    event.preventDefault();
+
+    const cleanEmail = DOMPurify.sanitize(email);
+    const cleanMessage = DOMPurify.sanitize(message);
+
+    const formData = {
+        mail: cleanEmail,
+        message: cleanMessage,
+    };
+
+    create(formData)
+        .then((response) => {
+            console.log("Message envoyé", response);
+            notify("Message envoyé avec succès !");
+            setEmail("");
+            setMessage("");
+        })
+        .catch((error) => {
+            console.error("L'envoi du message a échoué", error);
+            notify("Echec lors de l'envoi du message");
+        });
+}
 
     return (
         <div className="contact-page">
             <div className="header-contact">
-<<<<<<< HEAD
-                <h1>Contactez-nous</h1>
-=======
                 <h2 className="h2">Contactez-nous</h2>
->>>>>>> 8dfce845ab773e527ee35b3ff68525aac2bc23da
                 <p>Les champs marqués d'un astérisque (*) sont obligatoires</p>
             </div>
 

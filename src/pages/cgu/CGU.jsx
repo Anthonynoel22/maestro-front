@@ -1,3 +1,4 @@
+
 import "./CGU.scss";
 
 function CGU() {
@@ -167,29 +168,24 @@ function CGU() {
     );
 }
 
-<<<<<<< HEAD
-export default CGU ;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
 export default CGU;
->>>>>>> 8dfce845ab773e527ee35b3ff68525aac2bc23da
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

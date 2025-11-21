@@ -6,6 +6,7 @@ import { Eye, EyeSlash } from "react-bootstrap-icons";
 import { Link, useNavigate } from "react-router-dom";
 import "./LoginForm.scss";
 import { notify } from "../Toast/Toast.jsx";
+import DOMPurify from 'dompurify';
 
 function LoginForm({ setUserHasAccount }) {
     const [email, setEmail] = useState("");
@@ -16,7 +17,10 @@ function LoginForm({ setUserHasAccount }) {
 
     async function handleSubmit(event) {
         event.preventDefault();
-        const loginData = { email, password };
+
+        const cleanEmail = DOMPurify.sanitize(email);  
+
+        const loginData = { email: cleanEmail, password };  
 
         try {
             const userInfo = await loginUser(loginData);

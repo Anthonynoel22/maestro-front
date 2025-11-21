@@ -7,6 +7,8 @@ import "./RegisterForm.scss";
 import { notify } from "../Toast/Toast.jsx";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
+import DOMPurify from 'dompurify';
+
 
 function RegisterForm({ setUserHasAccount }) {
     const [email, setEmail] = useState("");
@@ -32,6 +34,8 @@ function RegisterForm({ setUserHasAccount }) {
     async function handleSubmit(event) {
         event.preventDefault();
 
+        const cleanEmail = DOMPurify.sanitize(email);
+
         if (!regex.test(password)) {
             notify([
                 "Mot de passe invalide : au moins 8 caractères, 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial",
@@ -45,7 +49,7 @@ function RegisterForm({ setUserHasAccount }) {
         }
 
         try {
-            const response = await create({ email, password });
+            const response = await create({ email: cleanEmail, password });
             console.log("Inscription réussie", response);
             notify("Compte créé avec succès !");
             setUserHasAccount(true);
