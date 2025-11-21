@@ -4,11 +4,21 @@ import Form from 'react-bootstrap/Form';
 import { addPreview } from '../../api/apiPreview.js';
 import './PreviewForm.scss'
 import { notify } from "../Toast/Toast.jsx";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 
 function PreviewForm({genreList, onSave = () => {}, close = () => {}}) {
 
     const [form, setForm] = useState();
     const [saving, setSaving] = useState(false);
+
+    function renderTooltip(tooltipMessage) {
+        return (
+            <Tooltip id="password-tooltip" {...tooltipMessage}>
+                {tooltipMessage}
+            </Tooltip>
+        );
+    }
 
     function initForm() {
         setForm(document.getElementById('addPreview'));
@@ -57,10 +67,17 @@ function PreviewForm({genreList, onSave = () => {}, close = () => {}}) {
     return (
         <Form className='addPreview__form' onSubmit={handleSubmit} id='addPreview' method='post' encType="multipart/form-data">
             <h2 className="preview__forms__title">Ajouter un extrait</h2>
+            <p className="form__mandatory">Les champs marqués d'un (*) sont obligatoires.</p>
             <div className='form__group__container'>
                 <Form.Group className="form__group mb-3">
-                    <Form.Label className='form__label' htmlFor='previewTitle'>Titre de l'extrait</Form.Label>
-                    <Form.Control className='form__input' id='previewTitle' name='title' type="text" placeholder="Entrer le titre" />
+                    <Form.Label className='form__label' htmlFor='previewTitle'>Titre de l'extrait *</Form.Label>
+                    <OverlayTrigger
+                        placement="right"
+                        delay={{ show: 250, hide: 400 }}
+                        overlay={renderTooltip('Ce champ est obligatoire.')}
+                    >
+                        <Form.Control required className='form__input' id='previewTitle' name='title' type="text" placeholder="Entrer le titre" />
+                    </OverlayTrigger>
                 </Form.Group>
                 <Form.Group className="form__group mb-3">
                     <Form.Label className='form__label' htmlFor='previewDate'>Date de l'extrait</Form.Label>
