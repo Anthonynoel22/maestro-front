@@ -98,7 +98,23 @@
 }
 
 .description__form__title {
+    display: flex;
     text-align: center;
     font-size: 1.5rem;
     font-family: var.$font-main;
+    padding: 0 1.5rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.description__close__icon {
+    color: white;
+    background-color: lightgray;
+    border: none;
+}
+
+.description__close__icon:hover {
+    cursor: pointer;
+    background-color: grey;
+    border: none;
 }

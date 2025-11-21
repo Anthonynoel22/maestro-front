@@ -6,6 +6,7 @@ import {
     handleDeleteDescription,
 } from "../../DescriptionAction/DescriptionAction.jsx";
 import UserContext from "../../../UserContext.jsx";
+import { XLg } from "react-bootstrap-icons";
 
 function DescriptionItem({ description, onAction }) {
     const [title, setTitle] = useState(description.title || "");
@@ -72,7 +73,10 @@ function DescriptionItem({ description, onAction }) {
                 <Form
                     className="mt-3 pt-3 update__description"
                 >
-                    <h2 className="description__form__title">Modifier la description</h2>
+                    <div className="description__form__title">
+                        <h2>Modifier la description</h2>
+                        <Button onClick={closeDescription} className="description__close__icon"><XLg size={20}/></Button>
+                    </div>
                     <Form.Group className="mb-3 form__group">
                         <Form.Label className="form__label" htmlFor="newTitle">
                             Nouveau titre

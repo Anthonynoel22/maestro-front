@@ -117,7 +117,7 @@ function UpdatePreviewForm({ setSelectedPreview, setActiveItem, id, genreList = 
             <Form onSubmit={handleSubmit} id='updatePreview' method='patch'>
                 <div className="preview__form__header">
                     <h2 className="preview__forms__title">Modifier l'extrait</h2>
-                    <Button onClick={() => {setSelectedPreview(null); setActiveItem(null)}} className="preview__close__icon"><XLg size={30}/></Button>
+                    <Button onClick={() => {setSelectedPreview(null); setActiveItem(null)}} className="preview__close__icon"><XLg size={20}/></Button>
                 </div>
                 <p className="form__mandatory">Les champs marqués d'un (*) sont obligatoires.</p>
                 <Form.Group className="mb-3 form__group">
