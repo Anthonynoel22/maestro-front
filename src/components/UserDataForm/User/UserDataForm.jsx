@@ -30,7 +30,7 @@ function UserDataForm() {
         event.preventDefault();
         updateMyProfile(setting);
         getMySetting();
-        notify("Vos informations ont bien été mise à jour");
+        notify("Vos informations ont bien été mise à jour", "success");
     }
 
     function handleSwitch(event) {
