@@ -22,7 +22,7 @@ function UpdateGenreForm({ genre, onSaved = () => {}, unshow = () => {} }) {
         } finally {
             setSaving(false);
             unshow();
-            notify("Genre créé avec succès", "success");
+            notify("Genre modifié avec succès", "success");
         }
     }
 

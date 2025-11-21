@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { findAll, deleteMessage, update } from "../../api/apiMessageContact";
 import "./ContactRequestList.scss";
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
-import { notify } from "../Toast/Toast";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import { notify } from "../Toast/Toast.jsx";
 
 function ContactRequestList() {
     /* request est une variable d'état contenant la liste de demande de contact 
@@ -11,7 +11,7 @@ function ContactRequestList() {
     l'état initial est un tableau vide*/
     const [requests, setRequests] = useState([]);
 
-    const [requestToDelete, setRequestToDelete] = useState('');
+    const [requestToDelete, setRequestToDelete] = useState("");
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -95,7 +95,10 @@ function ContactRequestList() {
 
                             <button
                                 className="delete-button"
-                                onClick={() => { setRequestToDelete(request); handleShow()}}
+                                onClick={() => {
+                                    setRequestToDelete(request);
+                                    handleShow();
+                                }}
                             >
                                 Supprimer
                             </button>
@@ -105,16 +108,36 @@ function ContactRequestList() {
             )}
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                <Modal.Title>Supprimer la demande de contact</Modal.Title>
+                    <Modal.Title>Supprimer la demande de contact</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Etes-vous sûr de vouloir supprimer la demande de contact de "{requestToDelete.mail}" ?</Modal.Body>
+                <Modal.Body>
+                    Etes-vous sûr de vouloir supprimer la demande de contact de
+                    "{requestToDelete.mail}" ?
+                </Modal.Body>
                 <Modal.Footer>
-                <Button variant="secondary" onClick={() => {handleClose(); setRequestToDelete('')}}>
-                    Annuler
-                </Button>
-                <Button variant="primary" onClick={(e) => {e.preventDefault(); handleDelete(requestToDelete.id); setRequestToDelete(''); handleClose(); notify('Demande de contact supprimée avec succès !')}}>
-                    Supprimer la demande de contact
-                </Button>
+                    <Button
+                        variant="secondary"
+                        onClick={() => {
+                            handleClose();
+                            setRequestToDelete("");
+                        }}
+                    >
+                        Annuler
+                    </Button>
+                    <Button
+                        variant="primary"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            handleDelete(requestToDelete.id);
+                            setRequestToDelete("");
+                            handleClose();
+                            notify(
+                                "Demande de contact supprimée avec succès !"
+                            );
+                        }}
+                    >
+                        Supprimer la demande de contact
+                    </Button>
                 </Modal.Footer>
             </Modal>
         </div>
