@@ -155,7 +155,7 @@ return (
             <Col key={project.id} className="mb-5" md={12}>
                 <Form >
                     <Card 
-                        className="border border-primary rounded-3 shadow-sm"
+                        className="projects__card"
                         style={{
                             width: "100%",
                             border: "2px" ,
