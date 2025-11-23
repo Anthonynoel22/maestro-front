@@ -1,10 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Button, Form } from "react-bootstrap";
 import { PencilSquare, DashSquareFill } from "react-bootstrap-icons";
-import {
-    handleUpdateDescription,
-    handleDeleteDescription,
-} from "../../DescriptionAction/DescriptionAction.jsx";
+import {handleUpdateDescription,handleDeleteDescription,} from "../../DescriptionAction/DescriptionAction.jsx";
 import UserContext from "../../../UserContext.jsx";
 
 function DescriptionItem({ description, onAction }) {
@@ -49,6 +46,8 @@ function DescriptionItem({ description, onAction }) {
                 {userIs === "admin" && (
                     <div
                         className="icon-container"
+                        aria-label={showActions ? "Masquer les actions de modification" : "Afficher les actions de modification"}
+                        tabIndex={0}
                         onClick={() => setShowActions(!showActions)}
                         style={{ cursor: "pointer" }}
                     >
@@ -77,6 +76,7 @@ function DescriptionItem({ description, onAction }) {
                             id="newTitle"
                             type="text"
                             value={title}
+                            aria-label="Ajouter un nouveaux titre"
                             onChange={(e) => setTitle(e.target.value)}
                         />
                     </Form.Group>
@@ -91,6 +91,7 @@ function DescriptionItem({ description, onAction }) {
                             rows={2}
                             id="newText"
                             value={text}
+                            aria-label="Ajouter un nouveaux texte"
                             onChange={(e) => setText(e.target.value)}
                         />
                     </Form.Group>
@@ -103,6 +104,7 @@ function DescriptionItem({ description, onAction }) {
                             className="form__input"
                             id="newImage"
                             type="file"
+                            aria-label="Ajouter une nouvelle image"
                             onChange={(e) => setImageFile(e.target.files[0])}
                         />
                     </Form.Group>
@@ -112,6 +114,7 @@ function DescriptionItem({ description, onAction }) {
                             variant="warning"
                             className="preview__form__button me-2"
                             onClick={handleUpdate}
+                            aria-label="Mettre à jour la description"
                         >
                             Mettre à jour
                         </Button>
@@ -119,6 +122,7 @@ function DescriptionItem({ description, onAction }) {
                             variant="danger"
                             className="preview__form__button preview__form__button--delete"
                             onClick={handleDelete}
+                            aria-label="Supprimer la description"
                         >
                             Supprimer
                         </Button>
