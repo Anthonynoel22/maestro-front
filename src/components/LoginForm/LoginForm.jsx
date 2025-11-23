@@ -38,7 +38,7 @@ function LoginForm({ setUserHasAccount }) {
 
     return (
         <div className="login-form-global">
-            <h1 className="h1">Connexion</h1>
+            <h1 className="login-form-headtitle">Connexion</h1>
             <div className="login-form-container">
                 <Form
                     className="login-form"

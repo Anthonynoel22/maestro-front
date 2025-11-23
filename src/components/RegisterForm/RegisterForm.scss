@@ -6,7 +6,7 @@
   padding-top: 6.25rem;
 }
 
-.h1 {
+.register-form-headtitle {
   text-align: center;
   padding-top: 3rem;
   font-family: var.$font-main;
@@ -89,7 +89,7 @@ p {
 
 
 @include mixin.desktop {
-  .h2 {
+  .register-form-headtitle {
     padding-top: 6rem;
     font-size: var.$font-size-h2;
   }
