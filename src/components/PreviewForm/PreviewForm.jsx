@@ -47,10 +47,10 @@ function PreviewForm({genreList, onSave = () => {}, close = () => {}}) {
         try {
             await addPreview(formData);
             onSave();
-            notify("Extrait ajouté avec succès !");
+            notify("Extrait ajouté avec succès !", "success");
         } catch (error) {
             console.error("Erreur lors de l'ajout de l'extrait : ", error);
-            notify("Erreur lors de l'ajout de l'extrait.");
+            notify("Erreur lors de l'ajout de l'extrait.", "error");
         } finally {
             setSaving(false);
             close();

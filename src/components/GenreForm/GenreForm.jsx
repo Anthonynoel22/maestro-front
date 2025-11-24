@@ -45,11 +45,12 @@ function GenreForm() {
         try {
             const genreAdded = await addAGenre(genreToAdd);
             handleOnSaved();
+            notify("Genre créé avec succès", "success");
         } catch (error) {
             console.error("Erreur lors de l'ajout du genre' : ", error);
+            notify("Erreur lors de l'ajout du genre", "error");
         } finally {
             setSaving(false);
-            notify("Genre créé avec succès", "success");
         }
     }
 
@@ -72,12 +73,13 @@ function GenreForm() {
             // setIdToDelete(id);
             await deleteGenre(id);
             handleOnSaved();
+            notify("Le genre à bien été supprimé", "success");
         } catch (error) {
             console.error("Erreur lors de la suppression du genre : ", error);
+            notify("Erreur lors de la suppression du genre", "error");
         } finally {
             setSaving(false);
             setGenreToDelete("");
-            notify("Le genre à bien été supprimé", "success");
         }
     }
 

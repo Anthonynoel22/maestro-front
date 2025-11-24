@@ -68,11 +68,11 @@ function UpdatePreviewForm({ setSelectedPreview, setActiveItem, id, genreList = 
         try {
             await updatePreview(id, payload); 
             onSaved();
-            notify("Extrait modifié avec succès !");
+            notify("Extrait modifié avec succès !", "success");
         } catch (err) {
             console.error("Erreur mise à jour preview:", err);
             setError("Échec de la mise à jour.");
-            notify("Erreur lors de la modification de l'extrait");
+            notify("Erreur lors de la modification de l'extrait", "error");
         } finally {
             setSaving(false);
         }
@@ -86,11 +86,11 @@ function UpdatePreviewForm({ setSelectedPreview, setActiveItem, id, genreList = 
         try {
             await deletePreview(id);
             onSaved();
-            notify("Extrait supprimé avec succès !");
+            notify("Extrait supprimé avec succès !", "success");
         } catch (err) {
             console.error("Erreur lors de la suppression de l'extrait : ", err);
             setError("Échec de la suppression.");
-            notify("Erreur lors de la suppression de l'extrait");
+            notify("Erreur lors de la suppression de l'extrait", "error");
         } finally {
             setSaving(false);
         }

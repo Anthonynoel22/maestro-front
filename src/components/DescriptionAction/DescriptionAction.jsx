@@ -16,11 +16,11 @@ export async function handleUpdateDescription(description, title, text, imageFil
         const response = await update(description.id, formData);
         console.log("Description mise à jour :", response);
         if (onAction) onAction();
+        notify("Description modifiée avec succès !");
     } catch (error) {
         notify("Erreur lors de la modification de la description.");
         return console.error("Erreur :", error);
     } finally {
-        notify("Description modifiée avec succès !");
         closeDescription();
     }
 }
@@ -31,12 +31,12 @@ export async function handleDeleteDescription(descriptionId, onAction, closeDesc
     try {
         const response = await deleteDescription(descriptionId);
         console.log("Description supprimée :", response);
+        notify("Description supprimée avec succès !");
         if (onAction) onAction();
     } catch (error) {
         notify("Erreur lors de la suppression de la description.");
         return console.error("Erreur :", error);
     } finally {
-        notify("Description supprimée avec succès !");
         closeDescription();
     }
 }

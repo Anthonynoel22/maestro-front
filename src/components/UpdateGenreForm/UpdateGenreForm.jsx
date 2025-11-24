@@ -16,13 +16,14 @@ function UpdateGenreForm({ genre, onSaved = () => {}, unshow = () => {} }) {
         try {
             await updateGenre(genre.id, formLabel);
             onSaved();
+            notify("Genre modifié avec succès", "success");
         } catch (err) {
             console.error("Erreur mise à jour genre:", err);
             setError("Échec de la mise à jour.");
+            notify('Erreur lors de la modification du genre.', "error");
         } finally {
             setSaving(false);
             unshow();
-            notify("Genre modifié avec succès", "success");
         }
     }
 
