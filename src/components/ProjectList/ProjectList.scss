@@ -29,6 +29,9 @@
     border-color: var.$color-admin;
 }
 
+.project__trash__icon:hover {
+    cursor: pointer;
+}
 
 
 @media (min-width: var.$breakpoint-desktop) {
