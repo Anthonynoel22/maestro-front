@@ -25,31 +25,43 @@ function Home() {
     }
 
     // Filtrage : séparation par "number"
-    const presentationCompositeur = descriptions.filter((d) => d.number === 1);
-    const prestation = descriptions.filter((d) => d.number === 2);
+    // const presentationCompositeur = descriptions.filter((d) => d.number === 1);
+    // const prestation = descriptions.filter((d) => d.number === 2);
+
+    let presentationCompositeur;
+    let prestation;
+
+    if (descriptions != null && descriptions.length > 0) {
+        presentationCompositeur = descriptions.filter((d) => d.number === 1);
+        prestation = descriptions.filter((d) => d.number === 2);
+    }
 
     return (
         <>
             {/* Présentation du compositeur */}
-            {presentationCompositeur.map((description) => (
+            {presentationCompositeur != null && presentationCompositeur.length > 0 
+            ? presentationCompositeur.map((description) => (
                 <DescriptionItem
                     key={description.id}
                     description={description}
                     onAction={refreshDescriptions}
                 />
-            ))}
+            ))
+            : <h2>En cours de construction.</h2>}
 
             {/* Compositions stars */}
             <PreviewList location={locationHome} />
 
             {/* Prestation */}
-            {prestation.map((description) => (
+            {prestation != null && prestation.length > 0 
+            ? prestation.map((description) => (
                 <DescriptionItem
                     key={description.id}
                     description={description}
                     onAction={refreshDescriptions}
                 />
-            ))}
+            ))
+            : <h2>En cours de construction.</h2>}
 
             {/* Formulaire d'administration */}
             {userIs === "admin" && (
