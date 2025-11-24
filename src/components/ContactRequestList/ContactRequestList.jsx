@@ -66,9 +66,9 @@ function ContactRequestList() {
             ) : (
                 requests.map((request) => (
                     <div key={request.id} className="request">
-                        <h4>Email : {request.mail}</h4>
-                        <p>Message : {request.message}</p>
-                        <p>
+                        <h4 className="contact-title">Email : {request.mail}</h4>
+                        <p className="contact-texte">Message : {request.message}</p>
+                        <p className="contact-status">
                             {/* pour mettre un espace entre statut : est le mot
                             qui suit on utilise ce signe {" "} .
                             

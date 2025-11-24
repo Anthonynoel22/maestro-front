@@ -44,6 +44,7 @@ function Contact() {
                             value={email}
                             onChange={(event) => setEmail(event.target.value)}
                             required
+                            aria-label="Adresse email"
                         />
                     </Form.Group>
 
@@ -63,7 +64,7 @@ function Contact() {
                     </Form.Group>
 
                     <div className="form-actions">
-                        <Button className="btn btn-primary" type="submit">
+                        <Button className="btn btn-primary" type="submit" aria-label="Envoyer le message de contact">
                             Envoyer
                         </Button>
                     </div>

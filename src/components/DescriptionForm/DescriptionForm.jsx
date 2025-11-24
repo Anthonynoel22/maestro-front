@@ -40,7 +40,9 @@ function DescriptionForm({ onAction }) {
         <div className="description__form__wrapper">
             <div
                 className="description__icon__container"
+                tabIndex={0}
                 onClick={() => setShowForm(!showForm)}
+                aria-label={showForm ? "Cacher le formulaire d'ajout de description" : "Afficher le formulaire d'ajout de description"}
             >
                 {showForm ? (
                     <DashSquareFill size={40} className="minus__icon"/>
@@ -68,6 +70,7 @@ function DescriptionForm({ onAction }) {
                                     type="text"
                                     value={title}
                                     placeholder="Entrez le titre"
+                                    aria-label="Titre de la description"
                                     onChange={(e) => setTitle(e.target.value)}
                                 />
                             </Form.Group>
@@ -76,6 +79,7 @@ function DescriptionForm({ onAction }) {
                                 <Form.Select
                                     className="form__input"
                                     value={number}
+                                    aria-label="Nunéros de la description"
                                     onChange={(e) => setNumber(Number(e.target.value))}
                                 >
                                     <option value={1}>1</option>
@@ -87,6 +91,7 @@ function DescriptionForm({ onAction }) {
                                 <Form.Control
                                     className="form__input"
                                     type="file"
+                                    aria-label="Ajouter une image de description"
                                     onChange={(e) => setImageFile(e.target.files[0])}
                                 />
                             </Form.Group>
@@ -100,6 +105,7 @@ function DescriptionForm({ onAction }) {
                                 className="form__input"
                                 value={text}
                                 placeholder="Entrez le texte"
+                                aria-label="Texte de la description" 
                                 onChange={(e) => setText(e.target.value)}
                             />
                         </Form.Group>

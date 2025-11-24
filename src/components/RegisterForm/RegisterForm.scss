@@ -2,14 +2,18 @@
 @use "/src/mixin";
 @use "/src/var";
 
-h1 {
+.register-form-global {
+  padding-top: 6.25rem;
+}
+
+.register-form-headtitle {
   text-align: center;
   padding-top: 3rem;
   font-family: var.$font-main;
   font-size: var.$font-size-h2; // plus petit pour mobile d'abord
 }
 
-p {
+.register-form-subtitle {
   text-align: center;
   padding-top: 1rem;
 }
@@ -35,7 +39,7 @@ p {
     border: none;
   }
 
-  p {
+  .register-text-link {
     text-align: center;
     padding-top: 1rem;
 
@@ -62,12 +66,12 @@ p {
     position: absolute;
     right: 10px;
     top: 50%;
-    transform: translateY(-50%);
+    bottom: 50%;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #555; // couleur de base
+    color: #555; 
     transition: opacity 0.2s ease;
 
     svg {
@@ -85,7 +89,7 @@ p {
 
 
 @include mixin.desktop {
-  h1 {
+  .register-form-headtitle {
     padding-top: 6rem;
     font-size: var.$font-size-h2;
   }
@@ -101,7 +105,7 @@ p {
       margin-bottom: 1.5rem;
     }
 
-    p {
+    .register-text-link{
       padding-top: 1.5rem;
     }
   }
