@@ -3,35 +3,42 @@ import { Form, Button, Container } from "react-bootstrap";
 import "./Contact.scss";
 import { create } from "../../api/apiMessageContact";
 import { notify } from "../../components/Toast/Toast.jsx";
+import DOMPurify from 'dompurify';
+
 
 function Contact() {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
 
-    function handleSubmit(event) {
-        event.preventDefault();
-        const formData = {
-            mail: email,
-            message: message,
-        };
-        create(formData)
-            .then((response) => {
-                console.log("Message envoyé", response);
-                notify("Message envoyé avec succès !");
-                setEmail("");
-                setMessage("");
-            })
-            .catch((error) => {
-                console.error("L'envoi du message a échoué", error);
-                notify("Echec lors de l'envoi du message");
-            });
-    }
+function handleSubmit(event) {
+    event.preventDefault();
+
+    const cleanEmail = DOMPurify.sanitize(email);
+    const cleanMessage = DOMPurify.sanitize(message);
+
+    const formData = {
+        mail: cleanEmail,
+        message: cleanMessage,
+    };
+
+    create(formData)
+        .then((response) => {
+            console.log("Message envoyé", response);
+            notify("Message envoyé avec succès !");
+            setEmail("");
+            setMessage("");
+        })
+        .catch((error) => {
+            console.error("L'envoi du message a échoué", error);
+            notify("Echec lors de l'envoi du message");
+        });
+}
 
     return (
         <div className="contact-page">
             <div className="header-contact">
-                <h2 className="h2">Contactez-nous</h2>
-                <p className="p">Les champs marqués d'un astérisque (*) sont obligatoires</p>
+                <h1>Contactez-nous</h1>
+                <p>Les champs marqués d'un astérisque (*) sont obligatoires</p>
             </div>
 
             <Container className="contact-container">
@@ -44,6 +51,7 @@ function Contact() {
                             value={email}
                             onChange={(event) => setEmail(event.target.value)}
                             required
+                            aria-label="Adresse email"
                         />
                     </Form.Group>
 
@@ -63,7 +71,7 @@ function Contact() {
                     </Form.Group>
 
                     <div className="form-actions">
-                        <Button className="btn btn-primary" type="submit">
+                        <Button className="btn btn-primary" type="submit" aria-label="Envoyer le message de contact">
                             Envoyer
                         </Button>
                     </div>

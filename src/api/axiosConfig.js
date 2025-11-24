@@ -30,22 +30,32 @@ useEffect(() => {
     //  si la route actuelle est "/" ou "/compositions" ou /contact /legales /cgu /accessibility,
     // on reste / ré-affiche cette route,
     // sinon on redirige vers /login
-    const redirectLoginOrKeep = () => {
-        const path = location?.pathname || "/";
-        if (
-            path === "/" ||
-            path === "/compositions" ||
-            path === "/contact" ||
-            path === "/legales" ||
-            path === "/cgu" ||
-            path === "/accessibility"
-        ) {
-            // replace pour éviter d'empiler l'historique inutilement
-            navigate(path, { replace: true });
-        } else {
-            navigate("/login", { replace: true });
-        }
-    };
+const redirectLoginOrKeep = () => {
+    const path = location.pathname || "/";
+    // Liste des chemins valides
+    const validPaths = [
+        "/",
+        "/compositions",
+        "/contact",
+        "/legales",
+        "/cgu",
+        "/accessibility",
+        "/user",
+        "/user/settings"
+    ];
+
+    if (validPaths.includes(path)) {
+        // Remplace l'historique pour éviter d'empiler inutilement
+        navigate(path, { replace: true });
+    } else if (path === "/login") {
+        // Autoriser la navigation vers login ou 404 directement
+        navigate(path, { replace: true });
+    } else {
+        // Sinon, rediriger vers la page 404
+        navigate("/404", { replace: true });
+    }
+};
+
 
         // --------------------------
         // Interceptor de réponse

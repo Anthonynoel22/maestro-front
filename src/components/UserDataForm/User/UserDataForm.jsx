@@ -39,7 +39,7 @@ function UserDataForm() {
             ...prevSetting, // ← on copie l’ancien objet
             isActive: event.target.checked, // ← on remplace seulement fistname
         }));
-        console.log("Dans handelSwitch", setting);
+        // console.log("Dans handelSwitch", setting);
     }
 
     return (

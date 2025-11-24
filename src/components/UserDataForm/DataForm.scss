@@ -1,5 +1,8 @@
-@use "/src/mixin";
-@use "/src/var";
+// @use "/src/mixin";
+// @use "/src/var";
+
+@use "../../../src/mixin";
+@use "../../../src/var";
 
 .profil-item {
     border: solid 1px var.$color-client;

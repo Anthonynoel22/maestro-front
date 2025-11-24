@@ -14,14 +14,14 @@ function FullClientCard() {
     async function getClients() {
         const clients = await getAllUsers();
         setClients(clients);
-        console.log("Dans ma page admin :", clients);
+        // console.log("Dans ma page admin :", clients);
     }
 
     // ici ton param a le nom d'un  state attention
     async function getSortedClients(sortedUsers) {
         const clients = await getSortedUsers(sortedUsers);
         setClients(clients);
-        console.log("Dans ma page admin :", clients);
+        // console.log("Dans ma page admin :", clients);
     }
 
     function handleChange(event) {

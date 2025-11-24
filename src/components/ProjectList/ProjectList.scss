@@ -42,6 +42,9 @@
     align-items: center;
 }
 
+.project__trash__icon:hover {
+    cursor: pointer;
+}
 
 
 @media (min-width: var.$breakpoint-desktop) {
