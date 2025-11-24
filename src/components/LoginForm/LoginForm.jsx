@@ -28,6 +28,7 @@ function LoginForm({ setUserHasAccount }) {
                 console.log("userInfo", userInfo);
                 loginProvider(userInfo.user.role);
                 navigate("/");
+                notify("Vous êtes connecté.");
             }
         } catch (error) {
             console.error("Erreur de connexion :", error);

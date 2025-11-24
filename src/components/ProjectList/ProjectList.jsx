@@ -1,25 +1,31 @@
 import { Card, Badge, Row, Col, Button } from "react-bootstrap";
-import { getAllProjectList, getFilteredProjectList } from "../../api/apiProjectList.js";
-import { getAllAdminProjects, getFilteredAdminProjects, updateProjectStatus, deleteProject  } from "../../api/apiProjectList.js";
+import {
+    getAllProjectList,
+    getFilteredProjectList,
+} from "../../api/apiProjectList.js";
+import {
+    getAllAdminProjects,
+    getFilteredAdminProjects,
+    updateProjectStatus,
+    deleteProject,
+} from "../../api/apiProjectList.js";
 import { useState, useEffect, useContext } from "react";
 import UserContext from "../../UserContext.jsx";
-import Form from 'react-bootstrap/Form';
+import Form from "react-bootstrap/Form";
 import "./ProjectList.scss";
 import { Trash } from "react-bootstrap-icons";
-import Modal from 'react-bootstrap/Modal';
+import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
-import Container from 'react-bootstrap/Container';
-
-
+import Container from "react-bootstrap/Container";
+import { notify } from "../Toast/Toast.jsx";
 
 function ProjectList() {
+    // permet de gérer l'affichage de la liste de mes projets et leur status
+    const [projectList, setProjectList] = useState([]); // Liste des projets affichés
+    const [projectFilter, setProjectFilter] = useState(""); // Filtre appliqué aux projets
+    const [statusList, setStatusList] = useState([]); // Liste des statuts disponibles
+    const [newStatus, setNewStatus] = useState(""); // nouveau statut 
 
-    const [projectList, setProjectList] = useState([]); // liste des projets
-    const [projectFilter, setProjectFilter] = useState (''); // statut sélectionné pour filtrer
-    const [statusList, setStatusList] = useState ([]); // tous les statuts disponibles
-    const [newStatus, setNewStatus] = useState (''); // nouveau statut 
-
-    
     // fenêtre Modal (être vous sûr de vouloir supprimer)
     const [show, setShow] = useState(false);
 
@@ -231,6 +237,5 @@ return (
     </section>
 );
 }
-
 
 export default ProjectList;
