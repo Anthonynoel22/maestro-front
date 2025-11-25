@@ -5,17 +5,25 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "../DataForm.scss";
 import { useState, useEffect, useContext } from "react";
-import { getMyProfile, updateMyProfile } from "../../../api/apiUser.js";
+import {
+    getMyProfile,
+    updateMyProfile,
+    logoutUser,
+} from "../../../api/apiUser.js";
 import { notify } from "../../Toast/Toast.jsx";
 import UserContext from "../../../UserContext.jsx";
 import DOMPurify from "dompurify";
 
 function UserDataForm() {
     const [setting, setSetting] = useState({});
-    const { userIs } = useContext(UserContext);
+    const { userIs, logoutProvider } = useContext(UserContext);
 
     async function getMySetting() {
         const myProfile = await getMyProfile();
+        if (myProfile.user.isActive == false) {
+            await logoutUser(); // deconnexion de user
+            logoutProvider(); // retourne à l'état de visiteur
+        }
         setSetting(myProfile.user);
     }
 
@@ -23,20 +31,20 @@ function UserDataForm() {
         getMySetting();
     }, []);
 
-    function handelSubmit(event) {
+    async function handelSubmit(event) {
         event.preventDefault();
-        updateMyProfile(setting);
+        await updateMyProfile(setting);
         getMySetting();
         notify("Vos informations ont bien été mise à jour", "success");
     }
 
     function handleSwitch(event) {
-        console.log("Dans handelSwitch", event.target.checked);
         setSetting((prevSetting) => ({
-            ...prevSetting, // ← on copie l’ancien objet
-            isActive: event.target.checked, // ← on remplace seulement fistname
+            ...prevSetting,
+            isActive: !event.target.checked,
         }));
     }
+    // Déconnexion automatique après avoir désactivé le compte en V2
 
     return (
         <>

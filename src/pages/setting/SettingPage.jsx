@@ -23,6 +23,7 @@ function SettingPage() {
 
     // Afficher le formulaire de creation d'entreprise
     const [addCompany, setAddCompany] = useState(false);
+    const [onUpdate, setOnUpdate] = useState(false);
 
     function companySettingsHandleClick(event) {
         event.preventDefault();
@@ -58,7 +59,12 @@ function SettingPage() {
                                         </button>
                                     </div>
                                 ) : (
-                                    <CompanyDataForm onUpdate={false} />
+                                    <CompanyDataForm
+                                        onUpdate={onUpdate}
+                                        onCompanyCreated={() =>
+                                            setOnUpdate(true)
+                                        }
+                                    />
                                 )}
                             </>
                         )}

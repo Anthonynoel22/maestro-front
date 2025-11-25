@@ -13,7 +13,7 @@ import {
 import { notify } from "../../Toast/Toast.jsx";
 import DOMPurify from "dompurify";
 
-function CompanyDataForm({ onUpdate }) {
+function CompanyDataForm({ onUpdate, onCompanyCreated }) {
     // Voir mes informations d'entreprise
     const [companySetting, setCompanySetting] = useState({});
 
@@ -26,6 +26,12 @@ function CompanyDataForm({ onUpdate }) {
         onUpdate ? getMyCompanySetting() : null;
     }, []);
 
+    function notifandUpdate() {
+        notify("Entreprise crée avec succès");
+        onCompanyCreated();
+        console.log("OnUpdate:", onUpdate);
+    }
+
     function companyHandelSubmit(event) {
         event.preventDefault();
 
@@ -34,8 +40,7 @@ function CompanyDataForm({ onUpdate }) {
               notify(
                   "Les informations de votre entreprise on bien été misent à jour"
               )
-            : createCompany(companySetting) &&
-              notify("Entreprise crée avec succès");
+            : createCompany(companySetting) && notifandUpdate();
     }
 
     return (
