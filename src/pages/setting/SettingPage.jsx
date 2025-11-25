@@ -1,17 +1,11 @@
 import CompanyDataForm from "../../components/UserDataForm/Company/CompanyDataForm.jsx";
 import UserDataForm from "../../components/UserDataForm/User/UserDataForm.jsx";
-import { useState } from "react";
-import { useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { getMyProfile } from "../../api/apiUser.js";
 import UserContext from "../../UserContext.jsx";
 import "./Setting.scss";
 
 function SettingPage() {
-    // LES COMPOSANTS QUI SERONT SUR LA PAGE:
-
-    // Formulaire de modification des données utilisateurs
-    // => UserDataForm
-
     // Voir mes informations
     const [setting, setSetting] = useState({});
     const [isLoading, setIsLoading] = useState(true);
@@ -42,7 +36,6 @@ function SettingPage() {
                     <p>Chargement en cours...</p>
                 ) : (
                     <div>
-                        {/* <h1>Setting</h1> */}
                         <UserDataForm />
 
                         {userIs === "client" && (

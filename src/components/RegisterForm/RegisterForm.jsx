@@ -5,8 +5,6 @@ import { Eye, EyeSlash } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import "./RegisterForm.scss";
 import { notify } from "../Toast/Toast.jsx";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Tooltip from "react-bootstrap/Tooltip";
 import DOMPurify from "dompurify";
 
 function RegisterForm({ setUserHasAccount }) {

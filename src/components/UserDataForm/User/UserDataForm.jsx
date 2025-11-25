@@ -4,23 +4,19 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "../DataForm.scss";
-import { useState } from "react";
-import { getMyProfile } from "../../../api/apiUser.js";
-import { updateMyProfile } from "../../../api/apiUser.js";
-import { useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
+import { getMyProfile, updateMyProfile } from "../../../api/apiUser.js";
 import { notify } from "../../Toast/Toast.jsx";
 import UserContext from "../../../UserContext.jsx";
 import DOMPurify from "dompurify";
 
 function UserDataForm() {
-    // Voir mes informations
     const [setting, setSetting] = useState({});
     const { userIs } = useContext(UserContext);
 
     async function getMySetting() {
         const myProfile = await getMyProfile();
         setSetting(myProfile.user);
-        // console.log("setting log :", myProfile);
     }
 
     useEffect(() => {
@@ -40,7 +36,6 @@ function UserDataForm() {
             ...prevSetting, // ← on copie l’ancien objet
             isActive: event.target.checked, // ← on remplace seulement fistname
         }));
-        // console.log("Dans handelSwitch", setting);
     }
 
     return (

@@ -4,11 +4,12 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "../DataForm.scss";
-import { useState } from "react";
-import { getMyCompany } from "../../../api/apiCompany.js";
-import { updateCompany } from "../../../api/apiCompany.js";
-import { createCompany } from "../../../api/apiCompany.js";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import {
+    getMyCompany,
+    updateCompany,
+    createCompany,
+} from "../../../api/apiCompany.js";
 import { notify } from "../../Toast/Toast.jsx";
 import DOMPurify from "dompurify";
 
