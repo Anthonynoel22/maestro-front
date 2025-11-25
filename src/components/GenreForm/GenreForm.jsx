@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import UpdateGenreForm from "../UpdateGenreForm/UpdateGenreForm.jsx";
 import { notify } from "../Toast/Toast.jsx";
+import DOMPurify from "dompurify";
 
 function GenreForm() {
     const [genreList, setGenreList] = useState([]);
@@ -39,8 +40,12 @@ function GenreForm() {
 
     async function handleAddGenre() {
         setSaving(true);
+        // test avec : TEST DOMPURIFY <a href="javascript:alert('XSS via javascript: URI')">clique-moi</a>
+        const genreToAddPurified = DOMPurify.sanitize(genreToAdd);
+        console.log('genre brut', genreToAdd)
+        console.log('genre purifié', genreToAddPurified)
         try {
-            await addAGenre(genreToAdd);
+            await addAGenre(genreToAddPurified);
             handleOnSaved();
             notify("Genre créé avec succès", "success");
         } catch (error) {
