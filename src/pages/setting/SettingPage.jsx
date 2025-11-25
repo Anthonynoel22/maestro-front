@@ -33,7 +33,7 @@ function SettingPage() {
         <>
             <div className="settigs-item">
                 {isLoading ? (
-                    <p>Chargement en cours...</p>
+                    <p role="status">Chargement en cours...</p>
                 ) : (
                     <div>
                         <UserDataForm />
@@ -45,10 +45,12 @@ function SettingPage() {
                                     <CompanyDataForm onUpdate={true} />
                                 ) : !addCompany ? (
                                     <div className="professionnel-div">
-                                        <p>Je suis un professionnel ?</p>
+                                        <p id="company-question">
+                                            Je suis un professionnel ?
+                                        </p>
                                         <button
                                             className="addCompany-button"
-                                            variant="displayCompanyDataForm-button"
+                                            aria-describedby="company-question"
                                             onClick={companySettingsHandleClick}
                                         >
                                             Enregistrer les informations de mon

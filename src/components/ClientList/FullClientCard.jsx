@@ -35,7 +35,7 @@ function FullClientCard() {
         <>
             <div className="client-sort-form-select">
                 <Form.Select
-                    aria-label="client-sort-form-select"
+                    aria-label="Formulaire de tri des clients par nom ou prénom"
                     onChange={handleChange}
                 >
                     <option value="">Trier la liste des clients</option>

@@ -20,14 +20,28 @@ function Admin() {
                     </Row> */}
 
                     <Row>
-                        <Col className=" component-admin-container list-item contact-request-list-item">
-                            <h2 className="admin-item-title">
+                        <Col
+                            className=" component-admin-container list-item contact-request-list-item"
+                            aria-labelledby="admin-contact-requests-title"
+                        >
+                            <h2
+                                className="admin-item-title"
+                                id="admin-contact-requests-title"
+                            >
                                 Les demandes de contact
                             </h2>
                             <ContactRequestList />
                         </Col>
-                        <Col className="component-admin-container list-item waiting-project-list-item">
-                            <h2 className="admin-item-title">Les projets</h2>
+                        <Col
+                            className="component-admin-container list-item waiting-project-list-item"
+                            aria-labelledby="admin-projects-title"
+                        >
+                            <h2
+                                className="admin-item-title"
+                                id="admin-projects-title"
+                            >
+                                Les projets
+                            </h2>
                             <ProjectList />
                         </Col>
                     </Row>
@@ -36,12 +50,24 @@ function Admin() {
                         <Col
                             lg={5}
                             className="component-admin-container list-item genre-list-item"
+                            aria-labelledby="admin-genres-title"
                         >
-                            <h2 className="admin-item-title">Les genres</h2>
+                            <h2
+                                className="admin-item-title"
+                                id="admin-genres-title"
+                            >
+                                Les genres
+                            </h2>
                             <GenreForm />
                         </Col>
-                        <Col className="component-admin-container list-item full-card-list-item">
-                            <h2 className="admin-item-title">
+                        <Col
+                            className="component-admin-container list-item full-card-list-item"
+                            aria-labelledby="admin-clients-title"
+                        >
+                            <h2
+                                className="admin-item-title"
+                                id="admin-clients-title"
+                            >
                                 La liste des clients
                             </h2>
                             <FullClientCard />
