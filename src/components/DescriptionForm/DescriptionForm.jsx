@@ -85,7 +85,7 @@ function handleSubmit(event) {
                                 <Form.Select
                                     className="form__input"
                                     value={number}
-                                    aria-label="Nunéros de la description"
+                                    aria-label="Numéro de la description"
                                     onChange={(e) => setNumber(Number(e.target.value))}
                                 >
                                     <option value={1}>1</option>

@@ -8,7 +8,7 @@ import DOMPurify from 'dompurify';
 import "./Description.scss";
 
 
-function DescriptionItem({ description, onAction }) {
+function Description({ description, onAction }) {
     const [title, setTitle] = useState(description.title || "");
     const [text, setText] = useState(description.text || "");
     const [imageFile, setImageFile] = useState(null);
@@ -62,7 +62,7 @@ function handleUpdate() {
                         <img
                             className="description__image"
                             src={imageSrc}
-                            alt="présentation du composateur"
+                            alt="présentation du compositeur"
                         />
                     </div>
 
@@ -145,4 +145,4 @@ function handleUpdate() {
         </>
     );
 }
-export default DescriptionItem;
+export default Description;

@@ -2,11 +2,11 @@ import UserContext from "./UserContext.jsx";
 import { useState, useEffect } from "react";
 
 export function UserProvider({children}) {
-    // Initialisation du state depuis le SessionStorage
+    
     const [userIs, setUserIs] = useState(() => sessionStorage.getItem('userRole') || 'visitor');
     const [refreshList, setrefreshList] = useState(false);
 
-    // À chaque changement de rôle, le stocker dans le SessionStorage
+    
     useEffect(() => {
         sessionStorage.setItem('userRole', userIs);
     }, [userIs]);
