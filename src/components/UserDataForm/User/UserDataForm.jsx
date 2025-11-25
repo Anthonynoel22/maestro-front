@@ -7,12 +7,14 @@ import "../DataForm.scss";
 import { useState } from "react";
 import { getMyProfile } from "../../../api/apiUser.js";
 import { updateMyProfile } from "../../../api/apiUser.js";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { notify } from "../../Toast/Toast.jsx";
+import UserContext from "../../../UserContext.jsx";
 
 function UserDataForm() {
     // Voir mes informations
     const [setting, setSetting] = useState({});
+    const { userIs } = useContext(UserContext);
 
     async function getMySetting() {
         const myProfile = await getMyProfile();
@@ -23,8 +25,6 @@ function UserDataForm() {
     useEffect(() => {
         getMySetting();
     }, []);
-
-    const isAdmin = setting?.role === "admin";
 
     function handelSubmit(event) {
         event.preventDefault();
@@ -205,7 +205,7 @@ function UserDataForm() {
                                 </Row>
 
                                 {/* DESACTIVER SON COMPTE */}
-                                {!isAdmin && (
+                                {userIs === "client" && (
                                     <Row className="item profile-item">
                                         <Form.Group className="profile-form-item profile-form-item-toggle">
                                             <Form.Check
