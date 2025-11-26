@@ -16,7 +16,7 @@ function ProjectList() {
 
     const [projectList, setProjectList] = useState([]); // liste des projets
     const [statusList, setStatusList] = useState ([]); // tous les statuts disponibles
-    const [newStatus, setNewStatus] = useState (''); // nouveau statut 
+
 
     
     // fenêtre Modal (être vous sûr de vouloir supprimer)
@@ -85,14 +85,12 @@ function ProjectList() {
 
 
     // modifie le statut d’un projet
-    function handleChangeStatus(e) {
+    async function handleChangeStatus(e) {
         e.preventDefault();
-        setNewStatus(e.target.value);
-        updateProjectStatus(e.target.selectedOptions[0].id, e.target.value);
+        await updateProjectStatus(e.target.selectedOptions[0].id, e.target.value);
         // e.target c’est le <select>
         // e.target.value c’est le nouveau statut choisi (ex : "en cours")
         // e.target.selectedOptions[0].id  c’est l’ID du projet
-        console.log(newStatus);
     }
 
         // supprime un projet
