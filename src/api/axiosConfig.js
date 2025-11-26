@@ -39,6 +39,7 @@ useEffect(() => {
             "/legales",
             "/cgu",
             "/accessibility",
+            "/404",
         ];
         if (validPaths.includes(path)) {
             // replace pour éviter d'empiler l'historique inutilement
