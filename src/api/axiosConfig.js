@@ -26,21 +26,21 @@ export const useAxiosInterceptor = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-
 useEffect(() => {
     //  si la route actuelle est "/" ou "/compositions" ou /contact /legales /cgu /accessibility,
     // on reste / ré-affiche cette route,
     // sinon on redirige vers /login
     const redirectLoginOrKeep = () => {
         const path = location?.pathname || "/";
-        if (
-            path === "/" ||
-            path === "/compositions" ||
-            path === "/contact" ||
-            path === "/legales" ||
-            path === "/cgu" ||
-            path === "/accessibility"
-        ) {
+        const validPaths = [
+            "/",
+            "/compositions",
+            "/contact",
+            "/legales",
+            "/cgu",
+            "/accessibility",
+        ];
+        if (validPaths.includes(path)) {
             // replace pour éviter d'empiler l'historique inutilement
             navigate(path, { replace: true });
         } else {
