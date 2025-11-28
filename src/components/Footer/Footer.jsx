@@ -94,7 +94,7 @@ function Footer() {
                                         Mon espace
                                     </Dropdown.Item>
                                 )}
-                                <Dropdown.Divider role="separator" />
+                                
                                 {userIs === "client" && (
                                     <Dropdown.Item as={Link} to="/user" tabIndex={0} aria-label="Espace client">
                                         Mon espace
