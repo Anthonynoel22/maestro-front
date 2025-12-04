@@ -43,7 +43,7 @@ export async function update(id, status) {
             console.log(error);
         });
 }
-// DELETE /api/genre/:idMessage-Contact
+// DELETE /api/message-contact/:idMessage-Contact
 //messageContactRoute.delete('/message-contact/:id', messageContactController.delete)
 
 export async function deleteMessage(id) {
