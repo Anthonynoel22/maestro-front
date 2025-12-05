@@ -38,7 +38,7 @@ function handleSubmit(event) {
         <div className="contact-page">
             <div className="header-contact">
                 <h1 className="contact__page__title">Contactez-nous</h1>
-                <p>Les champs marqués d'un astérisque (*) sont obligatoires</p>
+                <p className="contact__page__indication">Les champs marqués d'un astérisque (*) sont obligatoires</p>
             </div>
 
             <Container className="contact-container">
