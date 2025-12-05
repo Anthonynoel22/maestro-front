@@ -2,12 +2,11 @@
 @use "/src/var";
 
 .login-form-global {
-    padding-top: 5rem;
+    padding-top: 10rem;
 }
 
 .login-form-headtitle {
     text-align: center;
-    // padding-top: 5rem;
     font-family: var.$font-main;
     font-size: var.$font-size-h2;
 }
@@ -83,7 +82,6 @@
 // Styles Desktop
 @include mixin.desktop {
     .login-form-headtitle {
-        // padding-top: 10rem;
         font-size: var.$font-size-h2;
     }
 
