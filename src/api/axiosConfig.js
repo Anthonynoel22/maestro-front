@@ -27,11 +27,10 @@ export const useAxiosInterceptor = () => {
     const location = useLocation();
 
 useEffect(() => {
-        //  si la route actuelle est "/" ou "/compositions" ou /contact /legales /cgu /accessibility,
-        // on reste / ré-affiche cette route,
-        // sinon on redirige vers /login
+        //  si la route actuelle est path
+        // on reste sur la route  ou  ré-affiche cette route /,
         const redirectLoginOrKeep = () => {
-            const path = location?.pathname || "/";
+            const path = location.pathname || "/";
         const validPaths = [
         "/",
         "/compositions",
@@ -39,15 +38,15 @@ useEffect(() => {
         "/legales",
         "/cgu",
         "/accessibility",
-        "/404",
+        
     ];
 
     if (validPaths.includes(path)) {
         // Remplace l'historique pour éviter d'empiler inutilement
         navigate(path, { replace: true });
-    } else if (path === "/login") {
-        // Autoriser la navigation vers login 
-        navigate(path, { replace: true });
+    } else  {
+        // Autoriser la navigation vers login si pas connecté on redirige 
+        navigate("/login", { replace: true });
     }
 };
 
@@ -77,7 +76,7 @@ useEffect(() => {
                 // --------------------------
                 // On ignore la requête de refresh elle‑même pour éviter boucle infinie
                 // --------------------------
-                if (originalRequest?.url?.includes("/user/refresh")) {
+                if (originalRequest.url.includes("/user/refresh")) {
                     console.warn("Erreur sur le refresh, redirection login");
                     redirectLoginOrKeep();
                     return Promise.reject(error);
