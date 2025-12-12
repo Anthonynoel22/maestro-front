@@ -38,15 +38,16 @@ useEffect(() => {
         "/legales",
         "/cgu",
         "/accessibility",
-        
+        "/404",
     ];
 
     if (validPaths.includes(path)) {
         // Remplace l'historique pour éviter d'empiler inutilement
         navigate(path, { replace: true });
+    
     } else if (path === "/login") {
         // Autoriser la navigation vers login si pas connecté on redirige 
-        navigate("/path", { replace: true });
+        navigate(path, { replace: true });
     }
 };
 
