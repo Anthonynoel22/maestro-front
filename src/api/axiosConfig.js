@@ -45,7 +45,7 @@ useEffect(() => {
         // Remplace l'historique pour éviter d'empiler inutilement
         navigate(path, { replace: true });
     
-    } else if (path === "/login") {
+    } else   {
         // Autoriser la navigation vers login si pas connecté on redirige 
         navigate("/login", { replace: true });
     }
