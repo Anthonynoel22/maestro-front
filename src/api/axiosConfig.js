@@ -47,7 +47,7 @@ useEffect(() => {
     
     } else if (path === "/login") {
         // Autoriser la navigation vers login si pas connecté on redirige 
-        navigate(path, { replace: true });
+        navigate("/login", { replace: true });
     }
 };
 
