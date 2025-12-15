@@ -1,143 +1,107 @@
 import axios from "axios";
 import { configure } from "axios-hooks";
-import { refreshToken } from "./apiUser.js"; // fonction pour renouveler le token
+import { refreshToken } from "./apiUser.js";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import UserContext from "../UserContext.jsx"; // ← AJOUT
+import { useContext } from "react"; // ← AJOUT
 
-// Adresse de base de notre API
 const API_URL = import.meta.env.VITE_API_URL;
 
 const api_axios = axios.create({
-    baseURL: API_URL, // URL de base pour toutes les requêtes
-    withCredentials: true, // inclut les cookies automatiquement dans les requêtes
+    baseURL: API_URL,
+    withCredentials: true,
 });
 
-// Important : on configure axios-hooks pour qu'il utilise notre instance
 configure({ axios: api_axios });
 
-// indique si un refresh est déjà en cours
-// pour éviter de lancer plusieurs refresh simultanés
-let refreshPromise = null; // Promise du refresh en cours
+let refreshPromise = null;
 
-// --------------------------
-// Hook React pour installer l'interceptor
-// --------------------------
 export const useAxiosInterceptor = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const { userIs } = useContext(UserContext); // ← RÉCUPÉRATION DU CONTEXTE
 
-useEffect(() => {
-        //  si la route actuelle est path
-        // on reste sur la route  ou  ré-affiche cette route /,
+    const isAdmin = userIs === 'admin'; // ← DÉFINITION userIsAdmin
+
+    useEffect(() => {
         const redirectLoginOrKeep = () => {
             const path = location.pathname || "/";
 
             const validPaths = [
-                "/",
-                "/compositions",
-                "/contact",
-                "/legales",
-                "/cgu",
-                "/accessibility",
+                "/", "/compositions", "/contact", 
+                "/legales", "/cgu", "/accessibility"
             ];
 
+            // ✅ Pages publiques : on reste
             if (validPaths.includes(path)) {
-                // Remplace l'historique pour éviter d'empiler inutilement
                 navigate(path, { replace: true });
-            } else if (path === "/user/settings" || path === "/user" || path === "/admin") {
-                // Si l'utilisateur n'est pas connecté, on le redirige vers /login
+                return;
+            }
+
+            // ✅ Pages protégées sans connexion → login
+            if (userIs === 'visitor' && (path === "/user" || path === "/user/settings" || path === "/admin")) {
                 navigate("/login", { replace: true });
-            } else  {
-                navigate(path, { replace: true });
+                return;
             }
-                if (path === "/404") {
-                navigate ("/404",  { replace: true }); 
-            }
+
+            // ✅ Redirection par défaut selon rôle
+            const defaultPath = isAdmin ? "/admin" : "/user";
+            navigate(defaultPath, { replace: true });
         };
 
-
-        // --------------------------
-        // Interceptor de réponse
-        // --------------------------
         const interceptor = api_axios.interceptors.response.use(
-            (response) => response, // si tout va bien, on renvoie la réponse telle quelle
+            (response) => response,
             async (error) => {
-                // si une erreur survient (ex: 401, 403)
-                const originalRequest = error?.config; // récupération de la config de la requête qui a échoué
+                const originalRequest = error?.config;
 
-                // --------------------------
-                // Cas spécial : pas de réponse du tout (ex: cookies supprimés)
-                // --------------------------
                 if (!error.response) {
-                    console.warn(
-                        "Pas de réponse serveur (cookies supprimés ?)"
-                    );
+                    console.warn("Pas de réponse serveur (cookies supprimés ?)");
                     redirectLoginOrKeep();
-                    return Promise.reject(error); // rejette la promesse pour signaler l'erreur
+                    return Promise.reject(error);
                 }
 
-                const status = error.response.status; // code HTTP (ex: 401, 403)
+                const status = error.response.status;
 
-                // --------------------------
-                // On ignore la requête de refresh elle‑même pour éviter boucle infinie
-                // --------------------------
                 if (originalRequest.url.includes("/user/refresh")) {
                     console.warn("Erreur sur le refresh, redirection login");
                     redirectLoginOrKeep();
                     return Promise.reject(error);
                 }
 
-                // --------------------------
-                // Cas 401 / 403 : token expiré
-                // --------------------------
-                // si on est sur la page accueil ou compositions,
-                // useLocation react-router
                 if ([401, 403].includes(status) && !originalRequest._retry) {
-                    originalRequest._retry = true; // marque la requête comme déjà retry
+                    originalRequest._retry = true;
 
-                    // Si aucun refresh en cours → on le lance
                     if (!refreshPromise) {
                         refreshPromise = refreshToken().finally(() => {
-                            refreshPromise = null; // reset après le refresh
+                            refreshPromise = null;
                         });
                     }
 
                     try {
-                        // On attend le refresh en cours ou le nouveau
                         await refreshPromise;
-
-                        // Une fois le token renouvelé, on relance la requête originale
                         return api_axios(originalRequest);
                     } catch (refreshError) {
-                        console.error(
-                            "Refresh token invalide ou expiré",
-                            refreshError
-                        );
-                        redirectLoginOrKeep(); // redirection conditionnelle
+                        console.error("Refresh token invalide ou expiré", refreshError);
+                        redirectLoginOrKeep();
                         return Promise.reject(refreshError);
                     }
                 }
 
-                // --------------------------
-                // Dernier filet de sécurité : autres 401/403 non gérés
-                // --------------------------
                 if ([401, 403].includes(status)) {
                     console.warn("Non authentifié, redirection login");
                     redirectLoginOrKeep();
                 }
 
-                // Si erreur autre que 401/403, on laisse passer l'erreur
                 return Promise.reject(error);
             }
         );
 
-        // Nettoyage de l'interceptor quand le composant est démonté
         return () => {
             api_axios.interceptors.response.eject(interceptor);
         };
-    }, [navigate, location]);
+    }, [navigate, location, userIs, isAdmin]); // ← Dépendances complètes
 
-    // On renvoie l'instance pour l'utiliser dans le reste de l'application
     return api_axios;
 };
 
