@@ -44,16 +44,13 @@ useEffect(() => {
             if (validPaths.includes(path)) {
                 // Remplace l'historique pour éviter d'empiler inutilement
                 navigate(path, { replace: true });
-            } else if (
-                path === "/user/settings" ||
-                path === "/user" ||
-                path === "/admin"
-            ) {
+            } else if (path === "/user/settings" || path === "/user" || path === "/admin") {
                 // Si l'utilisateur n'est pas connecté, on le redirige vers /login
                 navigate("/login", { replace: true });
+            } else  {
+                navigate(path, { replace: true });
             }
-
-            if (path === "/404") {
+                if (path === "/404") {
                 navigate ("/404",  { replace: true }); 
             }
         };

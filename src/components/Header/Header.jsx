@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import clientIcon from "../../assets/images/user-client.svg";
 import adminIcon from "../../assets/images/user-admin.svg";
@@ -16,8 +16,9 @@ userIs : indique le rôle actuel (admin, client, visitor).
 logoutProvider : fonction pour déconnecter l’utilisateur.
 useNavigate() retourne une fonction navigate pour effectuer une redirection.*/
 function Header() {
-    const { userIs, logoutProvider, loginProvider } = useContext(UserContext);
+    const { userIs, logoutProvider, loginProvider, needRefreshProjectList } = useContext(UserContext);
     const navigate = useNavigate();
+    const location = useLocation();
 
     // active l'interceptor du axios config
     useAxiosInterceptor();
@@ -30,6 +31,12 @@ function Header() {
 
         if (profile) {
             loginProvider(profile.user.role);
+            const lastPath = sessionStorage.getItem("lastPath");
+            if (lastPath) {
+                needRefreshProjectList();
+                navigate(lastPath, { replace: true });
+                sessionStorage.removeItem("lastPath");
+            }
         }
     }
 
@@ -41,6 +48,7 @@ function Header() {
         // on tente de rafraîchir le contexte
         if (userIs === "visitor") {
             console.log("userIs lost:", userIs);
+            sessionStorage.setItem("lastPath", location.pathname);
             refreshContext();
         }
         // autre action à chaque changement de rôle...
