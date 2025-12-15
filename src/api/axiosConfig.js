@@ -31,25 +31,32 @@ useEffect(() => {
         // on reste sur la route  ou  ré-affiche cette route /,
         const redirectLoginOrKeep = () => {
             const path = location.pathname || "/";
-        const validPaths = [
-        "/",
-        "/compositions",
-        "/contact",
-        "/legales",
-        "/cgu",
-        "/accessibility",
-        "/404",
-    ];
 
-    if (validPaths.includes(path)) {
-        // Remplace l'historique pour éviter d'empiler inutilement
-        navigate(path, { replace: true });
-    
-    } else   {
-        // Autoriser la navigation vers login si pas connecté on redirige 
-        navigate("/login", { replace: true });
-    }
-};
+            const validPaths = [
+                "/",
+                "/compositions",
+                "/contact",
+                "/legales",
+                "/cgu",
+                "/accessibility",
+            ];
+
+            if (validPaths.includes(path)) {
+                // Remplace l'historique pour éviter d'empiler inutilement
+                navigate(path, { replace: true });
+            } else if (
+                path === "/user/settings" ||
+                path === "/user" ||
+                path === "/admin"
+            ) {
+                // Si l'utilisateur n'est pas connecté, on le redirige vers /login
+                navigate("/login", { replace: true });
+            }
+
+            if (path === "/404") {
+                navigate ("/404",  { replace: true }); 
+            }
+        };
 
 
         // --------------------------
