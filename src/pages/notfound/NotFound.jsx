@@ -3,7 +3,7 @@ import "./NotFound.scss";
 
 function NotFound() {
     return (
-        <div>
+        <div className="notfound-global">
             <h1 className="title-main">404</h1>
             <h2 className="subtitle">Page non trouvée</h2>
             <p className="text-center">

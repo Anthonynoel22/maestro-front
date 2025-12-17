@@ -1,9 +1,8 @@
 import axios from "axios";
 import { configure } from "axios-hooks";
 import { refreshToken } from "./apiUser.js";
-import { useNavigate } from "react-router-dom"; 
-import { useEffect } from "react"; 
-
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -25,20 +24,24 @@ export const useAxiosInterceptor = () => {
             async (error) => {
                 const originalRequest = error?.config;
 
+                // Pas de réponse du serveur  problème réseau, on ne redirige pas
                 if (!error.response) {
-                    console.warn("Pas de réponse serveur");
-                    navigate("/");
+                    console.warn("Pas de réponse serveur", {
+                        url: originalRequest.url,
+                    });
                     return Promise.reject(error);
                 }
 
                 const status = error.response.status;
 
-                if (originalRequest?.url.includes("/user/refresh")) {
+                // Si le refresh lui‑même échoue  l'utilisateur n'est plus connecté
+                if (originalRequest.url.includes("/user/refresh")) {
                     console.warn("Refresh échoué");
-                    navigate("/");
+                    navigate("/"); 
                     return Promise.reject(error);
                 }
 
+                // 401/403  on tente un refresh une seule fois
                 if ([401, 403].includes(status) && !originalRequest._retry) {
                     originalRequest._retry = true;
 
@@ -50,24 +53,23 @@ export const useAxiosInterceptor = () => {
 
                     try {
                         await refreshPromise;
+                        // On rejoue la requête initiale après refresh
                         return api_axios(originalRequest);
                     } catch (refreshError) {
-                        console.error("Refresh échoué");
-                        navigate("/");
+                        console.error("Refresh échoué, redirection");
+                        navigate("/"); 
                         return Promise.reject(refreshError);
                     }
                 }
 
-                if ([401, 403].includes(status)) {
-                    console.warn("Non authentifié");
-                    navigate("/");
-                }
-
+                // Autres cas d'erreur : on laisse remonter l'erreur sans rediriger
                 return Promise.reject(error);
             }
         );
 
-        return () => api_axios.interceptors.response.eject(interceptor);
+        return () => {
+            api_axios.interceptors.response.eject(interceptor);
+        };
     }, [navigate]);
 
     return api_axios;

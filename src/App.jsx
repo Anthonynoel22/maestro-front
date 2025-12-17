@@ -5,6 +5,7 @@ import Composition from "./pages/composition/Compositions.jsx";
 import Contact from "./pages/contact/Contact.jsx";
 import Homepage from "./pages/homepage/Home.jsx";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.jsx";
+import PublicOnlyRoute from "./components/PublicOnlyRoute/PublicOnlyRoute.jsx";
 import Login from "./pages/login/Login.jsx";
 import SettingPage from "./pages/setting/SettingPage.jsx";
 import User from "./pages/user/User.jsx";
@@ -27,7 +28,9 @@ function App() {
               <Route path="/" element={<Homepage />} />
               <Route path="/compositions" element={<Composition />} />
               <Route path="/contact" element={<Contact />} />
+              <Route element={<PublicOnlyRoute />}>
               <Route path="/login" element={<Login />} />
+              </Route>
               <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
               <Route path="/admin" element={<Admin />} />
               </Route>
@@ -52,3 +55,4 @@ function App() {
 
 
 export default App;
+

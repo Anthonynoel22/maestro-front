@@ -1,3 +1,6 @@
+@use "/src/mixin";
+@use "/src/var";
+
 .title-main {
     text-align: center;
     padding-top: 20rem;
@@ -16,4 +19,12 @@
 .link-container {
     text-align: center;
     padding-top: 1rem;
+}
+
+@include mixin.desktop { 
+
+.notfound-global {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    }
 }
