@@ -14,3 +14,49 @@ Quant aux visiteurs, Maestro est une vitrine musicale où l’on peut découvrir
 L’ensemble a été conçu pour offrir une expérience fluide, simple et accessible,
 que ce soit sur ordinateur, tablette ou smartphone.
 
+## Fonctionnalités 
+
+Regroupent tous les éléments que le site peut offrir, aussi bien pour les utilisateurs 
+que pour l’ administrateur.
+
+
+### Gestion des demandes 
+
+- Créer un compte (commun)
+- S’authentifier (commun)
+- Modifier mes informations personnelles (commun)
+- Accéder au statut de mes demandes (client)
+- Accéder à la liste des demandes clients (admin)
+- Trier mes demandes de projet (par statut) (commun)
+- Faire une demande de projet (client)
+- Modifier le statut des demandes de projet (en attente, validée, invalidée, en cours, en attente de retour, terminé) (admin)
+- Consulter la liste des clients pour accéder à leurs informations de contact (admin)
+
+### Gestion du portfolio 
+
+- Accéder au portfolio du compositeur (biographie, prestations)
+- Écouter une composition
+- Accéder à la liste des compositions
+- Filtrer les compositions
+- Gérer (modifier, ajouter, supprimer) les informations de mon portfolio (biographie et prestations)
+- Gérer (modifier, ajouter, supprimer) des extraits musicaux
+
+### Gestion des prises de contact
+
+- Contacter le compositeur
+- Consulter les messages du formulaire de contact
+- Modifier le statut d’un message de contact
+
+### Généralités 
+
+- Consultable sur mobile et ordinateur
+- Page 404 pour signifier à un utilisateur que la page demandée n’existe pas
+
+## Techno Front-end
+
+- React
+- Axios
+- Bootstrap
+- React-Router-Dom
+- React-Dom
+- React-Hot-Toast
