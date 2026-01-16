@@ -22,7 +22,7 @@ export const useAxiosInterceptor = () => {
         const interceptor = api_axios.interceptors.response.use(
             (response) => response,
             async (error) => {
-                const originalRequest = error?.config;
+                const originalRequest = error.config;
 
                 // Pas de réponse du serveur  problème réseau, on ne redirige pas
                 if (!error.response) {
@@ -55,9 +55,10 @@ export const useAxiosInterceptor = () => {
                         await refreshPromise;
                         // On rejoue la requête initiale après refresh
                         return api_axios(originalRequest);
-                    } catch (refreshError) {
+                    }  catch (refreshError) {
                         console.error("Refresh échoué, redirection");
-                        navigate("/"); 
+                        navigate("/", { replace: true });
+                        window.location.href = "/"; // Fallback
                         return Promise.reject(refreshError);
                     }
                 }

@@ -5,16 +5,16 @@ import UserContext from "../../UserContext.jsx";
 export default function ProtectedRoute({ allowedRoles = ["client", "admin"] }) {
     const { userIs } = useContext(UserContext);
 
-    // Si pas connecté  on redirige /login
+    // Si pas connecté  on navigue sur /login
     if (userIs === "visitor") {
         return <Navigate to="/login" replace />;
     }
 
-    // Si rôle non autorisé  on redirige /404 
+    // Si rôle non autorisé  on navigue sur /403
     if (!allowedRoles.includes(userIs)) {
-        return <Navigate to="*" replace />; 
+        return <Navigate to="/403" replace />; 
     }
 
-    // Autorisé → affiche les enfants
+    // Autorisé à affiche les enfants
     return <Outlet />;
 }

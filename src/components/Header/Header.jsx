@@ -1,4 +1,4 @@
-import  { useContext } from "react"; 
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import clientIcon from "../../assets/images/user-client.svg";
@@ -14,7 +14,7 @@ function Header() {
     const { userIs, logoutProvider } = useContext(UserContext);
     const navigate = useNavigate();
 
-    // active l'interceptor du axios config
+    // Active l’intercepteur global axios
     useAxiosInterceptor();
 
     const commonLinks = [
@@ -22,7 +22,6 @@ function Header() {
         { label: "Compositions", to: "/compositions" },
     ];
 
-    /* Se déconnecter */
     async function handleLogout() {
         try {
             await logoutUser();
@@ -30,7 +29,7 @@ function Header() {
             notify("Vous êtes déconnecté.");
             navigate("/");
         } catch (error) {
-            console.log("erreur logout :", error);
+            console.error("Erreur logout :", error);
         }
     }
 
@@ -42,84 +41,103 @@ function Header() {
             : null;
 
     return (
-        <header role="banner">
-            <a href="/">
+        <header className="header" role="banner">
+            <a href="/" className="header__logo-link">
                 <img
                     src={logo}
-                    alt="logo maestro"
-                    className="logo"
+                    alt="logo Maestro"
+                    className="header__logo"
                 />
             </a>
-            <nav role="navigation" aria-label="Navigation principale du site">
+
+            <nav
+                className="header__nav"
+                role="navigation"
+                aria-label="Navigation principale du site"
+            >
                 <ul className="nav-list" role="menubar">
                     {commonLinks.map((link, index) => (
-                        <li key={index}>
-                            <Link to={link.to} role="menu" tabIndex={0}>
+                        <li key={index} className="nav-list__item">
+                            <Link to={link.to} className="nav-list__link" role="menuitem">
                                 {link.label}
                             </Link>
                         </li>
                     ))}
 
                     {userIs !== "visitor" ? (
-                        <li>
+                        <li className="nav-list__item nav-list__dropdown">
                             <Dropdown>
                                 <Dropdown.Toggle
                                     variant="link"
                                     id="dropdown-user"
-                                    className="p-0 border-0 nav-icon-toggle"
+                                    className="nav-icon-toggle"
                                     aria-label={`Menu utilisateur ${userIs}`}
                                 >
                                     <img
                                         src={iconSrc}
-                                        alt={
-                                            userIs === "admin"
-                                                ? "Icône admin"
-                                                : "Icône client"
-                                        }
+                                        alt={`Icône ${userIs}`}
                                         className="nav-icon"
                                     />
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu
+                                    className="user-menu"
                                     role="menu"
                                     aria-label={`Menu ${userIs}`}
                                 >
-                                    <Dropdown.Header as="div" role="presentation">
+                                    <Dropdown.Header
+                                        as="div"
+                                        className="user-menu__header"
+                                    >
                                         Espace {userIs}
                                     </Dropdown.Header>
 
                                     {userIs === "admin" && (
-                                        <Dropdown.Item as={Link} to="/admin" role="menu" tabIndex={0}>
+                                        <Dropdown.Item
+                                            as={Link}
+                                            to="/admin"
+                                            className="user-menu__link"
+                                        >
                                             Mon espace
                                         </Dropdown.Item>
                                     )}
 
                                     {userIs === "client" && (
-                                        <Dropdown.Item as={Link} to="/user" role="menu" tabIndex={0}>
+                                        <Dropdown.Item
+                                            as={Link}
+                                            to="/user"
+                                            className="user-menu__link"
+                                        >
                                             Mon espace
                                         </Dropdown.Item>
                                     )}
 
-                                    <Dropdown.Divider role="separator" />
+                                    <Dropdown.Divider />
 
-                                    <Dropdown.Item as={Link} to="/user/settings" role="menu" tabIndex={0}>
+                                    <Dropdown.Item
+                                        as={Link}
+                                        to="/user/settings"
+                                        className="user-menu__link"
+                                    >
                                         Paramètre de compte
                                     </Dropdown.Item>
 
-                                    <Dropdown.Divider role="separator" />
+                                    <Dropdown.Divider />
 
-                                    <Dropdown.Item onClick={handleLogout} role="menu" tabIndex={0}>
+                                    <Dropdown.Item
+                                        onClick={handleLogout}
+                                        className="user-menu__link"
+                                    >
                                         Se déconnecter
                                     </Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                         </li>
                     ) : (
-                        <li>
+                        <li className="nav-list__item">
                             <Link
                                 to="/login"
-                                role="menu"
-                                tabIndex={0}
+                                className="nav-list__link"
                                 aria-label="Accéder à la page de connexion ou d'inscription"
                             >
                                 Connexion / Inscription

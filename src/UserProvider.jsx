@@ -1,11 +1,11 @@
 import UserContext from "./UserContext.jsx";
 import { useState, useEffect } from "react";
-import { getMyProfile } from "./api/apiUser.js"; // Ajoute cet import
+import { getMyProfile } from "./api/apiUser.js"; 
 
 export function UserProvider({ children }) {
     const [userIs, setUserIs] = useState(() => sessionStorage.getItem('userRole') || 'visitor');
     const [refreshList, setrefreshList] = useState(false);
-    const [isLoading, setIsLoading] = useState(true); // ← Ajout pour éviter les appels multiples
+    const [isLoading, setIsLoading] = useState(true); // éviter les appels multiples
 
     // Au montage : vérifie si token et récupère le profil
     useEffect(() => {
@@ -20,7 +20,7 @@ export function UserProvider({ children }) {
                 }
             } catch (error) {
                 console.log('Token invalide/expiré, reste visitor', error);
-                // Token expiré ? Nettoie
+                // Token expiré on Nettoie
                 sessionStorage.removeItem('token');
                 sessionStorage.removeItem('userRole');
             } finally {
@@ -29,7 +29,7 @@ export function UserProvider({ children }) {
         };
 
         initUser();
-    }, []); // ← Une seule fois au montage
+    }, []); //  Une seule fois au montage
 
     useEffect(() => {
         sessionStorage.setItem('userRole', userIs);
@@ -41,10 +41,10 @@ export function UserProvider({ children }) {
     function loginProvider(role) { setUserIs(role); }
     function logoutProvider() { 
         setUserIs('visitor');
-        sessionStorage.removeItem('token'); // ← Nettoie aussi le token
+        sessionStorage.removeItem('token'); //  Nettoie aussi le token
     }
 
-    // Pendant le chargement, on n'affiche rien ou un loader
+    // Pendant le chargement, on n'affiche un loader
     if (isLoading) {
         return <div>Chargement...</div>; 
     }

@@ -12,6 +12,7 @@ import User from "./pages/user/User.jsx";
 import Legales from "./pages/legales/Legales.jsx";
 import CGU from "./pages/cgu/CGU.jsx";
 import Accessibility from "./pages/accessibility/Accessibility.jsx";
+import Forbidden from "./pages/forbidden/Forbidden.jsx";
 import NotFound from "./pages/notfound/NotFound.jsx"; 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { UserProvider } from "./UserProvider.jsx";
@@ -43,6 +44,7 @@ function App() {
               <Route path="/legales" element={<Legales />} />
               <Route path="/cgu" element={<CGU />} />
               <Route path="/accessibility" element={<Accessibility />} />
+              <Route path="/403" element={<Forbidden />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

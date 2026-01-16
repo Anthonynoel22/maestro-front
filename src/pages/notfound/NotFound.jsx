@@ -6,9 +6,7 @@ function NotFound() {
         <div className="notfound-global">
             <h1 className="title-main">404</h1>
             <h2 className="subtitle">Page non trouvée</h2>
-            <p className="text-center">
-                La page que vous recherchez est introuvable
-            </p>
+            <p className="text-center">La page que vous recherchez est introuvable</p>
             <div className="link-container">
                 <Link to="/">Retour à l'accueil</Link>
             </div>

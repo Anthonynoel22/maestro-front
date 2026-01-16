@@ -1,13 +1,13 @@
 @use "/src/mixin";
 @use "/src/var";
 
-header {
+.header {
     position: sticky;
     top: 0;
     left: 0;
     width: 100%;
     display: flex;
-    flex-direction: column; // mobile: empilé
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 1px 20px;
@@ -15,7 +15,12 @@ header {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     z-index: 10;
 
-    img {
+    // Logo
+    &__logo-link {
+        display: block;
+    }
+
+    &__logo {
         width: 50px;
         height: 50px;
         border-radius: 50%;
@@ -23,57 +28,28 @@ header {
         margin-bottom: 0;
     }
 
-    // logo seul sur mobile
-    nav,
-    .icon-menu {
+    // Navigation cachée sur mobile
+    &__nav {
         display: none;
     }
 
-    /* menu déroulant mobile */
-    .icon-menu {
-        position: relative;
-
-        .nav-icon {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: 40px;
-            right: 0;
-            background-color: white;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 6px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            padding: 10px 15px;
-            min-width: 180px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            z-index: 10;
-        }
-    }
-
-    // À partir de medium : affichage complet (desktop)
+    // À partir de desktop : affichage complet
     @include mixin.desktop {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
         padding: 10px 40px;
 
-        img {
+        &__logo {
             margin-bottom: 0;
         }
 
-        nav {
+        &__nav {
             flex-grow: 1;
             display: flex;
             justify-content: center;
 
-            ul {
+            .nav-list {
                 display: flex;
                 align-items: center;
                 list-style: none;
@@ -81,25 +57,50 @@ header {
                 margin: 0;
                 padding: 0;
 
-                li a {
+                &__item {
+                    &.nav-list__dropdown {
+                        .nav-icon-toggle {
+                            padding: 0 !important;
+                            border: 0 !important;
+                        }
+
+                        .nav-icon {
+                            width: 32px;
+                            height: 32px;
+                        }
+                        .dropdown-toggle::after {
+                            display: none;
+                        }
+                    }
+                }
+
+                &__link {
                     text-decoration: none;
                     color: var.$color-title-text;
                     font-family: var.$font-main;
                     font-weight: 500;
                     font-size: var.$font-size-base;
                     transition: color 0.3s ease;
-
-                    &:hover {
-                        color: var.$color-admin;
-                    }
+                    background-color: transparent;
                 }
             }
         }
+    }
+}
 
-        .icon-menu {
-            display: flex;
-            align-items: center;
-            position: relative;
-        }
+// Menu dropdown utilisateur
+.user-menu {
+    &__header {
+        font-weight: 500;
+        padding: 8px 16px;
+        color: var.$color-title-text;
+        font-size: 0.875rem;
+    }
+
+    .user-menu__link {
+        padding: 8px 16px !important;
+        font-size: var.$font-size-base !important;
+        color: var.$color-title-text !important;
+        background-color: transparent !important;
     }
 }
