@@ -39,6 +39,7 @@
     }
 
     &__link {
+        color: var.$color-admin;
         text-decoration: underline;
     }
 
@@ -61,8 +62,16 @@
         }
 
         &__list-item {
-            font-size: var.$font-size-base ;
+            font-size: var.$font-size-base;
             line-height: 3;
+        }
+    }
+}
+
+@media (min-width: 1600px) {
+    .accessibility {
+        &__global__list {
+            padding-left: 130px;
         }
     }
 }

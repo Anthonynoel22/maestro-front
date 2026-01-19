@@ -1,14 +1,12 @@
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import UserContext from "../../UserContext.jsx";
 import { logoutUser } from "../../api/apiUser.js";
 import { notify } from "../Toast/Toast.jsx";
 import "./Footer.scss";
 
-
 function Footer() {
-
     const links = [
         { label: "Nous contacter", to: "/contact" },
         { label: "Informations légales", to: "/legales" },
@@ -16,22 +14,17 @@ function Footer() {
         { label: "Accessibilité", to: "/accessibility" },
     ];
     
-    /* Tableau des liens pour mobile.
-    Il commence par un lien supplémentaire "Compositions", 
-    puis inclut tous les liens précédents grâce à l’opérateur spread (...). */
-    
     const mobileLinks = [{ label: "Compositions", to: "/compositions" }, ...links];
 
     const { userIs, logoutProvider } = useContext(UserContext);
-
     const navigate = useNavigate();
 
     async function handleLogout() {
         try {
-            await logoutUser(); // deconnexion de user
-            logoutProvider(); // retourne à l'état de visiteur
+            await logoutUser();
+            logoutProvider();
             notify("Vous êtes déconnecté.");
-            navigate("/"); // redirection vers la page d'accueil
+            navigate("/");
         } catch (error) {
             console.log("erreur logout :", error);
         }
@@ -43,14 +36,16 @@ function Footer() {
                 <ul className="footer-links" role="navigation" aria-label="Liens utiles en pied de page" tabIndex={0}>
                     {links.map((link, index) => (
                         <li key={index}>
-                            <Link 
+                            <NavLink 
                                 to={link.to}
                                 tabIndex={0}
                                 aria-label={`Accéder à la section ${link.label}`}
+                                className={({ isActive }) =>
+                                    `footer-link ${isActive ? "footer-link--active" : ""}`
+                                }
                             >  
-                            
                                 {link.label}
-                            </Link>
+                            </NavLink>
                         </li>
                     ))}
                 </ul>
@@ -59,18 +54,18 @@ function Footer() {
             {/* Barre d'icônes mobile */}
             <ul className="footer-icons" aria-label="Navigation rapide pied de page" tabIndex={0}>
                 <li>
-                    <Link to="/" tabIndex={0} aria-label="Page d’accueil">
+                    <NavLink to="/" tabIndex={0} aria-label="Page d'accueil" end>
                         <i className="bi bi-house"></i>
                         <span>Accueil</span>
-                    </Link>
+                    </NavLink>
                 </li>
 
                 {userIs === "visitor" ? (
                     <li>
-                        <Link to="/login" tabIndex={0} aria-label="Espace personnel">
+                        <NavLink to="/login" tabIndex={0} aria-label="Espace personnel">
                             <i className="bi bi-person"></i>
                             <span>Connexion</span>
-                        </Link>
+                        </NavLink>
                     </li>
                 ) : (
                     <li>
@@ -90,18 +85,17 @@ function Footer() {
                                     Espace {userIs}
                                 </Dropdown.Header>
                                 {userIs === "admin" && (
-                                    <Dropdown.Item as={Link} to="/admin" tabIndex={0} aria-label="Espace administrateur">
+                                    <Dropdown.Item as={NavLink} to="/admin" end tabIndex={0} aria-label="Espace administrateur">
                                         Mon espace
                                     </Dropdown.Item>
                                 )}
-                                
                                 {userIs === "client" && (
-                                    <Dropdown.Item as={Link} to="/user" tabIndex={0} aria-label="Espace client">
+                                    <Dropdown.Item as={NavLink} to="/user" end tabIndex={0} aria-label="Espace client">
                                         Mon espace
                                     </Dropdown.Item>
                                 )}
                                 <Dropdown.Divider role="separator" />
-                                <Dropdown.Item as={Link} to="/user/settings" tabIndex={0} aria-label="Paramètre de compte">
+                                <Dropdown.Item as={NavLink} to="/user/settings" end tabIndex={0} aria-label="Paramètre de compte">
                                     Paramètre de compte
                                 </Dropdown.Item>
                                 <Dropdown.Divider role="separator" />
@@ -113,7 +107,7 @@ function Footer() {
                     </li>
                 )}
 
-                {/* Menu des liens pour mobiles*/}
+                {/* Menu des liens pour mobiles */}
                 <li>
                     <Dropdown>
                         <Dropdown.Toggle
@@ -126,14 +120,17 @@ function Footer() {
                             <i className="bi bi-list"></i>
                             <span>Liens</span>
                         </Dropdown.Toggle>
-                        <Dropdown.Menu aria-label="Menu des liens supplémentaires" role="menu">
+                        <Dropdown.Menu aria-label="Menu des liens" role="menu">
                             {mobileLinks.map((link, index) => (
                                 <Dropdown.Item
-                                    as={Link}
+                                    as={NavLink}
                                     to={link.to}
                                     key={index}
                                     tabIndex={0}
                                     aria-label={`Accéder à la section ${link.label}`}
+                                    className={({ isActive }) =>
+                                        `dropdown-item ${isActive ? "footer-dropdown-active" : ""}`
+                                    }
                                 >
                                     {link.label}
                                 </Dropdown.Item>

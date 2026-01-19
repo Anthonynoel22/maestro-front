@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import clientIcon from "../../assets/images/user-client.svg";
 import adminIcon from "../../assets/images/user-admin.svg";
@@ -14,7 +14,7 @@ function Header() {
     const { userIs, logoutProvider } = useContext(UserContext);
     const navigate = useNavigate();
 
-    // Active l’intercepteur global axios
+    // Active l'intercepteur global axios
     useAxiosInterceptor();
 
     const commonLinks = [
@@ -41,7 +41,7 @@ function Header() {
             : null;
 
     return (
-        <header className="header" role="banner">
+        <header className={`header ${userIs}`} role="banner">
             <a href="/" className="header__logo-link">
                 <img
                     src={logo}
@@ -58,9 +58,15 @@ function Header() {
                 <ul className="nav-list" role="menubar">
                     {commonLinks.map((link, index) => (
                         <li key={index} className="nav-list__item">
-                            <Link to={link.to} className="nav-list__link" role="menuitem">
+                            <NavLink
+                                to={link.to}
+                                className={({ isActive }) =>
+                                    `nav-list__link ${isActive ? "nav-list__link--active" : ""}`
+                                }
+                                role="menuitem"
+                            >
                                 {link.label}
-                            </Link>
+                            </NavLink>
                         </li>
                     ))}
 
@@ -94,9 +100,12 @@ function Header() {
 
                                     {userIs === "admin" && (
                                         <Dropdown.Item
-                                            as={Link}
+                                            as={NavLink}
                                             to="/admin"
-                                            className="user-menu__link"
+                                            end
+                                            className={({ isActive }) =>
+                                                `user-menu__link ${isActive ? "active" : ""}`
+                                            }
                                         >
                                             Mon espace
                                         </Dropdown.Item>
@@ -104,9 +113,12 @@ function Header() {
 
                                     {userIs === "client" && (
                                         <Dropdown.Item
-                                            as={Link}
+                                            as={NavLink}
                                             to="/user"
-                                            className="user-menu__link"
+                                            end
+                                            className={({ isActive }) =>
+                                                `user-menu__link ${isActive ? "active" : ""}`
+                                            }
                                         >
                                             Mon espace
                                         </Dropdown.Item>
@@ -115,9 +127,12 @@ function Header() {
                                     <Dropdown.Divider />
 
                                     <Dropdown.Item
-                                        as={Link}
+                                        as={NavLink}
                                         to="/user/settings"
-                                        className="user-menu__link"
+                                        end
+                                        className={({ isActive }) =>
+                                            `user-menu__link ${isActive ? "active" : ""}`
+                                        }
                                     >
                                         Paramètre de compte
                                     </Dropdown.Item>
@@ -135,13 +150,15 @@ function Header() {
                         </li>
                     ) : (
                         <li className="nav-list__item">
-                            <Link
+                            <NavLink
                                 to="/login"
-                                className="nav-list__link"
+                                className={({ isActive }) =>
+                                    `nav-list__link ${isActive ? "nav-list__link--active" : ""}`
+                                }
                                 aria-label="Accéder à la page de connexion ou d'inscription"
                             >
                                 Connexion / Inscription
-                            </Link>
+                            </NavLink>
                         </li>
                     )}
                 </ul>

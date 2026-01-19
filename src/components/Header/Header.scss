@@ -68,6 +68,7 @@
                             width: 32px;
                             height: 32px;
                         }
+
                         .dropdown-toggle::after {
                             display: none;
                         }
@@ -80,7 +81,6 @@
                     font-family: var.$font-main;
                     font-weight: 500;
                     font-size: var.$font-size-base;
-                    transition: color 0.3s ease;
                     background-color: transparent;
                 }
             }
@@ -88,16 +88,49 @@
     }
 }
 
+
+.header.admin {
+    .nav-list__link--active,
+    .user-menu .dropdown-item.active {
+        color: black !important;
+        font-weight: 600 !important;
+        text-decoration: underline !important;
+        text-decoration-color: var.$color-admin !important;
+        text-decoration-thickness: 2px !important;
+        
+    }
+}
+
+.header.client {
+    .nav-list__link--active,
+    .user-menu .dropdown-item.active {
+        color: black !important;
+        font-weight: 600 !important;
+        text-decoration: underline !important;
+        text-decoration-color: var.$color-client !important;
+        text-decoration-thickness: 2px !important;
+        transform: scale(1.05) !important;
+    }
+}
+
+.header.visitor {
+    .nav-list__link--active,
+    .user-menu .dropdown-item.active {
+        color: black ;
+        font-weight: 600 ;
+    }
+}
+
 // Menu dropdown utilisateur
-.user-menu {
-    &__header {
+.user-menu.dropdown-menu.show {
+    .dropdown-header {
         font-weight: 500;
         padding: 8px 16px;
         color: var.$color-title-text;
         font-size: 0.875rem;
     }
 
-    .user-menu__link {
+    .dropdown-item {
         padding: 8px 16px !important;
         font-size: var.$font-size-base !important;
         color: var.$color-title-text !important;
