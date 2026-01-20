@@ -1,7 +1,12 @@
+[[redirects]]
+  from = "/api/*"
+  to = "https://maestro-back-9st7.onrender.com/api/:splat"
+  status = 200
+  force = true
+
 [[headers]]
-  for = "/*"
+  for = "/api/*"
   [headers.values]
     Access-Control-Allow-Origin = "https://maestro-front-anthony.netlify.app"
     Access-Control-Allow-Credentials = "true"
-    Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
-    Access-Control-Allow-Headers = "Content-Type, Authorization"
+
