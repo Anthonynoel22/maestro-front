@@ -49,6 +49,7 @@
     flex-direction: row;
     justify-content: center;
     gap: 1rem;
+    background-color: transparent !important;
 }
 
 .accordion-header {
@@ -74,6 +75,10 @@
 }
 
 
+.accordion-button:focus {
+    box-shadow: none !important;
+
+}
 .genre__list__item--trash {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -87,10 +92,11 @@
 }
 
 .genre__form__button {
-    background-color: var.$color-admin;
-    border: none;
+    background-color: var.$color-admin !important;
+    border: none !important;
     border-radius: 10px;
     color: white;
+    // margin: 1rem;
     padding: .7rem 2rem .7rem 2rem;
     max-width: 10rem;
 }
@@ -120,16 +126,29 @@
     gap: .7rem;
 }
 
-.trash__icon {
-    padding: .5rem .7rem .5rem .7rem;
+.bi.bi-trash {
+    font-size: 1.5rem;
 }
 
-.trash__icon:hover {
-    background-color: lightgray;
-    border-radius: 5px;
+.trash__icon  {
+    padding: .5rem .7rem .5rem .7rem;
+    background-color: transparent !important;
+    color: black !important;
+    border-color: transparent !important;
 }
+
+.bi.bi-pencil-square {
+    font-size: 1.5rem;
+}
+
+.pencil__icon {
+        padding: .5rem .7rem .5rem .7rem;
+    background-color: transparent !important;
+    color: black !important;
+    border-color: transparent !important;
+}
+
 
 .genre__form__item {
     border-radius: 10px;
 }
-
