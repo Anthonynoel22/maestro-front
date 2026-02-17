@@ -50,13 +50,15 @@ que pour l’ administrateur.
 ### Généralités 
 
 - Consultable sur mobile et ordinateur
-- Page 404 pour signifier à un utilisateur que la page demandée n’existe pas
+- Page 404 pour signifier à un utilisateur que la page demandée est introuvable 
+- Page 403 pour signifier à un utilisateur que la page demandée lu est inderdit 
 
 ## Techno Front-end
 
 - React
 - Axios
 - Bootstrap
+- Scss
 - React-Router-Dom
 - React-Dom
 - React-Hot-Toast
