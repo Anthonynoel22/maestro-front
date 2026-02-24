@@ -51,7 +51,7 @@ que pour l’ administrateur.
 
 - Consultable sur mobile et ordinateur
 - Page 404 pour signifier à un utilisateur que la page demandée est introuvable 
-- Page 403 pour signifier à un utilisateur que la page demandée lu est inderdit 
+- Page 403 pour signifier à un utilisateur que la page demandée lu est interdit
 
 ## Techno Front-end
 
